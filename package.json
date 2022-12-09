@@ -19,19 +19,31 @@
     "url": "https://github.com/wazo-platform/euc-plugins-js-sdk/issues"
   },
   "files": [
-    "dist",
+    "lib",
     "src"
   ],
-  "main": "dist/index.js",
-  "module": "esm/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/types/index.d.ts",
+        "default": "./lib/esm/index.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/types/index.d.ts",
+        "default": "./lib/cjs/index.js"
+      }
+    }
+  },
+  "types": "./lib/cjs/types/index.d.ts",
+  "main": "./lib/cjs/index.js",
+  "module": "lib/esm/index.js",
   "scripts": {
     "test": "jest",
-    "clean": "rimraf dist esm",
-    "prebuild": "npm run clean",
-    "preversion": "npm run build",
-    "build:cjs": "tsc --module commonjs --outDir dist --project tsconfig.build.json",
-    "build:esm": "tsc --target es2018 --outDir esm --project tsconfig.build.json",
-    "build": "npm run build:esm && npm run build:cjs"
+    "clean": "rimraf lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "prepack": "npm run build"
   },
   "devDependencies": {
     "@types/jest": "^29.2.4",
