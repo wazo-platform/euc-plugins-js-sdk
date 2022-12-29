@@ -104,12 +104,13 @@ class App {
     this._sendMessage(EVENT_CREATE_MEETING, { name, requireAuthorization, persistent });
   };
 
-  openMeetingLobby = (number: string) => {
-    this._sendMessage(EVENT_OPEN_MEETING_LOBBY, { number });
+  openMeetingLobby = (extension: string) => {
+    this._sendMessage(EVENT_OPEN_MEETING_LOBBY, { extension });
   };
 
   openSettings = () => {
-    this._sendMessage(EVENT_OPEN_SETTINGS);
+    // @TODO: Fix it in WDA
+    // this._sendMessage(EVENT_OPEN_SETTINGS);
   };
 
   closeLeftPanel = () => {
