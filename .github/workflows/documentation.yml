@@ -1,0 +1,17 @@
+name: Deploy documentation
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: redkubes/docusaurus-deploy-action@v1.2
+        with:
+          source-folder: documentation
+          git-user: $SOME_USERNAME
+          git-password: ${{ secrets.GITHUB_TOKEN }}
+          deployment-branch: gh-pages
