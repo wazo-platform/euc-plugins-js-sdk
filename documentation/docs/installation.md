@@ -23,7 +23,7 @@ yarn add @wazo/euc-plugins-sdk
 Then
 
 ```js
-import EUCPlugins from '@wazo/euc-plugins-sdk';
+import { app } from '@wazo/euc-plugins-sdk';
 ```
 
 ## Using a Content Delivery Networks (CDN)
@@ -33,12 +33,12 @@ Alternatively, you may load the Wazo SDK from a CDN. Use one of the following Co
 ### UNPKG
 
 ```js
-import EUCPlugins from 'https://unpkg.com/@wazo/euc-plugins-sdk@latest/lib/esm/index.mjs';
+import { app } from 'https://unpkg.com/@wazo/euc-plugins-sdk@latest/lib/esm/index.mjs';
 ```
 
 ### jsDelivr
 
 ```js
-import EUCPlugins from 'https://cdn.jsdelivr.net/npm/@wazo/euc-plugins-sdk@latest/lib/esm/index.mjs';
+import { app } from 'https://cdn.jsdelivr.net/npm/@wazo/euc-plugins-sdk@latest/lib/esm/index.mjs';
 ```
 
