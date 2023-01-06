@@ -4,12 +4,14 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const isDev = process.env.NODE_ENV === 'development';
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Wazo EUC plugins SDK',
   tagline: 'Create plugins for Wazo EUC apps',
   url: 'https://wazo.io',
-  baseUrl: '/',
+  baseUrl: isDev ? '/' : 'euc-plugins-js-sdk/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
