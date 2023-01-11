@@ -5,6 +5,12 @@ sidebar_label: Softphone
 
 # Softphone integration
 
+## A note about autoplay
+
+When the softphone is loaded and the user hasn't made any interaction with the page, we can fall into the [Autoplay restriction](https://developer.chrome.com/blog/autoplay) of chrome.
+
+Even if the softphone uses [iframe delegation](https://developer.chrome.com/blog/autoplay/#iframe-delegation), we need to have a user interaction before being able to play the ringtone sound for incoming call. 
+
 To be able to integrate Wazo softphone in any web page, you can add :
 
 ```ts
@@ -310,5 +316,60 @@ softphone.onLoggedOut = () => {
 
 softphone.onIFrameLoaded = () => {
   // Invoked when the iframe is loaded
+};
+
+// Prefill form select
+Softphone.optionsFetched('myField', [
+  { label: 'Foo', id: 'test' },
+  { label: 'Bar', id: '123' },
+]);
+```
+
+## Examples
+
+### Displaying a browser notification for incoming calls
+
+```js
+import { softphone } from '@wazo/euc-plugins-sdk';
+
+// Ask for notification permission if not yet granted
+if (Notification.permission !== 'granted') {
+  Notification.requestPermission();
+}
+
+softphone.init({
+  url: 'http://localhost:3000',
+  server: 'my-stack.io',
+});
+
+softphone.onCallIncoming = call => {
+  new Notification(`Call incoming from ${call.displayName}`);
+};
+```
+
+### Make an API call from the WAZO SDK
+
+Listing user call logs on login.
+
+```
+import { softphone } from '@wazo/euc-plugins-sdk';
+import Wazo from '@wazo/sdk/lib/simple';
+
+const server = 'my-stack.com';
+
+softphone.init({
+  url: 'http://localhost:3000',
+  server,
+});
+
+softphone.onCallIncoming = call => {
+  new Notification(`Call incoming from ${call.displayName}`);
+};
+
+softphone.onAuthenticated = async session => {
+  Wazo.Auth.setHost(server);
+  Wazo.Auth.setApiToken(session.token);
+  
+  const callLogs = await Wazo.api.callLogd.listCallLogs();
 };
 ```
