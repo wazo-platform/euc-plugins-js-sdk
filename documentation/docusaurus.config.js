@@ -90,6 +90,12 @@ const config = {
           },
           {
             type: 'doc',
+            docId: 'softphone',
+            position: 'left',
+            label: 'Softphone',
+          },
+          {
+            type: 'doc',
             docId: 'sdk',
             position: 'left',
             label: 'SDK',

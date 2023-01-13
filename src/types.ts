@@ -151,3 +151,38 @@ export interface Meeting {
 export interface Extra {
   clientType: HostClientType;
 }
+
+export interface SoftphoneInitArguments {
+  url: string;
+  server: string;
+  width?: number;
+  height?: number;
+  port?: number | string;
+  language?: string;
+  wrapUpDuration?: number;
+  enableAgent?: boolean;
+  tenantId?: string;
+  domainName?: string;
+  debug?: boolean;
+}
+
+export interface Card {
+  cardId: string;
+  phoneNumber: string;
+  callId: string;
+  // + fields that you've added in the `setFormSchema` methods
+}
+
+export interface CallLog {
+  answer: Date | null;
+  answered: boolean;
+  callDirection: string;
+  destination: { extension: string, name: string, uuid: string | null };
+  duration: number;
+  end: Date | null;
+  id: number;
+  newMissedCall: boolean;
+  recordings: Object[];
+  source:  { extension: string, name: string, uuid: string | null };
+  start: Date | null
+}
