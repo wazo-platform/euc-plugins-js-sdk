@@ -110,7 +110,7 @@ softphone.customizeAppearance({
   hovered: '#6181F4',
 }, {
   // Translation
-  // Set `debug: true` to know where to change translations, eg:
+  // Set `debug: true` to know where to change translations, like below:
   en: {
     user: {
       login: 'My login button', // will be displayed as `user:login` in the button when settings `debug: true` in the init() method
@@ -183,8 +183,8 @@ You can listen to softphone callback, with :
 
 ```js
 softphone.onLinkEnabled = (link: HTMLLinkElement) => {
-  // link is `<a>` html tag in the page with a href="tel:xx" (or callto:xxx) beeing processed
-  // You can make change here, like addind className, etc ...
+  // link is `<a>` html tag in the page with a href="tel:xx" (or callto:xxx) being processed
+  // You can make change here, like adding className, etc ...
 };
 
 softphone.onCallIncoming = (call: Call) => {
@@ -217,7 +217,7 @@ softphone.onCardSaved = (card: Card) => {
 };
 
 softphone.onSearchOptions = (fieldId: string, query: string) => {
-  // Invoked when the user is making a search from an Autocomplete field in the card form
+  // Invoked when the user is searching from an Autocomplete field in the card form
   // We need to call `onOptionsResults` here to send results to the softphone
 };
 
@@ -303,7 +303,7 @@ softphone.onCallLogCreated = (callLog: CallLog) => {
 };
 
 softphone.onWebsocketMessage = (message: Object) => {
-  // Invoked when the a Wazo websocket mesasge is received in the softphone
+  // Invoked when the a Wazo websocket message is received in the softphone
 };
 
 softphone.onAuthenticated = (session: WDASession) => {
