@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-sidebar_label: Sdk
+sidebar_label: EUC Plugins SDK
 ---
 
 # Using the EUC plugins SDK

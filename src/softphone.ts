@@ -56,6 +56,7 @@ interface SoftphoneBridgeConfig {
   tenantId?: string;
   domainName?: string;
   wrapUpDuration?: number;
+  disableAutoLogin?: boolean;
 }
 
 type Message = [string, Object];
@@ -127,6 +128,7 @@ class Softphone {
     tenantId,
     domainName,
     debug = false,
+    disableAutoLogin = false,
   }: SoftphoneInitArguments) {
     this.url = url || this.url;
     this.width = width || this.width;
@@ -142,7 +144,7 @@ class Softphone {
       throw new Error('`server` is not set');
     }
 
-    const config: SoftphoneBridgeConfig = { server };
+    const config: SoftphoneBridgeConfig = { server, disableAutoLogin };
     if (language) {
       config.language = language;
     }

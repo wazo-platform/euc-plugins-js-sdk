@@ -38,6 +38,17 @@ const FeatureList: FeatureItem[] = [
         Customize the Wazo Portal to add new tabs and menu items. Add your own dashboard and add more values to your clients.
       </>
     ),
+  },
+  null,
+  {
+    title: 'Softphone',
+    Svg: require('@site/static/img/softphone.svg').default,
+    link: './docs/softphone',
+    description: (
+      <>
+        Enhance your application with a Softphone that you can embed and control with ease.
+      </>
+    ),
   }
 ];
 
@@ -55,13 +66,17 @@ function Feature({ title, Svg, description, link }: FeatureItem) {
   );
 }
 
+const Empty = () => (
+  <div className={`${clsx('col col--4')} ${styles.feature}`} />
+);
+
 export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+            props ? <Feature key={idx} {...props} /> : <Empty />
           ))}
         </div>
       </div>

@@ -5,11 +5,8 @@ sidebar_label: Softphone
 
 # Softphone integration
 
-## A note about autoplay
-
-When the softphone is loaded and the user hasn't made any interaction with the page, we can fall into the [Autoplay restriction](https://developer.chrome.com/blog/autoplay) of chrome.
-
-Even if the softphone uses [iframe delegation](https://developer.chrome.com/blog/autoplay/#iframe-delegation), we need to have a user interaction before being able to play the ringtone sound for incoming call. 
+This SDK allows you to easily embed and customize a Wazo Softphone in your application. 
+If you have a CRM that requires a click to call feature, redirecting the user to the customer information when answering a call, ... this softphone will fit your needs.
 
 To be able to integrate Wazo softphone in any web page, you can add :
 
@@ -28,8 +25,10 @@ softphone.init({
   enableAgent?: boolean, // display the agent tab in the tab bar (defaults to true).
   tenantId?: string, // Tenant id used for LDAP connection (optional)
   debug?: boolean, // Set to `true` to display wording customization labels (default to false)
+  disableAutoLogin?: boolean, // Disable the autologin mechanism inside the softphone (useful when used with `disableAutoLogin`)
 });
 ```
+
 
 ## Methods
 
@@ -38,7 +37,7 @@ softphone.init({
 Useful when you already have the user token (and refreshToken) and you don't want your user to login again.
 
 ```js
-sothpone.loginWithToken(token: string, refreshToken?: string);
+softphone.loginWithToken(token: string, refreshToken?: string);
 ```
 
 ### Making a call
@@ -216,6 +215,10 @@ softphone.onCardSaved = (card: Card) => {
   // Invoked when the user save the card at the end of the call
 };
 
+softphone.onCardCanceled = (card: Card) => {
+  // Invoked when the user discard the card
+};
+
 softphone.onSearchOptions = (fieldId: string, query: string) => {
   // Invoked when the user is searching from an Autocomplete field in the card form
   // We need to call `onOptionsResults` here to send results to the softphone
@@ -373,3 +376,9 @@ softphone.onAuthenticated = async session => {
   const callLogs = await Wazo.api.callLogd.listCallLogs();
 };
 ```
+
+## A note about autoplay
+
+When the softphone is loaded and the user hasn't made any interaction with the page, we can fall into the [Autoplay restriction](https://developer.chrome.com/blog/autoplay) of chrome.
+
+Even if the softphone uses [iframe delegation](https://developer.chrome.com/blog/autoplay/#iframe-delegation), we need to have a user interaction before being able to play the ringtone sound for incoming call.
