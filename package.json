@@ -1,6 +1,6 @@
 {
   "name": "@wazo/euc-plugins-sdk",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Wazo's Unified Enterprise Communication JavaScript Software Development Kit.",
   "author": "Wazo (http://wazo.io)",
   "maintainers": [
