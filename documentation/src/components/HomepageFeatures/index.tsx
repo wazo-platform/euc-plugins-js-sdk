@@ -39,7 +39,6 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
   },
-  null,
   {
     title: 'Softphone',
     Svg: require('@site/static/img/softphone.svg').default,
@@ -54,7 +53,7 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({ title, Svg, description, link }: FeatureItem) {
   return (
-    <a className={`${clsx('col col--4')} ${styles.feature}`} href={link}>
+    <a className={`${clsx('col col--6')} ${styles.feature}`} href={link}>
       <div className="text--center">
         <Svg className={styles.featureSvg} role="img" />
       </div>
@@ -66,18 +65,12 @@ function Feature({ title, Svg, description, link }: FeatureItem) {
   );
 }
 
-const Empty = () => (
-  <div className={`${clsx('col col--4')} ${styles.feature}`} />
-);
-
 export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            props ? <Feature key={idx} {...props} /> : <Empty />
-          ))}
+          {FeatureList.map((props, idx) => <Feature key={idx} {...props} />)}
         </div>
       </div>
     </section>

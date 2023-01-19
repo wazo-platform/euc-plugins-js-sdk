@@ -6,7 +6,7 @@ sidebar_label: Softphone
 # Softphone integration
 
 This SDK allows you to easily embed and customize a Wazo Softphone in your application. 
-If you have a CRM that requires a click to call feature, redirecting the user to the customer information when answering a call, ... this softphone will fit your needs.
+If you have a CRM that requires a click-to-call feature, redirecting the user to the customer information when answering a call, ... this softphone will fit your needs.
 
 To be able to integrate Wazo softphone in any web page, you can add :
 
@@ -25,7 +25,7 @@ softphone.init({
   enableAgent?: boolean, // display the agent tab in the tab bar (defaults to true).
   tenantId?: string, // Tenant id used for LDAP connection (optional)
   debug?: boolean, // Set to `true` to display wording customization labels (default to false)
-  disableAutoLogin?: boolean, // Disable the autologin mechanism inside the softphone (useful when used with `disableAutoLogin`)
+  disableAutoLogin?: boolean, // Disable the autologin mechanism inside the softphone (useful when used with `loginWithToken`)
 });
 ```
 
@@ -215,8 +215,8 @@ softphone.onCardSaved = (card: Card) => {
   // Invoked when the user save the card at the end of the call
 };
 
-softphone.onCardCanceled = (card: Card) => {
-  // Invoked when the user discard the card
+softphone.onCardCanceled = () => {
+  // Invoked when the user discards the card
 };
 
 softphone.onSearchOptions = (fieldId: string, query: string) => {
