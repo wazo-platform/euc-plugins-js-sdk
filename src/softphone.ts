@@ -38,11 +38,11 @@ const BRIDGE_ENABLE_DEBUG = 'bridge/BRIDGE_ENABLE_DEBUG';
 const BRIDGE_CALL_LOG_CREATED = 'bridge/BRIDGE_CALL_LOG_CREATED';
 const BRIDGE_ON_WEBSOCKET_MESSAGE = 'bridge/BRIDGE_ON_WEBSOCKET_MESSAGE';
 const BRIDGE_LOGIN_WITH_TOKEN = 'bridge/BRIDGE_LOGIN_WITH_TOKEN';
+const BRIDGE_ON_CLICK_TO_CALL = 'bridge/ON_CLICK_TO_CALL';
 
 const BRIDGE_INJECT_CSS = 'bridge/BRIDGE_INJECT_CSS';
 const BRIDGE_CUSTOMIZE_APPEARANCE = 'bridge/BRIDGE_CUSTOMIZE_APPEARANCE';
 
-const SDK_CLICK_TO_CALL = 'sdk/CLICK_TO_CALL';
 const SDK_ON_OUTGOING_CALL_MADE = 'sdk/SDK_ON_OUTGOING_CALL_MADE';
 const SDK_CALL_ENDED = 'sdk/ON_CALL_ENDED';
 const SDK_CALL_INCOMING = 'sdk/SDK_CALL_INCOMING';
@@ -193,7 +193,7 @@ class Softphone {
   makeCall(number: string) {
     this.displaySoftphone();
 
-    this._sendMessage(SDK_CLICK_TO_CALL, { number });
+    this._sendMessage(BRIDGE_ON_CLICK_TO_CALL, { number });
   }
 
   toggleSoftphoneDisplay() {
