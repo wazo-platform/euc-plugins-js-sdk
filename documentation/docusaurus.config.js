@@ -123,7 +123,7 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Discord',
+                label: 'Discourse',
                 href: 'https://wazo-platform.discourse.group/',
               },
               {

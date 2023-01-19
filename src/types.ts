@@ -164,6 +164,7 @@ export interface SoftphoneInitArguments {
   tenantId?: string;
   domainName?: string;
   debug?: boolean;
+  disableAutoLogin?: boolean;
 }
 
 export interface Card {
