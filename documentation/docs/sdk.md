@@ -118,8 +118,55 @@ Example:
 // Open the lobby when a meeting is created
 app.onMeetingCreated = newMeeting => {
   app.openMeetingLobby(newMeeting.exten);
-
 };
+```
+### Playing a sound
+
+```js
+app.playNewMessageSound(); // Play the sound when we receive a text message
+app.playIncomingCallSound(); // Play the incoming call sound (loop)
+app.playProgressSound(); // Play the ringback sound when we make a call (loop)
+app.playDoubleCallSound(); // Play the sound when another call is incoming
+app.playHangupSound(); // Play the hangup sound
+```
+
+### Stopping a sound
+
+All sound above marked as loop will stop only when we call:
+
+```js
+app.stopCurrentSound();
+```
+
+### Displaying a notification
+
+Wazo will display browser or Desktop notification depending on the environment where WDA is running.
+
+```js
+app.displayNotification(title: string, text: string);
+```
+
+### Changing the navigation bar color
+
+We can change the navigation bar color with a valid CSS color:
+
+```js
+app.changeNavBarColor(color: string);
+```
+
+Example:
+
+```js
+app.changeNavBarColor('#8e6a3a');
+app.changeNavBarColor('white');
+```
+
+### Resetting the navigation bar color
+
+We can reset to the default navigation bar color with:
+
+```js
+app.resetNavBarColor();
 ```
 
 ### Events

@@ -9,9 +9,9 @@ sidebar_label: Mobile
 
 ## Adding tabs in the main page
 
-![App configuration](/img/mobile-tab1.png)
+![App configuration (small)](/img/mobile-tab1.png)
 
-![App configuration](/img/mobile-tab2.png)
+![App configuration (small)](/img/mobile-tab2.png)
 
 To create a new tab in the main screen, add a `staticTabs` in your manifest with a `generalTab` `context` :
 ```json

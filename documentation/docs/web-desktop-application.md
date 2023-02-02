@@ -29,7 +29,7 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 
 ## Adding tabs in the sidebar
 
-![App configuration](/img/wda-sidebar.png)
+![App configuration (small)](/img/wda-sidebar.png)
 
 To create a new tab in the main screen, add a `sidebarTab` in your manifest with a `generalTab` `context` :
 ```json

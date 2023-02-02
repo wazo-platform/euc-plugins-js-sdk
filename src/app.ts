@@ -18,6 +18,15 @@ const EVENT_ON_MEETING_CREATED = 'wazo/EVENT_ON_MEETING_CREATED';
 const EVENT_ROUTE_CHANGE = 'wazo/EVENT_ROUTE_CHANGE';
 const EVENT_ON_LOGOUT = 'wazo/EVENT_ON_LOGOUT';
 const EVENT_WS_MESSAGE = 'wazo/EVENT_WS_MESSAGE';
+const EVENT_PLAY_PROGRESS_SOUND = 'wazo/EVENT_PLAY_PROGRESS_SOUND';
+const EVENT_PLAY_NEW_MESSAGE_SOUND = 'wazo/EVENT_PLAY_NEW_MESSAGE_SOUND';
+const EVENT_PLAY_INCOMING_CALL_SOUND = 'wazo/EVENT_PLAY_INCOMING_CALL_SOUND';
+const EVENT_PLAY_DOUBLE_CALL_SOUND = 'wazo/EVENT_PLAY_DOUBLE_CALL_SOUND';
+const EVENT_PLAY_HANGUP_SOUND = 'wazo/EVENT_PLAY_HANGUP_SOUND';
+const EVENT_STOP_CURRENT_SOUND = 'wazo/EVENT_STOP_CURRENT_SOUND';
+const EVENT_DISPLAY_NOTIFICATION = 'wazo/EVENT_DISPLAY_NOTIFICATION';
+const EVENT_CHANGE_NAVBAR_COLOR = 'wazo/EVENT_CHANGE_NAVBAR_COLOR';
+const EVENT_RESET_NAVBAR_COLOR = 'wazo/EVENT_RESET_NAVBAR_COLOR';
 
 // Portal
 const EVENT_ON_CONNECTED_TO_STACK = 'wazo/EVENT_ON_CONNECTED_TO_STACK';
@@ -31,7 +40,7 @@ class App {
   initializeResolve: Function | null;
   initializeTimeout: ReturnType<typeof setTimeout> | null;
 
-  onUnLoaded() {};
+  onUnLoaded(e: Event) {};
 
   // WDA
   onLogout = () => {};
@@ -64,7 +73,11 @@ class App {
       },
     };
 
-    window.onunload = this.onUnLoaded;
+    // Can't be simplified as `window.onunload = this.onUnLoaded`
+    // because `this.onUnLoaded` may not be overridden by the module yet.
+    window.onunload = (e: Event) => {
+      this.onUnLoaded(e);
+    }
   }
 
   initialize = async () => {
@@ -113,13 +126,27 @@ class App {
     // this._sendMessage(EVENT_OPEN_SETTINGS);
   };
 
-  closeLeftPanel = () => {
-    this._sendMessage(EVENT_CLOSE_LEFT_PANEL);
-  };
+  closeLeftPanel = () => this._sendMessage(EVENT_CLOSE_LEFT_PANEL);
 
-  openLeftPanel = () => {
-    this._sendMessage(EVENT_OPEN_LEFT_PANEL);
-  };
+  openLeftPanel = () => this._sendMessage(EVENT_OPEN_LEFT_PANEL);
+
+  playProgressSound = () => this._sendMessage(EVENT_PLAY_PROGRESS_SOUND);
+
+  playNewMessageSound = () => this._sendMessage(EVENT_PLAY_NEW_MESSAGE_SOUND);
+
+  playIncomingCallSound = () => this._sendMessage(EVENT_PLAY_INCOMING_CALL_SOUND);
+
+  playDoubleCallSound = () => this._sendMessage(EVENT_PLAY_DOUBLE_CALL_SOUND);
+
+  playHangupSound = () => this._sendMessage(EVENT_PLAY_HANGUP_SOUND);
+
+  stopCurrentSound = () => this._sendMessage(EVENT_STOP_CURRENT_SOUND);
+
+  changeNavBarColor = (color: string) => this._sendMessage(EVENT_CHANGE_NAVBAR_COLOR, { color });
+
+  resetNavBarColor = () => this._sendMessage(EVENT_RESET_NAVBAR_COLOR);
+
+  displayNotification = (title: string, text: string) => this._sendMessage(EVENT_DISPLAY_NOTIFICATION, { title, text });
 
   _onMessage = (event: MessageEvent) => {
     if (!event.data) {

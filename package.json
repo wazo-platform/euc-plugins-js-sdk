@@ -49,7 +49,7 @@
     "test": "jest",
     "clean": "rimraf lib",
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc -p tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    "build:esm": "tsc -p tsconfig.esm.json",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "prepack": "npm run build",
     "semantic-release": "semantic-release"
