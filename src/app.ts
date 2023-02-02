@@ -1,4 +1,4 @@
-import { Call, Context, Meeting, UserInfo, Extra } from './types';
+import { Call, Context, Meeting, UserInfo, Extra, ModalParameter } from './types';
 
 // WDA
 const EVENT_APP_INITIALIZE = 'wazo/EVENT_APP_INITIALIZE';
@@ -27,6 +27,8 @@ const EVENT_STOP_CURRENT_SOUND = 'wazo/EVENT_STOP_CURRENT_SOUND';
 const EVENT_DISPLAY_NOTIFICATION = 'wazo/EVENT_DISPLAY_NOTIFICATION';
 const EVENT_CHANGE_NAVBAR_COLOR = 'wazo/EVENT_CHANGE_NAVBAR_COLOR';
 const EVENT_RESET_NAVBAR_COLOR = 'wazo/EVENT_RESET_NAVBAR_COLOR';
+const EVENT_DISPLAY_MODAL = 'wazo/EVENT_DISPLAY_MODAL';
+const EVENT_REMOVE_MODAL = 'wazo/EVENT_REMOVE_MODAL';
 
 // Portal
 const EVENT_ON_CONNECTED_TO_STACK = 'wazo/EVENT_ON_CONNECTED_TO_STACK';
@@ -147,6 +149,11 @@ class App {
   resetNavBarColor = () => this._sendMessage(EVENT_RESET_NAVBAR_COLOR);
 
   displayNotification = (title: string, text: string) => this._sendMessage(EVENT_DISPLAY_NOTIFICATION, { title, text });
+
+  displayModal = ({ url, title, text, htmlText, height, width }: ModalParameter) =>
+    this._sendMessage(EVENT_DISPLAY_MODAL, { url, title, text, htmlText, height, width });
+
+  removeModal = () => this._sendMessage(EVENT_REMOVE_MODAL);
 
   _onMessage = (event: MessageEvent) => {
     if (!event.data) {

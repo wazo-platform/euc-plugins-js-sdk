@@ -152,6 +152,15 @@ export interface Extra {
   clientType: HostClientType;
 }
 
+export interface ModalParameter {
+  url?: string;
+  title?: string;
+  text?: string;
+  htmlText?: string;
+  height?: string|number;
+  width?: string|number;
+}
+
 export interface SoftphoneInitArguments {
   url: string;
   server: string;
