@@ -354,7 +354,7 @@ softphone.onCallIncoming = call => {
 
 Listing user call logs on login.
 
-```
+```js
 import { softphone } from '@wazo/euc-plugins-sdk';
 import Wazo from '@wazo/sdk/lib/simple';
 

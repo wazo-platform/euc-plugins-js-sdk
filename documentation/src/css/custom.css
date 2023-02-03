@@ -34,3 +34,11 @@ img[alt*="small"] {
   margin: 0 auto;
   display: block;
 }
+
+a.try-it {
+  display: block;
+  width: 400px;
+  margin: 30px auto 0 !important;
+  text-align: center;
+  text-decoration: none;
+}

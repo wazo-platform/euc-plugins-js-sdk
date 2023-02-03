@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* global window, document */
-import { SoftphoneInitArguments, Call, WDASession, Card, CallLog } from './types';
+import { SoftphoneInitArguments, Call, WDASession, Card, CallLog, SoftphonePosition } from './types';
 
 const BRIDGE_CONFIG_RETRIEVED = 'bridge/CONFIG_RETRIEVED';
 const BRIDGE_CREATE_OR_UPDATE_CARD = 'bridge/BRIDGE_CREATE_OR_UPDATE_CARD';
@@ -65,6 +65,7 @@ class Softphone {
   url: string = 'https://softphone.wazo.io';
   width: number = 500;
   height: number = 600;
+  position: SoftphonePosition = { left: 0, bottom : 0};
   displayed: boolean = false;
   iframe: HTMLIFrameElement | null = null;
   iframeLoaded: boolean = false;
@@ -124,6 +125,7 @@ class Softphone {
     port,
     language,
     wrapUpDuration,
+    position,
     enableAgent = true,
     tenantId,
     domainName,
@@ -133,6 +135,7 @@ class Softphone {
     this.url = url || this.url;
     this.width = width || this.width;
     this.height = height || this.height;
+    this.position = position || this.position;
     this.displayed = false;
     this.iframeLoaded = false;
 
@@ -260,8 +263,13 @@ class Softphone {
     // $FlowFixMe
     this.iframe.allow = 'camera *; microphone *; autoplay *; display-capture *';
     this.iframe.style.position = 'absolute';
-    this.iframe.style.left = '0';
-    this.iframe.style.bottom = '0';
+
+    Object.keys(this.position).forEach((key: string) => {
+      if (this.iframe && !!this.position[key]) {
+        this.iframe.style[key] = String(this.position[key]);
+      }
+    })
+
     this.iframe.style.border = '1px solid #aaa';
     this.iframe.style.backgroundColor = 'white';
     this.iframe.src = this.url;

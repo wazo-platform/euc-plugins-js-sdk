@@ -161,6 +161,13 @@ export interface ModalParameter {
   width?: string|number;
 }
 
+export interface SoftphonePosition {
+  top?: string|number;
+  left?: string|number;
+  bottom?: string|number;
+  right?: string|number;
+}
+
 export interface SoftphoneInitArguments {
   url: string;
   server: string;
@@ -174,6 +181,7 @@ export interface SoftphoneInitArguments {
   domainName?: string;
   debug?: boolean;
   disableAutoLogin?: boolean;
+  position?: SoftphonePosition;
 }
 
 export interface Card {
