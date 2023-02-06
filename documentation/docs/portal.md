@@ -9,7 +9,7 @@ sidebar_label: Portal
 
 ## Adding tabs in the main page
 
-![App configuration](/img/portal-home-tab.png)
+![App configuration (small)](/img/portal-home-tab.png)
 
 To create a new tab in the main screen, add a `staticTabs` in your manifest with a `generalTab` `context` :
 ```json
@@ -29,7 +29,7 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 
 ## Adding tabs in the main page of the PBX section
 
-![App configuration](/img/portal-pbx-home-tab.png)
+![App configuration (small](/img/portal-pbx-home-tab.png)
 
 To create a new tab in the PBX main screen, add a `staticTabs` in your manifest with a `generalPbxTab` `context` :
 ```json
@@ -72,7 +72,7 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 
 ## Adding page in an existing menu of the PBX section
 
-![App configuration](/img/portal-existing-menu.png)
+![App configuration (small](/img/portal-existing-menu.png)
 
 To create a new page the PBX menu, add a `staticTabs` in your manifest with a `pbxMenu` `context` :
 ```json
@@ -95,7 +95,7 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 
 ## Adding you onw menu to display custom page
 
-![App configuration](/img/portal-pbx-own-menu.png)
+![App configuration (small](/img/portal-pbx-own-menu.png)
 
 To create a new menu in the PBX section, add a `staticTabs` in your manifest with a `pbxMenu` `context` :
 ```json
@@ -127,7 +127,7 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 
 ## Adding you onw section in the global settings page
 
-![App configuration](/img/portal-pbx-global-settings.png)
+![App configuration (small](/img/portal-pbx-global-settings.png)
 
 To create a new menu in the PBX section, add a `staticTabs` in your manifest with a `globalSettings` `context` :
 ```json

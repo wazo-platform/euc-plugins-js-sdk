@@ -123,6 +123,10 @@ const config = {
             title: 'Community',
             items: [
               {
+                label: 'Wazo Developers Center',
+                href: 'https://developers.wazo.io/',
+              },
+              {
                 label: 'Discourse',
                 href: 'https://wazo-platform.discourse.group/',
               },
@@ -149,6 +153,9 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+  clientModules: [
+    require.resolve('./src/softphone-module.js'),
+  ],
 };
 
 module.exports = config;

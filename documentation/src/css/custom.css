@@ -28,3 +28,42 @@
   --ifm-color-primary-lightest: #203890;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+img[alt*="small"] {
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+}
+
+a.try-it {
+  display: block;
+  width: 400px;
+  margin: 30px auto 0 !important;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Softphone example */
+#login-form {
+  width: 400px;
+  margin: 30px auto;
+  border: 1px solid #eee;
+}
+
+#login-form input, #login-form button {
+  margin: 10px auto;
+  display: block;
+  width: 250px;
+  height: 35px;
+}
+
+.call-link {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.event-container {
+  background-color: #fafafa;
+  padding: 20px;
+}

@@ -26,9 +26,9 @@ softphone.init({
   tenantId?: string, // Tenant id used for LDAP connection (optional)
   debug?: boolean, // Set to `true` to display wording customization labels (default to false)
   disableAutoLogin?: boolean, // Disable the autologin mechanism inside the softphone (useful when used with `loginWithToken`)
+  iframeCss?: IframeCss, // Customize the CSS of the iframe itself, default to `{ left: 0, bottom : 0 }`
 });
 ```
-
 
 ## Methods
 
@@ -53,24 +53,23 @@ softphone.displaySoftphone();
 softphone.hideSoftphone();
 ```
 
+### Removing the softphone from the page
+```js
+softphone.removeSoftphone();
+```
+
 ### Parsing links on the page
 ```js
 softphone.parseLinks();
 ```
 
+### Remove the event of parsed links
+
+```js
+softphone.removeParsedLinksEvent();
+```
+
 Each link with a `href="tel:"` or  `href="callto:"` will make a call through the softphone.
-
-### Sending search results to the softphone:
-```js
-softphone.onOptionsResults(fieldId, results);
-```
-
-`onOptionsResults` is used to populate Autocomplete fields
-
-### Updating card value:
-```js
-softphone.setCardValue(field, value);
-```
 
 ### Customizing page style
 
@@ -88,25 +87,77 @@ softphone.injectCss(`
 ### Override appearance
 ```js
 softphone.customizeAppearance({
-  // Theme, default values :
-  primary: '#203890',
-  button: '#292C87',
-  black: '#000',
-  white: '#fff',
-  greenButton: '#7ed865',
-  greenButtonHover: '#6ebf5a',
-  redButton: '#FA5846',
-  redButtonHover: '#FF604F',
-  buttonText: '#fff',
-  error: '#E80539',
-  secondary: '#203890',
-  grey: '#8A95A0',
-  secondGrey: '#eee',
-  headerColor: '#888',
-  avatar: '#bdbdbd',
-  divider: 'rgba(0, 0, 0, 0.12)',
-  placeholder: 'rgba(22, 44, 66, 0.5)',
-  hovered: '#6181F4',
+  colors: {
+    // Theme, default values :
+    primary: '#203890',
+    button: '#292C87',
+    black: '#000',
+    white: '#fff',
+    greenButton: '#7ed865',
+    greenButtonHover: '#6ebf5a',
+    redButton: '#FA5846',
+    redButtonHover: '#FF604F',
+    buttonText: '#fff',
+    error: '#E80539',
+    secondary: '#203890',
+    grey: '#8A95A0',
+    secondGrey: '#eee',
+    headerColor: '#888',
+    avatar: '#bdbdbd',
+    divider: 'rgba(0, 0, 0, 0.12)',
+    placeholder: 'rgba(22, 44, 66, 0.5)',
+    hovered: '#6181F4',
+  },
+  metrics: {
+    spacing: {
+      tiny: 5,
+      small: 10,
+      medium: 15,
+      large: 20,
+      larger: 25,
+      big: 30,
+      huge: 40,
+      gigantic: 50,
+    },
+    icons: {
+      xsmall: 12,
+      smaller: 15,
+      small: 19,
+      mediumSmall: 25,
+      medium: 30,
+      large: 40,
+      huge: 42,
+    },
+    breakpoint: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+    borderRadius: 5,
+    card: {
+      activity: {
+        height: 57,
+      },
+      phonebookContact: {
+        height: 58,
+      },
+      search: {
+        height: 35,
+      },
+    },
+    navigation: 60,
+    sidebar: 315,
+    search: 359,
+    lineStatus: 16,
+    dialer: {
+      key: 30,
+      description: 15,
+    },
+    infoBanner: 43,
+    infoBannerSmall: 26,
+  },
 }, {
   // Translation
   // Set `debug: true` to know where to change translations, like below:
@@ -121,12 +172,10 @@ softphone.customizeAppearance({
 });
 ```
 
-`onOptionsResults` is used to populate Autocomplete fields
-
 ### Customizing card form
 
 You can use [JSON schema](http://json-schema.org/) to customize the card form with `softphone.setFormSchema(schema, uiSchema)`,
-the Softphone uses [React Json schema form](https://react-jsonschema-form.readthedocs.io) internally to display card form :
+the Softphone uses [React Json schema form](https://rjsf-team.github.io/react-jsonschema-form/docs/) internally to display card form :
 
 ```js
 softphone.setFormSchema({
@@ -174,6 +223,19 @@ clientId: {
     uiSchema: {}
   },
 }
+```
+
+### Sending search results to the softphone:
+```js
+// `results` should have a `label` field, like: const result = [{ label: 'Alice', id: 1 }];
+softphone.onOptionsResults(fieldId, results);
+```
+
+`onOptionsResults` is used to populate Autocomplete fields
+
+### Updating card value:
+```js
+softphone.setCardValue(field, value);
 ```
 
 ## Callbacks / Events
@@ -243,6 +305,10 @@ softphone.onAgentLoggedOut = () => {
 
 softphone.onAgentPaused = () => {
   // Invoked when the agent is paused
+};
+
+softphone.onAgentResumed = () => {
+  // Invoked when the agent is resumed
 };
 
 softphone.onLanguageChanged = (language: string) => {
@@ -354,7 +420,7 @@ softphone.onCallIncoming = call => {
 
 Listing user call logs on login.
 
-```
+```js
 import { softphone } from '@wazo/euc-plugins-sdk';
 import Wazo from '@wazo/sdk/lib/simple';
 

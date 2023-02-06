@@ -118,7 +118,84 @@ Example:
 // Open the lobby when a meeting is created
 app.onMeetingCreated = newMeeting => {
   app.openMeetingLobby(newMeeting.exten);
+};
+```
+### Playing a sound
 
+```js
+app.playNewMessageSound(); // Play the sound when we receive a text message
+app.playIncomingCallSound(); // Play the incoming call sound (loop)
+app.playProgressSound(); // Play the ringback sound when we make a call (loop)
+app.playDoubleCallSound(); // Play the sound when another call is incoming
+app.playHangupSound(); // Play the hangup sound
+```
+
+### Stopping a sound
+
+Sounds marked "loop" must be stopped using:
+
+```js
+app.stopCurrentSound();
+```
+
+### Displaying a notification
+
+Wazo will display browser or desktop notification depending on the environment where WDA is running.
+
+```js
+app.displayNotification(title: string, text: string);
+```
+
+### Changing the navigation bar color
+
+We can change the navigation bar color with a valid CSS color:
+
+```js
+app.changeNavBarColor(color: string);
+```
+
+Example:
+
+```js
+app.changeNavBarColor('#8e6a3a');
+app.changeNavBarColor('white');
+```
+
+### Resetting the navigation bar color
+
+We can reset to the default navigation bar color with:
+
+```js
+app.resetNavBarColor();
+```
+
+### Displaying a modal
+
+We can display a modal in the `backgroundScript` with:
+
+```js
+app.displayModal({ url, title, text, htmlText, height, width });
+```
+
+If `url` is present, the modal will display an iframe with the content of the url.
+If `htmlText` is present, the modal will display this text in a html contact, otherwise the `text` attribute will be used.
+The `height` and `width` accept valid CSS values, like `500px` or `80%`.
+
+Example:
+
+Displaying client data when receiving a call
+
+```js
+app.onCallIncoming = async call => {
+  console.log('background onCallIncoming', call);
+  const clientData = await fetchClientData(call.number); // Where `fetchClientData` is a method that return client information from an extension
+  
+  app.displayModal({
+    title: `Incoming call for ${call.displayName}`,
+    text: `Last call was: ${clientData.lastCall} for : ${clientData.lastCallSubject}`,
+    height: '50%',
+    width: '70%',
+  });
 };
 ```
 
