@@ -42,3 +42,28 @@ a.try-it {
   text-align: center;
   text-decoration: none;
 }
+
+/* Softphone example */
+#login-form {
+  width: 400px;
+  margin: 30px auto;
+  border: 1px solid #eee;
+}
+
+#login-form input, #login-form button {
+  margin: 10px auto;
+  display: block;
+  width: 250px;
+  height: 35px;
+}
+
+.call-link {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.event-container {
+  background-color: #fafafa;
+  padding: 20px;
+}

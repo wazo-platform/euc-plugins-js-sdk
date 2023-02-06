@@ -14,15 +14,15 @@ sidebar_label: Web and Desktop
 To create a new tab in the main screen, add a `staticTabs` in your manifest with a `generalTab` `context` :
 ```json
 "staticTabs": [
-    {
-      "entityId": "my id",
-      "context": [
-        "generalTab"
-      ],
-      "name": "My label",
-      "contentUrl": "https://my-websit/content.html"
-    }
-  ],
+  {
+    "entityId": "my id",
+    "context": [
+      "generalTab"
+    ],
+    "name": "My label",
+    "contentUrl": "https://my-websit/content.html"
+  }
+],
 ```
 
 When the user clicks on the tab, the `contentUrl` will be loaded.
@@ -41,10 +41,12 @@ To create a new tab in the main screen, add a `sidebarTab` in your manifest with
     ],
     "name": "My label",
     "contentUrl": "https://my-websit/content.html",
-    "icon": "https://example.com/assets/icon.png"
+    "icon": "https://example.com/assets/icon.svg"
   }
 ],
 ```
+
+The `icon` should be a white `svg` file for better results.
 
 When the user clicks on the tab, the `contentUrl` will be loaded.
 

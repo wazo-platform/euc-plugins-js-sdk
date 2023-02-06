@@ -161,12 +161,7 @@ export interface ModalParameter {
   width?: string|number;
 }
 
-export interface SoftphonePosition {
-  top?: string|number;
-  left?: string|number;
-  bottom?: string|number;
-  right?: string|number;
-}
+export interface IframeCss { [index: string]: string|number }
 
 export interface SoftphoneInitArguments {
   url: string;
@@ -181,7 +176,7 @@ export interface SoftphoneInitArguments {
   domainName?: string;
   debug?: boolean;
   disableAutoLogin?: boolean;
-  position?: SoftphonePosition;
+  iframeCss?: IframeCss;
 }
 
 export interface Card {

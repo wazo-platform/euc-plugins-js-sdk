@@ -1,7 +1,7 @@
 ---
 sidebar_position: 8
 sidebar_label: Plugins Examples
-
+draft: true
 ---
 
 # Web and Desktop application examples

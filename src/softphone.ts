@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* global window, document */
-import { SoftphoneInitArguments, Call, WDASession, Card, CallLog, SoftphonePosition } from './types';
+import { SoftphoneInitArguments, Call, WDASession, Card, CallLog, IframeCss } from './types';
 
 const BRIDGE_CONFIG_RETRIEVED = 'bridge/CONFIG_RETRIEVED';
+const BRIDGE_LOGGED_OUT = 'bridge/LOGGED_OUT';
 const BRIDGE_CREATE_OR_UPDATE_CARD = 'bridge/BRIDGE_CREATE_OR_UPDATE_CARD';
 const BRIDGE_OPTIONS_FETCHED = 'bridge/BRIDGE_OPTIONS_FETCHED';
 const BRIDGE_OPTIONS_FOUND = 'bridge/BRIDGE_OPTIONS_FOUND';
@@ -47,7 +48,6 @@ const SDK_ON_OUTGOING_CALL_MADE = 'sdk/SDK_ON_OUTGOING_CALL_MADE';
 const SDK_CALL_ENDED = 'sdk/ON_CALL_ENDED';
 const SDK_CALL_INCOMING = 'sdk/SDK_CALL_INCOMING';
 const SDK_AUTHENTICATED = 'sdk/SDK_AUTHENTICATED';
-const SDK_LOGGED_OUT = 'sdk/SDK_LOGGED_OUT';
 
 interface SoftphoneBridgeConfig {
   server: string;
@@ -65,7 +65,7 @@ class Softphone {
   url: string = 'https://softphone.wazo.io';
   width: number = 500;
   height: number = 600;
-  position: SoftphonePosition = { left: 0, bottom : 0};
+  iframeCss: IframeCss = { left: 0, bottom : 0 };
   displayed: boolean = false;
   iframe: HTMLIFrameElement | null = null;
   iframeLoaded: boolean = false;
@@ -125,7 +125,7 @@ class Softphone {
     port,
     language,
     wrapUpDuration,
-    position,
+    iframeCss,
     enableAgent = true,
     tenantId,
     domainName,
@@ -135,7 +135,7 @@ class Softphone {
     this.url = url || this.url;
     this.width = width || this.width;
     this.height = height || this.height;
-    this.position = position || this.position;
+    this.iframeCss = iframeCss || this.iframeCss;
     this.displayed = false;
     this.iframeLoaded = false;
 
@@ -193,6 +193,13 @@ class Softphone {
     });
   }
 
+  removeParsedLinksEvent() {
+    [].slice.call(document.querySelectorAll('a[data-wazo-parsed]'), 0).forEach((link: HTMLLinkElement) => {
+      link.removeAttribute('data-wazo-parsed');
+      link.removeEventListener('click', this._onLinkClick.bind(this));
+    });
+  }
+
   makeCall(number: string) {
     this.displaySoftphone();
 
@@ -224,6 +231,13 @@ class Softphone {
       this.iframe.style.display = 'none';
     }
     this.displayed = false;
+  }
+
+  removeSoftphone() {
+    if (this.iframe) {
+      this.iframe.remove();
+    }
+    this.iframe = null;
   }
 
   optionsFetched(fieldId: string, options: any[]) {
@@ -264,16 +278,18 @@ class Softphone {
     this.iframe.allow = 'camera *; microphone *; autoplay *; display-capture *';
     this.iframe.style.position = 'absolute';
 
-    Object.keys(this.position).forEach((key: string) => {
-      if (this.iframe && !!this.position[key]) {
-        this.iframe.style[key] = String(this.position[key]);
+    this.iframe.style.border = '1px solid #aaa';
+    this.iframe.style.backgroundColor = 'white';
+    this.iframe.style.display = 'none';
+
+    Object.keys(this.iframeCss).forEach(key => {
+      if (this.iframe) {
+        // @ts-ignore: fix CSS key here
+        this.iframe.style[key] = this.iframeCss[key];
       }
     })
 
-    this.iframe.style.border = '1px solid #aaa';
-    this.iframe.style.backgroundColor = 'white';
     this.iframe.src = this.url;
-    this.iframe.style.display = 'none';
     this.iframe.id = 'wazo-softphone';
 
     if (cb) {
@@ -291,7 +307,7 @@ class Softphone {
 
   _onLinkClick(e: Event) {
     e.preventDefault();
-    const number = (e.target as HTMLLinkElement).href.split(':')[1];
+    const number = (e.target as HTMLLinkElement).href.split('//')[1];
 
     this.makeCall(number);
   }
@@ -324,7 +340,7 @@ class Softphone {
         this._onAuthenticated(event.data.session);
         this.onAuthenticated(event.data.session);
         break;
-      case SDK_LOGGED_OUT:
+      case BRIDGE_LOGGED_OUT:
         this.onLoggedOut();
         break;
       case BRIDGE_CREATE_OR_UPDATE_CARD: {
