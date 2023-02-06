@@ -76,7 +76,7 @@ class App {
     };
 
     // Can't be simplified as `window.onunload = this.onUnLoaded`
-    // because `this.onUnLoaded` may not be overridden by the module yet.
+    // because `this.onUnLoaded` might not have been overridden by the module yet.
     window.onunload = (e: Event) => {
       this.onUnLoaded(e);
     }

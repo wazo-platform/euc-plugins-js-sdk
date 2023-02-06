@@ -26,7 +26,7 @@ softphone.init({
   tenantId?: string, // Tenant id used for LDAP connection (optional)
   debug?: boolean, // Set to `true` to display wording customization labels (default to false)
   disableAutoLogin?: boolean, // Disable the autologin mechanism inside the softphone (useful when used with `loginWithToken`)
-  iframeCss?: IframeCss, // Customize the CSS of the iframe itself, default to  { left: 0, bottom : 0 }
+  iframeCss?: IframeCss, // Customize the CSS of the iframe itself, default to `{ left: 0, bottom : 0 }`
 });
 ```
 

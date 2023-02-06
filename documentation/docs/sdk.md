@@ -132,7 +132,7 @@ app.playHangupSound(); // Play the hangup sound
 
 ### Stopping a sound
 
-All sound above marked as loop will stop only when we call:
+Sounds marked "loop" must be stopped using:
 
 ```js
 app.stopCurrentSound();
@@ -140,7 +140,7 @@ app.stopCurrentSound();
 
 ### Displaying a notification
 
-Wazo will display browser or Desktop notification depending on the environment where WDA is running.
+Wazo will display browser or desktop notification depending on the environment where WDA is running.
 
 ```js
 app.displayNotification(title: string, text: string);

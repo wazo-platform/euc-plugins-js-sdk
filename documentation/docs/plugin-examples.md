@@ -6,7 +6,7 @@ draft: true
 
 # Web and Desktop application examples
 
-### Changing the sidebar color when entering the module and resetting the color when leaving it
+### Changing the sidebar color when entering the module, and resetting the color when leaving it
 
 ```js
 app.onUnLoaded = () => {
