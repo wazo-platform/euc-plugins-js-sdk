@@ -1,0 +1,11 @@
+{
+  "manifestVersion": "0.1",
+  "staticTabs": [
+    {
+      "entityId": "stack-dashboard-stats",
+      "context": ["generalPbxTab"],
+      "name": "My stack stats",
+      "contentUrl": "./tab.html"
+    }
+  ]
+}
