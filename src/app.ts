@@ -33,6 +33,7 @@ const EVENT_REMOVE_MODAL = 'wazo/EVENT_REMOVE_MODAL';
 // Portal
 const EVENT_ON_CONNECTED_TO_STACK = 'wazo/EVENT_ON_CONNECTED_TO_STACK';
 const EVENT_ON_SWITCH_STACK_TENANT = 'wazo/EVENT_ON_SWITCH_STACK_TENANT';
+const EVENT_CHANGE_TOOLBAR_DISPLAY = 'wazo/EVENT_CHANGE_TOOLBAR_DISPLAY';
 
 const initializationTimeoutInMs = 5000;
 
@@ -152,6 +153,9 @@ class App {
 
   displayModal = ({ url, title, text, htmlText, height, width }: ModalParameter) =>
     this._sendMessage(EVENT_DISPLAY_MODAL, { url, title, text, htmlText, height, width });
+
+  // Portal
+  changeToolbarDisplay = (display: boolean) => this._sendMessage(EVENT_CHANGE_TOOLBAR_DISPLAY, { display });
 
   removeModal = () => this._sendMessage(EVENT_REMOVE_MODAL);
 

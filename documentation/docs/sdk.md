@@ -263,6 +263,14 @@ app.onRouteChanged = (location: Object, action: string) =>  {
 
 ## Interacting with the Portal application
 
+### Methods
+
+#### Changing the display of the toolbar in a custom form
+
+```js
+app.changeToolbarDisplay(displayed: boolean);
+```
+
 ### Events
 
 #### Check when the user is connected to a stack

@@ -5,5 +5,8 @@ app.onUnLoaded = () => {
   app.resetNavBarColor();
 };
 
-app.changeNavBarColor('#8e6a3a');
-app.initialize();
+(async () => {
+  await app.initialize();
+  app.closeLeftPanel();
+  app.changeNavBarColor('#8e6a3a');
+})();
