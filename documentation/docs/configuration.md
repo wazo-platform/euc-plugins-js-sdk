@@ -13,7 +13,7 @@ Using one or multiple manifest file you can customize all the Wazo EUC applicati
 
 ### Example of a Manifest file
 
-You must provide the following information in a manifest file that will be hosted in your environment.
+You must provide the following information in a manifest file (json format) that will be hosted in your environment.
 
 ```json
 {
