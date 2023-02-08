@@ -93,7 +93,7 @@ The `parent` key can be one of `common.layout.pbxMenu.*` where `*` is : `globalS
 
 When the user clicks on the tab, the `contentUrl` will be loaded.
 
-## Adding you onw menu to display custom page
+## Adding you own menu to display custom page
 
 ![App configuration (small](/img/portal-pbx-own-menu.png)
 
@@ -125,7 +125,7 @@ To create a new menu in the PBX section, add a `staticTabs` in your manifest wit
 
 When the user clicks on the tab, the `contentUrl` will be loaded.
 
-## Adding you onw section in the global settings page
+## Adding you own section in the global settings page
 
 ![App configuration (small](/img/portal-pbx-global-settings.png)
 
