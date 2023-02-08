@@ -26,7 +26,7 @@ const FeatureList: FeatureItem[] = [
     link: './docs/mobile',
     description: (
       <>
-        Create new tab to display your onw contact and pilot the Wazo Mobile Application.
+        Create new tab to display your own contact and pilot the Wazo Mobile Application.
       </>
     ),
   },{
