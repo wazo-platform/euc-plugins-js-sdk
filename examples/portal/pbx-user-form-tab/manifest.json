@@ -1,0 +1,11 @@
+{
+  "manifestVersion": "0.1",
+  "staticTabs": [
+     {
+      "entityId": "user-details",
+      "context": ["pbx.users"],
+      "name": "More user details",
+      "contentUrl": "./tab.html"
+    }
+  ]
+}
