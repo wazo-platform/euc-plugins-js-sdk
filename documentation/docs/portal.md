@@ -157,3 +157,5 @@ You can add custom code when the user is not using a custom tab. It can be usefu
 ```
 
 Please refer to the [SDK](/docs/sdk) documentation to know how to inject custom code in the application.
+
+The backgroundScript will be always running, even if the user logs out. Please make sure to remove all background tasks by listening to the `onLogout` event.
