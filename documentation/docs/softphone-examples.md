@@ -1,7 +1,6 @@
 ---
 sidebar_position: 9
 sidebar_label: Softphone Examples
-draft: true
 ---
 
 # Softphone Examples
