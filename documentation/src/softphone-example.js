@@ -3,7 +3,7 @@ if (typeof window !== "undefined") {
   const { softphone } = require('@wazo/euc-plugins-sdk');
   const Wazo = require('@wazo/sdk/lib/simple').default;
 
-  let defaultServer = typeof localStorage !== 'undefined' ? localStorage.getItem('softphone-server') : 'my-server' || 'my-server';
+  let defaultServer = typeof localStorage !== 'undefined' ? localStorage.getItem('softphone-server') || 'my-server' : 'my-server';
   let displayed = false;
 
   softphone.init({ server: defaultServer, width: 400 });
