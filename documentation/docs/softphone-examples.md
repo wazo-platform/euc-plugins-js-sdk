@@ -7,7 +7,7 @@ sidebar_label: Softphone Examples
 
 ## Displaying the softphone
 
-Please refer to the [Installation page](/installation) to know how to import the Softphone SDK.
+Please refer to the [Installation page](./installation) to know how to import the Softphone SDK.
 
 ```js
 softphone.displaySoftphone();
@@ -17,7 +17,7 @@ softphone.displaySoftphone();
     🚀 Display the Softphone
 </a>
 
-import '../static/examples/softphone/interactive.js';
+import '../src/softphone-example.js';
 
 ## Hiding the softphone
 
