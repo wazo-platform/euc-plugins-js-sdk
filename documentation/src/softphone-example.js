@@ -31,7 +31,7 @@ if (typeof window !== "undefined") {
     }
 
     softphone.onLoggedOut = () => {
-      document.getElementById('logout-event').innerText = 'Current user logged out';
+      document.getElementById('logout-event').innerText = 'User logged out';
     }
 
     softphone.onCallIncoming = call => {
@@ -103,7 +103,7 @@ if (typeof window !== "undefined") {
     };
 
     softphone.onDirectTransfer = number => {
-      document.getElementById('call-direct-transfer-event').innerHTML = `Call directly transfered to: ${number}`;
+      document.getElementById('call-direct-transfer-event').innerHTML = `Call directly transferred to: ${number}`;
     };
 
     softphone.onCreateIndirectTransfer = number => {
@@ -140,7 +140,7 @@ if (typeof window !== "undefined") {
   }
 
 
-// Had to use setTimeout because `window.load` or `window.addEventListener('load', ...)` aren't called
+  // Had to use setTimeout because `window.load` or `window.addEventListener('load', ...)` aren't called
   global.initButtons = () => {
     const events = document.querySelector('#events');
 
@@ -226,11 +226,11 @@ if (typeof window !== "undefined") {
       }
 
       softphone.injectCss(`
-      a button.MuiFab-circular {
-        background-color: green !important;
-      }
-    `);
-    });
+        a button.MuiFab-circular {
+          background-color: green !important;
+        }
+      `);
+      });
 
     // Customize appearance
     document.querySelector('#customize-appearance').addEventListener('click', e => {
