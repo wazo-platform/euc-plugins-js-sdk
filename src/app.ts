@@ -43,7 +43,7 @@ class App {
   initializeResolve: Function | null;
   initializeTimeout: ReturnType<typeof setTimeout> | null;
 
-  onUnLoaded(e: Event) {};
+  onUnLoaded = (e: Event) => {};
 
   // WDA
   onLogout = () => {};
@@ -61,6 +61,7 @@ class App {
   onSwitchTenant = (uuid: string, name: string) => {};
 
   constructor() {
+    this._resetEvents();
     this.initializeCompleted = false;
     this.initializeResolve = null;
     this.initializeTimeout = null;
@@ -192,6 +193,7 @@ class App {
         break;
       case EVENT_ON_LOGOUT:
         this.onLogout();
+        this._resetEvents();
         break;
 
       // Portal
@@ -242,6 +244,25 @@ class App {
     if (this.initializeResolve) {
       this.initializeResolve();
     }
+  };
+
+  _resetEvents = () => {
+    this.onUnLoaded = (e: Event) => {};
+
+    // WDA
+    this.onLogout = () => {};
+    this.onCallIncoming = (call: Call) =>  {};
+    this.onCallMade = (call: Call) => {};
+    this.onCallAnswered = (call: Call) => {};
+    this.onCallHangedUp = (call: Call) => {};
+    this.onUnHandledEvent = (event: MessageEvent) => {};
+    this.onWebsocketMessage = (message: MessageEvent) => {};
+    this.onMeetingCreated = (meeting: Meeting) => {};
+    this.onRouteChanged = (location: Object, action: string) => {};
+
+    // Portal
+    this.onConnectedToStack = (stackSession: Object) => {};
+    this.onSwitchTenant = (uuid: string, name: string) => {};
   };
 }
 
