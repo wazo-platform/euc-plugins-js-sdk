@@ -1,5 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
+const path = require('path');
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
@@ -46,6 +47,10 @@ const config = {
         },
       }),
     ],
+  ],
+
+  plugins: [
+    path.resolve(__dirname, 'plugins', 'softphone-plugin')
   ],
 
   themeConfig:
@@ -99,6 +104,18 @@ const config = {
             docId: 'sdk',
             position: 'left',
             label: 'SDK',
+          },
+          {
+            type: 'doc',
+            docId: 'plugin-examples',
+            position: 'left',
+            label: 'Plugins Examples',
+          },
+          {
+            type: 'doc',
+            docId: 'softphone-examples',
+            position: 'left',
+            label: 'Softphone Examples',
           },
           {
             href: 'https://github.com/wazo-communication/euc-plugins-js-sdk',
