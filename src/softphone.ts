@@ -65,6 +65,8 @@ class Softphone {
   url: string = 'https://softphone.wazo.io';
   width: number = 500;
   height: number = 600;
+  minimizedWidth: number = 32;
+  minimizedHeight: number = 32;
   iframeCss: IframeCss = { left: 0, bottom: 0 };
   displayed: boolean = false;
   minimized: boolean = false;
@@ -241,7 +243,7 @@ class Softphone {
     this.minimized = true;
   }
 
-  removeSoftphone() {
+  remove() {
     if (this.iframe) {
       this.iframe.remove();
     }

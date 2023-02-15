@@ -55,7 +55,7 @@ softphone.hide();
 
 ### Removing the softphone from the page
 ```js
-softphone.removeSoftphone();
+softphone.remove();
 ```
 
 ### Parsing links on the page

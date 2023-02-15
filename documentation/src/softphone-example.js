@@ -9,7 +9,7 @@ if (typeof window !== "undefined") {
   softphone.init({ server: defaultServer, width: 400 });
 
   const initFixedSoftphone = (server = defaultServer) => {
-    softphone.removeSoftphone();
+    softphone.remove();
     softphone.init({
       server,
       width: 400,
