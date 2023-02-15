@@ -65,8 +65,9 @@ class Softphone {
   url: string = 'https://softphone.wazo.io';
   width: number = 500;
   height: number = 600;
-  iframeCss: IframeCss = { left: 0, bottom : 0 };
+  iframeCss: IframeCss = { left: 0, bottom: 0 };
   displayed: boolean = false;
+  minimized: boolean = false;
   iframe: HTMLIFrameElement | null = null;
   iframeLoaded: boolean = false;
   session: WDASession | null = null;
@@ -74,48 +75,48 @@ class Softphone {
   // Message waiting for the iframe to be loaded
   _pendingMessages: Message[] = [];
 
-  onLinkEnabled(link: HTMLLinkElement) {}
-  onIFrameLoaded() {}
+  onLinkEnabled(link: HTMLLinkElement) { }
+  onIFrameLoaded() { }
 
-  onCallLocallyAnswered(call: Call) {}
-  onCallEstablished(call: Call) {}
-  onOutgoingCallMade(call: Call) {}
-  onCallIncoming(call: Call) {}
-  onCallRejected(call: Call) {}
-  onCallEnded(call: Call, card: Card, direction: string, fromExtension: string) {}
+  onCallLocallyAnswered(call: Call) { }
+  onCallEstablished(call: Call) { }
+  onOutgoingCallMade(call: Call) { }
+  onCallIncoming(call: Call) { }
+  onCallRejected(call: Call) { }
+  onCallEnded(call: Call, card: Card, direction: string, fromExtension: string) { }
 
-  onCardSaved(card: Card) {}
-  onCardCanceled() {}
-  onAuthenticated(session: WDASession) {}
-  onLoggedOut() {}
+  onCardSaved(card: Card) { }
+  onCardCanceled() { }
+  onAuthenticated(session: WDASession) { }
+  onLoggedOut() { }
 
   onSearchOptions(fieldId: string, query: string) {
     this.onOptionsResults(fieldId, []);
   }
 
-  onDisplayLinkedOption(optionId: string) {}
-  onWazoContactSearch(query: string) {}
-  onAgentLoggedIn() {}
-  onAgentLoggedOut() {}
-  onAgentPaused() {}
-  onAgentResumed() {}
-  onLanguageChanged(language: string) {}
-  onCallHeld() {}
-  onCallResumed() {}
-  onCallMuted() {}
-  onCallUnMuted() {}
-  onDtmfSent(tone: string) {}
-  onDirectTransfer(number: string) {}
-  onCreateIndirectTransfer(number: string) {}
-  onCancelIndirectTransfer() {}
-  onConfirmIndirectTransfer() {}
-  onIndirectCallMade(call: Call) {}
-  onIndirectTransferDone(call: Call) {}
-  onStartRecording() {}
-  onStopRecording() {}
-  onCallLogCreated(callLog: CallLog) {}
-  onWebsocketMessage(message: Object) {}
-  onUnHandledEvent(event: Object) {}
+  onDisplayLinkedOption(optionId: string) { }
+  onWazoContactSearch(query: string) { }
+  onAgentLoggedIn() { }
+  onAgentLoggedOut() { }
+  onAgentPaused() { }
+  onAgentResumed() { }
+  onLanguageChanged(language: string) { }
+  onCallHeld() { }
+  onCallResumed() { }
+  onCallMuted() { }
+  onCallUnMuted() { }
+  onDtmfSent(tone: string) { }
+  onDirectTransfer(number: string) { }
+  onCreateIndirectTransfer(number: string) { }
+  onCancelIndirectTransfer() { }
+  onConfirmIndirectTransfer() { }
+  onIndirectCallMade(call: Call) { }
+  onIndirectTransferDone(call: Call) { }
+  onStartRecording() { }
+  onStopRecording() { }
+  onCallLogCreated(callLog: CallLog) { }
+  onWebsocketMessage(message: Object) { }
+  onUnHandledEvent(event: Object) { }
 
   init({
     url,
@@ -201,20 +202,20 @@ class Softphone {
   }
 
   makeCall(number: string) {
-    this.displaySoftphone();
+    this.show();
 
     this._sendMessage(BRIDGE_ON_CLICK_TO_CALL, { number });
   }
 
-  toggleSoftphoneDisplay() {
+  toggleDisplay() {
     if (this.displayed) {
-      this.hideSoftphone();
+      this.hide();
     } else {
-      this.displaySoftphone();
+      this.show();
     }
   }
 
-  displaySoftphone() {
+  show() {
     if (!this.iframe) {
       this._createIframe();
     }
@@ -226,11 +227,18 @@ class Softphone {
     this.displayed = true;
   }
 
-  hideSoftphone() {
-    if (this.iframe) {
-      this.iframe.style.display = 'none';
-    }
+  hide() {
     this.displayed = false;
+  }
+
+  maximize() {
+    this.minimized = false;
+  }
+
+  minimize() {
+    if (this.iframe) {
+    }
+    this.minimized = true;
   }
 
   removeSoftphone() {

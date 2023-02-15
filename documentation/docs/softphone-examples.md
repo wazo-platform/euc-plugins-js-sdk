@@ -10,7 +10,7 @@ sidebar_label: Softphone Examples
 Please refer to the [Installation page](./installation) for information on how to import the Softphone SDK.
 
 ```js
-softphone.displaySoftphone();
+softphone.show();
 ```
 
 <a className="try-it button button--secondary button--lg" id="display-softphone">
@@ -22,7 +22,7 @@ import '../src/softphone-example.js';
 ## Hiding the softphone
 
 ```js
-softphone.hideSoftphone();
+softphone.hide();
 ```
 
 <a className="try-it button button--secondary button--lg" id="hide-softphone">
@@ -42,7 +42,7 @@ softphone.init({
     top: '80px',
   },
 });
-softphone.displaySoftphone();
+softphone.show();
 ```
 
 <a className="try-it button button--secondary button--lg" id="move-right">

@@ -19,7 +19,7 @@ if (typeof window !== "undefined") {
         top: '80px',
       },
     });
-    softphone.displaySoftphone();
+    softphone.show();
     displayed = true;
 
     softphone.onIFrameLoaded = () => {
@@ -145,7 +145,7 @@ if (typeof window !== "undefined") {
     const events = document.querySelector('#events');
 
     // Display softphone when we scroll in the events section
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
       const position = events.getBoundingClientRect();
       if (position.top >= 0 && position.bottom <= window.innerHeight && !displayed) {
         initFixedSoftphone();
@@ -155,13 +155,13 @@ if (typeof window !== "undefined") {
     // Display
     document.querySelector('#display-softphone').addEventListener('click', e => {
       e.preventDefault();
-      softphone.displaySoftphone();
+      softphone.show();
     });
 
     // Hide
     document.querySelector('#hide-softphone').addEventListener('click', e => {
       e.preventDefault();
-      softphone.hideSoftphone();
+      softphone.hide();
     });
 
     // Move right
@@ -230,7 +230,7 @@ if (typeof window !== "undefined") {
           background-color: green !important;
         }
       `);
-      });
+    });
 
     // Customize appearance
     document.querySelector('#customize-appearance').addEventListener('click', e => {
@@ -258,7 +258,7 @@ if (typeof window !== "undefined") {
         // Assets
         logo: 'http://localhost:3000/examples/softphone/assets/logo.png',
       });
-      softphone.displaySoftphone();
+      softphone.show();
     });
 
     document.querySelector('#update-form-value').addEventListener('click', e => {
@@ -279,7 +279,7 @@ if (typeof window !== "undefined") {
         type: 'object',
         required: ['subject', 'title'],
         properties: {
-          subject: { type: "string", enum: ["Support", "Greetings", "Want to talk to Bob"],  title: 'Subject' },
+          subject: { type: "string", enum: ["Support", "Greetings", "Want to talk to Bob"], title: 'Subject' },
           title: { type: 'string', title: 'Title' },
           note: { type: 'string', title: 'Note' },
         },
@@ -324,13 +324,13 @@ if (typeof window !== "undefined") {
         },
       }, {
         note: { 'ui:widget': 'textarea' },
-        clientId :{ 'ui:field': 'autocomplete'},
+        clientId: { 'ui:field': 'autocomplete' },
       });
 
-      softphone.onOptionsResults('clientId',  [{ label: 'Alice', id: 1 }, { label: 'Bob', id: 2 }, { label: 'Charlies', id: 3 }]);
+      softphone.onOptionsResults('clientId', [{ label: 'Alice', id: 1 }, { label: 'Bob', id: 2 }, { label: 'Charlies', id: 3 }]);
 
       softphone.onSearchOptions = (fieldId, query) => {
-        const results = [{ label: 'Charles', id: 4}, { label: 'David', id: 5 }, { label: 'Henry', id: 6 }];
+        const results = [{ label: 'Charles', id: 4 }, { label: 'David', id: 5 }, { label: 'Henry', id: 6 }];
         softphone.onOptionsResults(fieldId, results);
       };
     });
