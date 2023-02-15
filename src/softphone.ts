@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* global window, document */
+import EventEmitter from 'events';
+
 import { SoftphoneInitArguments, Call, WDASession, Card, CallLog, IframeCss } from './types';
 
 const BRIDGE_CONFIG_RETRIEVED = 'bridge/CONFIG_RETRIEVED';
@@ -49,6 +51,10 @@ const SDK_CALL_ENDED = 'sdk/ON_CALL_ENDED';
 const SDK_CALL_INCOMING = 'sdk/SDK_CALL_INCOMING';
 const SDK_AUTHENTICATED = 'sdk/SDK_AUTHENTICATED';
 
+// Events
+export const SHOW = 'show';
+export const HIDE = 'hide';
+
 interface SoftphoneBridgeConfig {
   server: string;
   language?: string;
@@ -61,7 +67,7 @@ interface SoftphoneBridgeConfig {
 
 type Message = [string, Object];
 
-class Softphone {
+class Softphone extends EventEmitter {
   url: string = 'https://softphone.wazo.io';
   width: number = 500;
   height: number = 600;
@@ -227,10 +233,16 @@ class Softphone {
     }
 
     this.displayed = true;
+    this.emit(SHOW);
   }
 
   hide() {
+    if (this.iframe) {
+      this.iframe.style.display = 'none';
+    }
+
     this.displayed = false;
+    this.emit(HIDE);
   }
 
   maximize() {
