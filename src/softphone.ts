@@ -71,11 +71,9 @@ class Softphone extends EventEmitter {
   url: string = 'https://softphone.wazo.io';
   width: number = 500;
   height: number = 600;
-  minimizedWidth: number = 32;
-  minimizedHeight: number = 32;
   iframeCss: IframeCss = { left: 0, bottom: 0 };
   displayed: boolean = false;
-  minimized: boolean = false;
+  wrapper: HTMLDivElement | null = null;
   iframe: HTMLIFrameElement | null = null;
   iframeLoaded: boolean = false;
   session: WDASession | null = null;
@@ -245,16 +243,6 @@ class Softphone extends EventEmitter {
     this.emit(HIDE);
   }
 
-  maximize() {
-    this.minimized = false;
-  }
-
-  minimize() {
-    if (this.iframe) {
-    }
-    this.minimized = true;
-  }
-
   remove() {
     if (this.iframe) {
       this.iframe.remove();
@@ -291,25 +279,23 @@ class Softphone extends EventEmitter {
   }
 
   _createIframe(cb?: ((this: GlobalEventHandlers, ev: Event) => any) | null) {
+    this.wrapper = document.createElement('div');
+    this.wrapper.id = 'iframe-wrapper';
+    this.wrapper.style.position = 'fixed';
+
+    Object.keys(this.iframeCss).forEach(key => {
+      // @ts-ignore: fix CSS key here
+      this.wrapper.style[key] = this.iframeCss[key];
+    })
+
     this.iframe = document.createElement('iframe');
-    // $FlowFixMe
     this.iframe.width = String(this.width);
-    // $FlowFixMe
     this.iframe.height = String(this.height);
-    // $FlowFixMe
     this.iframe.allow = 'camera *; microphone *; autoplay *; display-capture *';
-    this.iframe.style.position = 'absolute';
 
     this.iframe.style.border = '1px solid #aaa';
     this.iframe.style.backgroundColor = 'white';
     this.iframe.style.display = 'none';
-
-    Object.keys(this.iframeCss).forEach(key => {
-      if (this.iframe) {
-        // @ts-ignore: fix CSS key here
-        this.iframe.style[key] = this.iframeCss[key];
-      }
-    })
 
     this.iframe.src = this.url;
     this.iframe.id = 'wazo-softphone';
@@ -318,8 +304,8 @@ class Softphone extends EventEmitter {
       this.iframe.onload = cb;
     }
 
-    // $FlowFixMe
-    document.body.appendChild(this.iframe);
+    this.wrapper.appendChild(this.iframe);
+    document.body.appendChild(this.wrapper);
   }
 
   _getLinks() {
@@ -358,7 +344,6 @@ class Softphone extends EventEmitter {
         this.onCallIncoming(event.data.callSession);
         break;
       case SDK_AUTHENTICATED:
-        // $FlowFixMe
         this._onAuthenticated(event.data.session);
         this.onAuthenticated(event.data.session);
         break;
