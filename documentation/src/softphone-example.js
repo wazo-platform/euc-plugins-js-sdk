@@ -164,6 +164,48 @@ if (typeof window !== "undefined") {
       softphone.hide();
     });
 
+    // Minimize / Maximize
+    document.querySelector('#min-max-softphone').addEventListener('click', e => {
+      e.preventDefault();
+
+      const minimizeButton = document.createElement('button');
+      minimizeButton.style.background = '#25a';
+      minimizeButton.style.color = '#fff';
+      minimizeButton.innerHTML = 'Minimize';
+      minimizeButton.style.position = 'absolute';
+      minimizeButton.style.top = '10px';
+      minimizeButton.style.right = '10px';
+      minimizeButton.style.zIndex = '201';
+      softphone.wrapper.appendChild(minimizeButton);
+
+      const maximizeButton = document.createElement('button');
+      maximizeButton.style.background = '#b00';
+      maximizeButton.style.color = '#fff';
+      maximizeButton.style.borderRadius = '4px';
+      maximizeButton.style.position = 'absolute';
+      maximizeButton.style.bottom = '10px';
+      maximizeButton.style.left = '10px';
+      maximizeButton.style.height = '24px';
+      maximizeButton.style.width = '140px';
+      maximizeButton.style.display = 'none';
+      maximizeButton.innerHTML = 'Show Softphone';
+      softphone.wrapper.appendChild(maximizeButton);
+
+      minimizeButton.addEventListener('click', () => {
+        softphone.hide();
+        minimizeButton.style.display = 'none';
+        maximizeButton.style.display = 'inherit';
+      });
+
+      maximizeButton.addEventListener('click', () => {
+        softphone.show();
+        minimizeButton.style.display = 'block';
+        maximizeButton.style.display = 'none';
+      });
+
+      softphone.show();
+    });
+
     // Move right
     document.querySelector('#move-right').addEventListener('click', e => {
       e.preventDefault();
