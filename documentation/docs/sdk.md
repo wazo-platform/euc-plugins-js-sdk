@@ -201,6 +201,26 @@ app.onCallIncoming = async call => {
 
 ### Events
 
+#### Application is unloaded (in backgroundScript)
+
+Should be used in a `backgroundScript` to know when a custom tab is unloaded.
+
+As `app.onUnLoaded` is only triggered for tabs (iframes), and this event doesn't allow sophisticated actions (like sending messages to backgroundScript, API calls, ...)
+we should use `onAppUnLoaded` to perform action when a tab is unloaded.
+
+```js
+app.onAppUnLoaded = (tabId) => {};
+```
+
+#### Application is unloaded (in application)
+
+This action is fired in the application (not in the `backgroundScript`).
+It's a sugar for `window.onunload`, so you can't do action here like API call because the app (iframe) can be closed before the action finished.
+
+```js
+app.onUnLoaded = () => {};
+```
+
 #### User logs out
 
 ```js

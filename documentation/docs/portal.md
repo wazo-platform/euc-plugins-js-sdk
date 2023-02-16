@@ -5,7 +5,13 @@ sidebar_label: Portal
 
 # Customizing the Portal (coming soon)
 
-⚠️ This part is still in development process, the customization is not available for now.
+:::info
+This part is still in development process, the customization is not available for now.
+:::
+
+:::caution
+`manifest.json` files should be served with a http server with CORS enabled.
+:::
 
 ## Adding tabs in the main page
 

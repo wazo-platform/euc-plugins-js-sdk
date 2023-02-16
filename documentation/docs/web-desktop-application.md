@@ -5,7 +5,13 @@ sidebar_label: Web and Desktop
 
 # Customizing the Web and Desktop application
 
-⚠️ This part is still in development process, changes may happen frequently.
+:::info
+This part is still in development process, changes may happen frequently.
+:::
+
+:::caution
+`manifest.json` files should be served with a http server with CORS enabled.
+:::
 
 ## Adding tabs in the main page
 

@@ -6,6 +6,7 @@ declare global {
 
 // Global
 const EVENT_ON_LOADED = 'wazo/ON_LOADED';
+const EVENT_APP_UNLOADED = 'wazo/EVENT_APP_UNLOADED';
 const EVENT_APP_INITIALIZE = 'wazo/EVENT_APP_INITIALIZE';
 const EVENT_ON_LOGOUT = 'wazo/EVENT_ON_LOGOUT';
 const EVENT_SEND_IFRAME_MESSAGE = 'wazo/EVENT_SEND_IFRAME_MESSAGE';
@@ -63,6 +64,7 @@ class App {
 
   // Global
   onUnLoaded = (e: Event) => {};
+  onAppUnLoaded = (tabId: string) => {};
   onIframeMessage = (message: Object) => { };
   onBackgroundMessage = (message: Object) => { };
 
@@ -207,6 +209,9 @@ class App {
       // Global
       case EVENT_ON_LOADED:
         this._onLoaded(event.data.session, event.data.theme, event.data.locale, event.data.extra);
+        break;
+      case EVENT_APP_UNLOADED:
+        this.onAppUnLoaded(event.data.tabId);
         break;
       case EVENT_ON_LOGOUT:
         this.onLogout();

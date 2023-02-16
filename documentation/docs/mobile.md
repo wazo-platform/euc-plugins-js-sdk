@@ -5,7 +5,9 @@ sidebar_label: Mobile
 
 # Customizing the Mobile application
 
-⚠️ This part is still in development process, changes may happen frequently.
+:::info
+This part is still in development process, changes may happen frequently.
+:::
 
 ## Adding tabs in the main page
 
