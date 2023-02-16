@@ -6,11 +6,11 @@ sidebar_label: Web and Desktop
 # Customizing the Web and Desktop application
 
 :::info
-This part is still in development process, changes may happen frequently.
+This part is still in development, changes may occur frequently.
 :::
 
 :::caution
-`manifest.json` files should be served with a http server with CORS enabled.
+`manifest.json` files should be served using a CORS-enabled http server.
 :::
 
 ## Adding tabs in the main page
@@ -116,7 +116,7 @@ To create a new tab in the settings menu, add a `settingsTab` in your manifest w
 ]
 ```
 
-You can set the position of the menu with the `position` attributes. Existing position in the application are :
+You can define the menu item's position using the `position` attributes. Existing positions in the application are :
 
 | Position | Name            |
 |----------|-----------------|
@@ -133,7 +133,7 @@ You can set the position of the menu with the `position` attributes. Existing po
 | 1100     | Update App      |
 | 1200     | About           |
 
-Your menu will be ordered depending on the position value.
+Your menu will be ordered depending on the `position` value.
 
 When the user clicks on the tab, the `contentUrl` will be loaded.
 
