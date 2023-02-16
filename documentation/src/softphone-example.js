@@ -169,25 +169,12 @@ if (typeof window !== "undefined") {
       e.preventDefault();
 
       const minimizeButton = document.createElement('button');
-      minimizeButton.style.background = '#25a';
-      minimizeButton.style.color = '#fff';
+      minimizeButton.id = 'minimize-button';
       minimizeButton.innerHTML = 'Minimize';
-      minimizeButton.style.position = 'absolute';
-      minimizeButton.style.top = '10px';
-      minimizeButton.style.right = '10px';
-      minimizeButton.style.zIndex = '201';
       softphone.wrapper.appendChild(minimizeButton);
 
       const maximizeButton = document.createElement('button');
-      maximizeButton.style.background = '#b00';
-      maximizeButton.style.color = '#fff';
-      maximizeButton.style.borderRadius = '4px';
-      maximizeButton.style.position = 'absolute';
-      maximizeButton.style.bottom = '10px';
-      maximizeButton.style.left = '10px';
-      maximizeButton.style.height = '24px';
-      maximizeButton.style.width = '140px';
-      maximizeButton.style.display = 'none';
+      maximizeButton.id = 'maximize-button';
       maximizeButton.innerHTML = 'Show Softphone';
       softphone.wrapper.appendChild(maximizeButton);
 
