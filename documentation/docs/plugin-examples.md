@@ -45,6 +45,32 @@ await app.initialize();
     ☎️ Try the incoming call modal !
 </a>
 
+### Send and receive message between backgroundScript and tabs
+
+```js
+// tab
+app.onIframeMessage = (msg) => {
+  console.log('onIframeMessage', msg);
+}
+
+(async () => {
+  await app.initialize();
+  app.sendMessageToBackground({ value: 'ping', myData: 'abcd' });
+})();
+
+// backgroundScript
+app.onBackgroundMessage = msg => {
+  console.log('onBackgroundMessage', msg);
+  app.sendMessageToIframe({ value: 'pong', customerId: 1234 });
+}
+
+app.initialize();
+```
+
+<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/incoming-call-modal/manifest.json" target="_blank">
+    📣 Try sending messages between background and tab
+</a>
+
 # Portal
 
 ### Adding a tab in the PBX dashboard page
