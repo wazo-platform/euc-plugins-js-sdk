@@ -96,6 +96,47 @@ To create a new tab in the main screen, add a `phonebookTab` in your manifest wi
 
 When the user clicks on the tab, the `contentUrl` will be loaded.
 
+## Adding tabs in the setting menu
+
+![App configuration](/img/wda-settings-menu.png)
+
+To create a new tab in the settings menu, add a `settingsTab` in your manifest with a `generalTab` `context` :
+```json
+"staticTabs": [
+  {
+    "entityId": "settings-tab",
+    "context": [
+      "settingsTab"
+    ],
+    "position": 101,
+    "name": "My settings",
+    "contentUrl": "./tab.html",
+    "icon": "./tab.svg"
+  }
+]
+```
+
+You can set the position of the menu with the `position` attributes. Existing position in the application are :
+
+| Position | Name            |
+|----------|-----------------|
+| 100      | Media Settings  |
+| 200      | Notifications   |
+| 300      | Call Forwarding |
+| 400      | Integrations    |
+| 500      | Connection      |
+| 600      | Language        |
+| 700      | Country         | 
+| 800      | Shortcuts       |
+| 900:     | Switchboard     |
+| 1000     | Divider         |
+| 1100     | Update App      |
+| 1200     | About           |
+
+Your menu will be ordered depending on the position value.
+
+When the user clicks on the tab, the `contentUrl` will be loaded.
+
 ## Adding a background script
 
 You can add custom code when the user is not using a custom tab. It can be useful to handle incoming calls, or other events.

@@ -1,0 +1,17 @@
+{
+  "manifestVersion": "0.1",
+  "version": "1.0.0",
+  "id": "sidebar-color",
+  "staticTabs": [
+    {
+      "entityId": "settings-tab",
+      "context": [
+        "settingsTab"
+      ],
+      "position": 101,
+      "name": "My settings",
+      "contentUrl": "./tab.html",
+      "icon": "./tab.svg"
+    }
+  ]
+}

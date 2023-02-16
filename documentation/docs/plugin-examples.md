@@ -71,6 +71,27 @@ app.initialize();
     📣 Try sending messages between background and tab
 </a>
 
+### Adding a settings menu
+
+```json
+"staticTabs": [
+  {
+    "entityId": "settings-tab",
+    "context": [
+      "settingsTab"
+    ],
+    "position": 1001,
+    "name": "My settings",
+    "contentUrl": "./tab.html",
+    "icon": "./tab.svg"
+  }
+]
+```
+
+<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/settings-menu/manifest.json" target="_blank">
+    📣 Try adding a new settings menu
+</a>
+
 # Portal
 
 ### Adding a tab in the PBX dashboard page
