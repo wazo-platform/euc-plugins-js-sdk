@@ -247,7 +247,11 @@ class Softphone extends EventEmitter {
     if (this.iframe) {
       this.iframe.remove();
     }
+    if (this.wrapper) {
+      this.wrapper.remove();
+    }
     this.iframe = null;
+    this.wrapper = null;
   }
 
   optionsFetched(fieldId: string, options: any[]) {
@@ -278,15 +282,26 @@ class Softphone extends EventEmitter {
     this._sendMessage(BRIDGE_LOGIN_WITH_TOKEN, { token, refreshToken });
   }
 
+  updateCss(iframeCss: IframeCss | null = null) {
+    if (iframeCss) {
+
+      if (this.wrapper ){
+        Object.keys(iframeCss).forEach(key => {
+          // @ts-ignore: fix CSS key here
+          this.wrapper.style[key] = iframeCss[key];
+        });
+      }
+
+      this.iframeCss = iframeCss;
+    }
+  }
+
   _createIframe(cb?: ((this: GlobalEventHandlers, ev: Event) => any) | null) {
     this.wrapper = document.createElement('div');
     this.wrapper.id = 'iframe-wrapper';
     this.wrapper.style.position = 'fixed';
 
-    Object.keys(this.iframeCss).forEach(key => {
-      // @ts-ignore: fix CSS key here
-      this.wrapper.style[key] = this.iframeCss[key];
-    })
+    this.updateCss(this.iframeCss);
 
     this.iframe = document.createElement('iframe');
     this.iframe.width = String(this.width);

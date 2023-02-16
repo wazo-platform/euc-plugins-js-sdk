@@ -31,7 +31,7 @@ softphone.hide();
 
 ## Minimize / restore the softphone
 
-You can minimize and restore the softphone the way you would any regular window by adding your buttons to the wrapper element, which will allow to position the button relative to the iframe. 
+You can minimize and restore the softphone the way you would any regular window by adding your buttons to the wrapper element, which will allow to position your buttons relative to the iframe. 
 
 ```js
 const minimizeButton = document.createElement('button');
@@ -42,10 +42,6 @@ const maximizeButton = document.createElement('button');
 minimizeButton.addEventListener('click', softphone.show.bind(softphone));
 softphone.wrapper.appendChild(minimizeButton);
 ```
-
-<a className="try-it button button--secondary button--lg" id="min-max-softphone">
-    Activate minimize / maximize demo
-</a>
 
 ## Move it right
 
