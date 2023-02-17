@@ -150,7 +150,9 @@ if (typeof window !== "undefined") {
   const updateSoftphone = (extra = { right: 'auto', top: 'auto', left: 0, bottom: 0 }, server = null) => {
     softphone.updateCss(extra);
     softphone.show();
-    // @TODO: Handle server update
+    if (server) {
+      softphone._sendMessage.bind(softphone, 'bridge/CONFIG_RETRIEVED', { server });
+    }
   }
 
   // Had to use setTimeout because `window.load` or `window.addEventListener('load', ...)` aren't called
