@@ -199,6 +199,62 @@ app.onCallIncoming = async call => {
 };
 ```
 
+### Checking if a call has a local video stream
+
+```js
+app.hasLocalVideoStream(call: Call);
+```
+
+Example:
+
+```js
+app.onCallAnswered = (call) => {
+  const hasLocalVideo = app.hasLocalVideoStream(call);
+}
+```
+
+### Retrieving the local video stream of a call
+
+```js
+app.getLocalCurrentVideoStream(call: Call);
+```
+
+Example:
+
+```js
+app.onCallAnswered = (call) => {
+  const stream = app.getLocalCurrentVideoStream(call);
+}
+```
+
+### Checking if a call has a remote video stream
+
+```js
+app.hasRemoteVideoStream(call: Call);
+```
+
+Example:
+
+```js
+app.onCallAnswered = (call) => {
+  const hasRemoteVideo = app.hasRemoteVideoStream(call);
+}
+```
+
+### Retrieving the remote video stream of a call
+
+```js
+app.getRemoteCurrentVideoStream(call: Call);
+```
+
+Example:
+
+```js
+app.onCallAnswered = (call) => {
+  const stream = app.getRemoteCurrentVideoStream(call);
+}
+```
+
 ### Events
 
 #### Application is unloaded (in backgroundScript)
@@ -278,6 +334,34 @@ app.onMeetingCreated = (meeting: Meeting) =>  {
 
 ```js
 app.onRouteChanged = (location: Object, action: string) =>  {
+};
+```
+
+#### Listening when a user enters a Room
+
+```js
+app.onUserJoinRoom = (room) => {
+};
+```
+
+#### Listening when a user leavers a Room
+
+```js
+app.onUserLeaveRoom = (room) => {
+};
+```
+
+#### Listening when a participant enters a Room
+
+```js
+app.onParticipantJoinRoom = (room, participant) => {
+};
+```
+
+#### Listening when a participant leavers a Room
+
+```js
+app.onParticipantLeaveRoom = (room, participant) => {
 };
 ```
 

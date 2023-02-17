@@ -1,0 +1,6 @@
+{
+  "manifestVersion": "0.1",
+  "version": "1.0.0",
+  "id": "video-pip",
+  "backgroundScript": "./background.js"
+}

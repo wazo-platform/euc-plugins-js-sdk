@@ -1,7 +1,9 @@
-import { Call, Context, Meeting, UserInfo, Extra, ModalParameter } from './types';
+/* global Wazo */
+import { Call, Room, Contact, Context, Meeting, UserInfo, Extra, ModalParameter } from './types';
 
 declare global {
   var _setPluginId: Function;
+  var Wazo: any;
 }
 
 // Global
@@ -40,6 +42,10 @@ const EVENT_CHANGE_NAVBAR_COLOR = 'wazo/EVENT_CHANGE_NAVBAR_COLOR';
 const EVENT_RESET_NAVBAR_COLOR = 'wazo/EVENT_RESET_NAVBAR_COLOR';
 const EVENT_DISPLAY_MODAL = 'wazo/EVENT_DISPLAY_MODAL';
 const EVENT_REMOVE_MODAL = 'wazo/EVENT_REMOVE_MODAL';
+const EVENT_USER_JOIN_ROOM = 'wazo/EVENT_USER_JOIN_ROOM';
+const EVENT_USER_LEAVE_ROOM = 'wazo/EVENT_USER_LEAVE_ROOM';
+const EVENT_PARTICIPANT_JOIN_ROOM = 'wazo/EVENT_PARTICIPANT_JOIN_ROOM';
+const EVENT_PARTICIPANT_LEAVE_ROOM = 'wazo/EVENT_PARTICIPANT_LEAVE_ROOM';
 
 // Portal
 const EVENT_ON_CONNECTED_TO_STACK = 'wazo/EVENT_ON_CONNECTED_TO_STACK';
@@ -78,6 +84,10 @@ class App {
   onWebsocketMessage = (message: MessageEvent) => {};
   onMeetingCreated = (meeting: Meeting) => {};
   onRouteChanged = (location: Object, action: string) => {};
+  onUserJoinRoom = (room: Room) => {};
+  onUserLeaveRoom = (room: Room) => {};
+  onParticipantJoinRoom = (room: Room, participant: Contact) => {};
+  onParticipantLeaveRoom = (room: Room, participant: Contact) => {};
 
   // Portal
   onConnectedToStack = (stackSession: Object) => {};
@@ -197,6 +207,14 @@ class App {
 
   removeModal = () => this._sendMessage(EVENT_REMOVE_MODAL);
 
+  hasLocalVideoStream = (call: Call) => Wazo.Phone.phone.hasALocalVideoTrack(call);
+
+  getLocalCurrentVideoStream = (call: Call) => Wazo.Phone.phone.getLocalVideoStream(call);
+
+  hasRemoveVideoStream = (call: Call) => Wazo.Phone.phone.hasRemoteVideo(call);
+
+  getRemoteVideoStream = (call: Call) => Wazo.Phone.phone.getRemoteVideoStream(call);
+
   // Portal
   changeToolbarDisplay = (display: boolean) => this._sendMessage(EVENT_CHANGE_TOOLBAR_DISPLAY, { display });
 
@@ -226,6 +244,18 @@ class App {
         if (event.data._pluginId === this._pluginId) {
           this.onBackgroundMessage(event.data.payload);
         }
+        break;
+      case EVENT_USER_JOIN_ROOM:
+        this.onUserJoinRoom(event.data.room);
+        break;
+      case EVENT_USER_LEAVE_ROOM:
+        this.onUserLeaveRoom(event.data.room);
+        break;
+      case EVENT_PARTICIPANT_JOIN_ROOM:
+        this.onParticipantJoinRoom(event.data.room, event.data.participant);
+        break;
+      case EVENT_PARTICIPANT_LEAVE_ROOM:
+        this.onParticipantLeaveRoom(event.data.room, event.data.participant);
         break;
 
       // WDA
