@@ -5,7 +5,13 @@ sidebar_label: Web and Desktop
 
 # Customizing the Web and Desktop application
 
-⚠️ This part is still in development process, changes may happen frequently.
+:::info
+This part is still in development, changes may occur frequently.
+:::
+
+:::caution
+`manifest.json` files should be served using a CORS-enabled http server.
+:::
 
 ## Adding tabs in the main page
 
@@ -87,6 +93,47 @@ To create a new tab in the main screen, add a `phonebookTab` in your manifest wi
   }
 ],
 ```
+
+When the user clicks on the tab, the `contentUrl` will be loaded.
+
+## Adding tabs in the setting menu
+
+![App configuration](/img/wda-settings-menu.png)
+
+To create a new tab in the settings menu, add a `settingsTab` in your manifest with a `generalTab` `context` :
+```json
+"staticTabs": [
+  {
+    "entityId": "settings-tab",
+    "context": [
+      "settingsTab"
+    ],
+    "position": 101,
+    "name": "My settings",
+    "contentUrl": "./tab.html",
+    "icon": "./tab.svg"
+  }
+]
+```
+
+You can define the menu item's position using the `position` attributes. Existing positions in the application are :
+
+| Position | Name            |
+|----------|-----------------|
+| 100      | Media Settings  |
+| 200      | Notifications   |
+| 300      | Call Forwarding |
+| 400      | Integrations    |
+| 500      | Connection      |
+| 600      | Language        |
+| 700      | Country         | 
+| 800      | Shortcuts       |
+| 900:     | Switchboard     |
+| 1000     | Divider         |
+| 1100     | Update App      |
+| 1200     | About           |
+
+Your menu will be ordered depending on the `position` value.
 
 When the user clicks on the tab, the `contentUrl` will be loaded.
 

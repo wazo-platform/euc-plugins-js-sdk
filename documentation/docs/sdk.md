@@ -199,7 +199,83 @@ app.onCallIncoming = async call => {
 };
 ```
 
+### Checking if a call has a local video stream
+
+```js
+app.hasLocalVideoStream(call: Call);
+```
+
+Example:
+
+```js
+app.onCallAnswered = (call) => {
+  const hasLocalVideo = app.hasLocalVideoStream(call);
+}
+```
+
+### Retrieving the local video stream of a call
+
+```js
+app.getLocalCurrentVideoStream(call: Call);
+```
+
+Example:
+
+```js
+app.onCallAnswered = (call) => {
+  const stream = app.getLocalCurrentVideoStream(call);
+}
+```
+
+### Checking if a call has a remote video stream
+
+```js
+app.hasRemoteVideoStream(call: Call);
+```
+
+Example:
+
+```js
+app.onCallAnswered = (call) => {
+  const hasRemoteVideo = app.hasRemoteVideoStream(call);
+}
+```
+
+### Retrieving the remote video stream of a call
+
+```js
+app.getRemoteCurrentVideoStream(call: Call);
+```
+
+Example:
+
+```js
+app.onCallAnswered = (call) => {
+  const stream = app.getRemoteCurrentVideoStream(call);
+}
+```
+
 ### Events
+
+#### Application is unloaded (in backgroundScript)
+
+Should be used in a `backgroundScript` to know when a custom tab is unloaded.
+
+As `app.onUnLoaded` is only triggered for tabs (iframes), and this event doesn't allow sophisticated actions (like sending messages to backgroundScript, API calls, ...)
+we should use `onAppUnLoaded` to perform action when a tab is unloaded.
+
+```js
+app.onAppUnLoaded = (tabId) => {};
+```
+
+#### Application is unloaded (in application)
+
+This action is fired in the application (not in the `backgroundScript`).
+It's a sugar for `window.onunload`, so you can't do action here like API call because the app (iframe) can be closed before the action finished.
+
+```js
+app.onUnLoaded = () => {};
+```
 
 #### User logs out
 
@@ -258,6 +334,34 @@ app.onMeetingCreated = (meeting: Meeting) =>  {
 
 ```js
 app.onRouteChanged = (location: Object, action: string) =>  {
+};
+```
+
+#### Listening when a user enters a Room
+
+```js
+app.onUserJoinRoom = (room) => {
+};
+```
+
+#### Listening when a user leavers a Room
+
+```js
+app.onUserLeaveRoom = (room) => {
+};
+```
+
+#### Listening when a participant enters a Room
+
+```js
+app.onParticipantJoinRoom = (room, participant) => {
+};
+```
+
+#### Listening when a participant leavers a Room
+
+```js
+app.onParticipantLeaveRoom = (room, participant) => {
 };
 ```
 

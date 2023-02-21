@@ -1,10 +1,24 @@
-import { Call, Context, Meeting, UserInfo, Extra, ModalParameter } from './types';
+/* global Wazo */
+import { Call, Room, Contact, Context, Meeting, UserInfo, Extra, ModalParameter } from './types';
+
+declare global {
+  var _setPluginId: Function;
+  var Wazo: any;
+}
+
+// Global
+const EVENT_ON_LOADED = 'wazo/ON_LOADED';
+const EVENT_APP_UNLOADED = 'wazo/EVENT_APP_UNLOADED';
+const EVENT_APP_INITIALIZE = 'wazo/EVENT_APP_INITIALIZE';
+const EVENT_ON_LOGOUT = 'wazo/EVENT_ON_LOGOUT';
+const EVENT_SEND_IFRAME_MESSAGE = 'wazo/EVENT_SEND_IFRAME_MESSAGE';
+const EVENT_SEND_BACKGROUND_MESSAGE = 'wazo/EVENT_SEND_BACKGROUND_MESSAGE';
+const EVENT_ON_IFRAME_MESSAGE = 'wazo/EVENT_ON_IFRAME_MESSAGE';
+const EVENT_ON_BACKGROUND_MESSAGE = 'wazo/EVENT_ON_BACKGROUND_MESSAGE';
 
 // WDA
-const EVENT_APP_INITIALIZE = 'wazo/EVENT_APP_INITIALIZE';
 const EVENT_CLOSE_LEFT_PANEL = 'wazo/EVENT_CLOSE_LEFT_PANEL';
 const EVENT_OPEN_LEFT_PANEL = 'wazo/EVENT_OPEN_LEFT_PANEL';
-const EVENT_ON_LOADED = 'wazo/ON_LOADED';
 const EVENT_START_CALL = 'wazo/START_CALL';
 const EVENT_ON_CALL_INCOMING = 'wazo/EVENT_ON_CALL_INCOMING';
 const EVENT_ON_CALL_MADE = 'wazo/EVENT_ON_CALL_MADE';
@@ -16,7 +30,6 @@ const EVENT_OPEN_MEETING_LOBBY = 'wazo/EVENT_OPEN_MEETING_LOBBY';
 const EVENT_OPEN_SETTINGS = 'wazo/EVENT_OPEN_SETTINGS';
 const EVENT_ON_MEETING_CREATED = 'wazo/EVENT_ON_MEETING_CREATED';
 const EVENT_ROUTE_CHANGE = 'wazo/EVENT_ROUTE_CHANGE';
-const EVENT_ON_LOGOUT = 'wazo/EVENT_ON_LOGOUT';
 const EVENT_WS_MESSAGE = 'wazo/EVENT_WS_MESSAGE';
 const EVENT_PLAY_PROGRESS_SOUND = 'wazo/EVENT_PLAY_PROGRESS_SOUND';
 const EVENT_PLAY_NEW_MESSAGE_SOUND = 'wazo/EVENT_PLAY_NEW_MESSAGE_SOUND';
@@ -29,6 +42,10 @@ const EVENT_CHANGE_NAVBAR_COLOR = 'wazo/EVENT_CHANGE_NAVBAR_COLOR';
 const EVENT_RESET_NAVBAR_COLOR = 'wazo/EVENT_RESET_NAVBAR_COLOR';
 const EVENT_DISPLAY_MODAL = 'wazo/EVENT_DISPLAY_MODAL';
 const EVENT_REMOVE_MODAL = 'wazo/EVENT_REMOVE_MODAL';
+const EVENT_USER_JOIN_ROOM = 'wazo/EVENT_USER_JOIN_ROOM';
+const EVENT_USER_LEAVE_ROOM = 'wazo/EVENT_USER_LEAVE_ROOM';
+const EVENT_PARTICIPANT_JOIN_ROOM = 'wazo/EVENT_PARTICIPANT_JOIN_ROOM';
+const EVENT_PARTICIPANT_LEAVE_ROOM = 'wazo/EVENT_PARTICIPANT_LEAVE_ROOM';
 
 // Portal
 const EVENT_ON_CONNECTED_TO_STACK = 'wazo/EVENT_ON_CONNECTED_TO_STACK';
@@ -37,13 +54,25 @@ const EVENT_CHANGE_TOOLBAR_DISPLAY = 'wazo/EVENT_CHANGE_TOOLBAR_DISPLAY';
 
 const initializationTimeoutInMs = 5000;
 
+type DelayedMessage = {
+  type: string;
+  payload: Object;
+};
+
 class App {
   context: Context;
-  initializeCompleted: boolean;
-  initializeResolve: Function | null;
-  initializeTimeout: ReturnType<typeof setTimeout> | null;
+  _initializeCompleted: boolean;
+  _initializeResolve: Function | null;
+  _initializeTimeout: ReturnType<typeof setTimeout> | null;
+  _pluginId: string | null;
+  _queuedMessages: DelayedMessage[];
+  _isBackground: boolean;
 
+  // Global
   onUnLoaded = (e: Event) => {};
+  onAppUnLoaded = (tabId: string) => {};
+  onIframeMessage = (message: Object) => { };
+  onBackgroundMessage = (message: Object) => { };
 
   // WDA
   onLogout = () => {};
@@ -55,6 +84,10 @@ class App {
   onWebsocketMessage = (message: MessageEvent) => {};
   onMeetingCreated = (meeting: Meeting) => {};
   onRouteChanged = (location: Object, action: string) => {};
+  onUserJoinRoom = (room: Room) => {};
+  onUserLeaveRoom = (room: Room) => {};
+  onParticipantJoinRoom = (room: Room, participant: Contact) => {};
+  onParticipantLeaveRoom = (room: Room, participant: Contact) => {};
 
   // Portal
   onConnectedToStack = (stackSession: Object) => {};
@@ -62,9 +95,12 @@ class App {
 
   constructor() {
     this._resetEvents();
-    this.initializeCompleted = false;
-    this.initializeResolve = null;
-    this.initializeTimeout = null;
+    this._initializeCompleted = false;
+    this._initializeResolve = null;
+    this._initializeTimeout = null;
+    this._pluginId = null;
+    this._isBackground = false;
+    this._queuedMessages = [];
 
     this.context = {
       app: {
@@ -82,6 +118,14 @@ class App {
     window.onunload = (e: Event) => {
       this.onUnLoaded(e);
     }
+
+    // Used to fetch pluginId when loaded in an iframe
+    if (window.name) {
+      this._setPluginId(window.name);
+    }
+
+    // Used in background script, we expose a global method to be used in the <script> tag directly after importing the backgroundScript url
+    globalThis._setPluginId = this._setPluginId;
   }
 
   initialize = async () => {
@@ -92,23 +136,29 @@ class App {
     window.addEventListener('message', this._onMessage, false);
 
     return new Promise((resolve, reject) => {
-      this._sendMessage(EVENT_APP_INITIALIZE);
+      this._sendMessage(EVENT_APP_INITIALIZE, { bg: this._isBackground });
 
-      this.initializeTimeout = setTimeout(() => {
-        this.initializeTimeout = null;
+      this._initializeTimeout = setTimeout(() => {
+        this._initializeTimeout = null;
         reject('SDK initialize timeout');
       }, initializationTimeoutInMs);
 
-      this.initializeResolve = resolve;
+      this._initializeResolve = resolve;
     });
   };
 
   isInitialized = () => {
-    return this.initializeCompleted;
+    return this._initializeCompleted;
   };
 
+  // Global
   getContext = () => this.context;
 
+  sendMessageToIframe = (payload: Object) => this._sendMessage(EVENT_SEND_IFRAME_MESSAGE, { payload });
+
+  sendMessageToBackground = (payload: Object) => this._sendMessage(EVENT_SEND_BACKGROUND_MESSAGE, { payload });
+
+  // WDA
   startCall = ({ targets , requestedModalities = ['audio'] }: { targets: string[], requestedModalities: string[] }) => {
     this._sendMessage(EVENT_START_CALL, { targets, requestedModalities });
   };
@@ -155,10 +205,18 @@ class App {
   displayModal = ({ url, title, text, htmlText, height, width }: ModalParameter) =>
     this._sendMessage(EVENT_DISPLAY_MODAL, { url, title, text, htmlText, height, width });
 
+  removeModal = () => this._sendMessage(EVENT_REMOVE_MODAL);
+
+  hasLocalVideoStream = (call: Call) => Wazo.Phone.phone.hasALocalVideoTrack(call);
+
+  getLocalCurrentVideoStream = (call: Call) => Wazo.Phone.phone.getLocalVideoStream(call);
+
+  hasRemoveVideoStream = (call: Call) => Wazo.Phone.phone.hasRemoteVideo(call);
+
+  getRemoteVideoStream = (call: Call) => Wazo.Phone.phone.getRemoteVideoStream(call);
+
   // Portal
   changeToolbarDisplay = (display: boolean) => this._sendMessage(EVENT_CHANGE_TOOLBAR_DISPLAY, { display });
-
-  removeModal = () => this._sendMessage(EVENT_REMOVE_MODAL);
 
   _onMessage = (event: MessageEvent) => {
     if (!event.data) {
@@ -166,10 +224,41 @@ class App {
     }
 
     switch (event.data.type) {
-      // WDA
+      // Global
       case EVENT_ON_LOADED:
         this._onLoaded(event.data.session, event.data.theme, event.data.locale, event.data.extra);
         break;
+      case EVENT_APP_UNLOADED:
+        this.onAppUnLoaded(event.data.tabId);
+        break;
+      case EVENT_ON_LOGOUT:
+        this.onLogout();
+        this._resetEvents();
+        break;
+      case EVENT_ON_IFRAME_MESSAGE:
+        if (event.data._pluginId === this._pluginId) {
+          this.onIframeMessage(event.data.payload);
+        }
+        break;
+      case EVENT_ON_BACKGROUND_MESSAGE:
+        if (event.data._pluginId === this._pluginId) {
+          this.onBackgroundMessage(event.data.payload);
+        }
+        break;
+      case EVENT_USER_JOIN_ROOM:
+        this.onUserJoinRoom(event.data.room);
+        break;
+      case EVENT_USER_LEAVE_ROOM:
+        this.onUserLeaveRoom(event.data.room);
+        break;
+      case EVENT_PARTICIPANT_JOIN_ROOM:
+        this.onParticipantJoinRoom(event.data.room, event.data.participant);
+        break;
+      case EVENT_PARTICIPANT_LEAVE_ROOM:
+        this.onParticipantLeaveRoom(event.data.room, event.data.participant);
+        break;
+
+      // WDA
       case EVENT_WS_MESSAGE:
         this.onWebsocketMessage(event.data.message);
         break;
@@ -191,10 +280,6 @@ class App {
       case EVENT_ON_CALL_HANGED_UP:
         this.onCallHangedUp(event.data.call);
         break;
-      case EVENT_ON_LOGOUT:
-        this.onLogout();
-        this._resetEvents();
-        break;
 
       // Portal
       case EVENT_ON_CONNECTED_TO_STACK:
@@ -212,23 +297,34 @@ class App {
   }
 
   _sendMessage = (type: string, payload = {}) => {
-    // @ts-ignore
-    if (window.ReactNativeWebView) {
-      // @ts-ignore (Mobile)
-      return window.ReactNativeWebView.postMessage(JSON.stringify({ type, ...payload }));
-    }
-
-    window.parent.postMessage({ type, ...payload }, '*');
-  }
-
-  _onLoaded = (session: UserInfo, theme: Object, locale: string, extra: Extra | null) => {
-    if (this.initializeTimeout === null) {
+    if (!this.isInitialized() && type !== EVENT_APP_INITIALIZE) {
+      this._queuedMessages.push({ type, payload });
       return;
     }
 
-    clearTimeout(this.initializeTimeout);
+    // @ts-ignore
+    if (window.ReactNativeWebView) {
+      // @ts-ignore (Mobile)
+      return window.ReactNativeWebView.postMessage(JSON.stringify({ type, _pluginId: this._pluginId, ...payload }));
+    }
 
-    this.initializeCompleted = true;
+    window.parent.postMessage({ type, _pluginId: this._pluginId, ...payload }, '*');
+  }
+
+  _sendQueuedMessages = () => {
+    this._queuedMessages.forEach(({ type, payload }: DelayedMessage) => {
+      this._sendMessage(type, payload);
+    });
+  };
+
+  _onLoaded = (session: UserInfo, theme: Object, locale: string, extra: Extra | null) => {
+    if (this._initializeTimeout === null || this.isInitialized()) {
+      return;
+    }
+
+    clearTimeout(this._initializeTimeout);
+
+    this._initializeCompleted = true;
 
     this.context.app = {
       locale,
@@ -241,10 +337,16 @@ class App {
 
     this.context.user = session;
 
-    if (this.initializeResolve) {
-      this.initializeResolve();
+    if (this._initializeResolve) {
+      this._initializeResolve();
     }
+
+    this._sendQueuedMessages();
   };
+
+  _setPluginId = (pluginId: string) => {
+    this._pluginId = pluginId;
+  }
 
   _resetEvents = () => {
     this.onUnLoaded = (e: Event) => {};

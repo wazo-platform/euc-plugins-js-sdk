@@ -126,6 +126,30 @@ export interface Call {
   endTime: Date | null;
 }
 
+export interface Contact {
+  id: string;
+  name: string;
+  number: string;
+  email: string;
+  favorited?: boolean;
+  address: string;
+  mobile?: boolean;
+  personalStatus?: string;
+  sessions?: Array<{
+    uuid: string;
+    mobile: boolean;
+  }>;
+  connected?: boolean;
+  doNotDisturb?: boolean;
+}
+
+export interface Room {
+  id: string;
+  name: string;
+  connectedCall: Call;
+  participants: Contact[];
+}
+
 export interface MeetingAuthorization {
   meetingUuid: string;
   uuid: string;
