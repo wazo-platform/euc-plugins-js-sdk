@@ -1,0 +1,17 @@
+{
+  "manifestVersion": "0.1",
+  "version": "1.0.0",
+  "id": "iframe-bg-messaging",
+  "staticTabs": [
+    {
+      "entityId": "messaging",
+      "context": [
+        "sidebarTab"
+      ],
+      "name": "Messaging",
+      "contentUrl": "./tab.html",
+      "icon": "./tab.svg"
+    }
+  ],
+  "backgroundScript": "./background.js"
+}
