@@ -99,7 +99,7 @@ class App {
     this._initializeResolve = null;
     this._initializeTimeout = null;
     this._pluginId = null;
-    this._isBackground = false;
+    this._isBackground = !window.name;
     this._queuedMessages = [];
 
     this.context = {
