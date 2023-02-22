@@ -147,6 +147,7 @@ app.configureSounds({
 
 setTimeout(() => {
   // You can now play this custom sound, or receive a message in WDA to hear this sound.
+  // In a setTimeout to avoid chrome restriction about sound playing without user interaction: https://developer.chrome.com/blog/autoplay
   app.playNewMessageSound();
 }, 2000);
 ```

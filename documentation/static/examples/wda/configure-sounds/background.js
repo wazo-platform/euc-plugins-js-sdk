@@ -8,7 +8,7 @@ import app from 'https://cdn.jsdelivr.net/npm/@wazo/euc-plugins-sdk@latest/lib/e
   });
 
   setTimeout(() => {
-    // Let so time for the user ton click on the application allowing the sound to be played
+    // Leave some time for the user to click on the application, allowing the sound to be played.
     app.playNewMessageSound();
   }, 2000);
 })();
