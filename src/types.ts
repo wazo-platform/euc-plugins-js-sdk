@@ -126,6 +126,14 @@ export interface Call {
   endTime: Date | null;
 }
 
+export interface Sounds {
+  progress?: string;
+  ring?: string;
+  message?: string;
+  inboundCall?: string;
+  hangup?: string;
+}
+
 export interface Contact {
   id: string;
   name: string;

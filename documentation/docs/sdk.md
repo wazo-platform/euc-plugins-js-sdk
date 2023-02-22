@@ -138,6 +138,22 @@ Sounds marked "loop" must be stopped using:
 app.stopCurrentSound();
 ```
 
+### Configuring sounds
+
+You can use your own sound files in the application, with:
+
+```js
+app.configureSounds({
+  progress: 'http://example/com/progress.mpg',
+  ring: 'http://example/com/ring.wav',
+  message: 'http://example/com/message.ogg',
+  inboundCall: 'http://example/com/inbound.vaw',
+  hangup: 'http://example/com/hangup.ogg',
+})
+```
+
+You can omit a value, the default sound will be used.
+
 ### Displaying a notification
 
 Wazo will display browser or desktop notification depending on the environment where WDA is running.

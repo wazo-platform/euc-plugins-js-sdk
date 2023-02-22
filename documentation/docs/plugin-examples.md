@@ -136,6 +136,26 @@ app.onCallAnswered = (call) => {
     🎥 Try displaying videos as miniatures in a video call
 </a>
 
+### Configuring and playing sounds
+
+```js
+app.initialize();
+
+app.configureSounds({
+  message: 'https://audio-previews.elements.envatousercontent.com/files/156322809/preview.mp3'
+});
+
+setTimeout(() => {
+  // You can now play this custom sound, or receive a message in WDA to hear this sound.
+  // In a setTimeout to avoid chrome restriction about sound playing without user interaction: https://developer.chrome.com/blog/autoplay
+  app.playNewMessageSound();
+}, 2000);
+```
+
+<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/configure-sounds/manifest.json" target="_blank">
+    🎺 Try configuring the application sounds
+</a>
+
 # Portal
 
 ### Adding a tab in the PBX dashboard page

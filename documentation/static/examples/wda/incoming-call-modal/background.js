@@ -9,4 +9,4 @@ app.onCallIncoming = async call => {
   });
 };
 
-await app.initialize();
+app.initialize();
