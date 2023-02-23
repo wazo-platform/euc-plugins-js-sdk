@@ -151,7 +151,7 @@ if (typeof window !== "undefined") {
     softphone.updateCss(extra);
     softphone.show();
     if (server) {
-      softphone._sendMessage.bind(softphone, 'bridge/CONFIG_RETRIEVED', { server });
+      softphone.configureServer(server);
     }
   }
 

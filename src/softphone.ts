@@ -282,10 +282,14 @@ class Softphone extends EventEmitter {
     this._sendMessage(BRIDGE_LOGIN_WITH_TOKEN, { token, refreshToken });
   }
 
+  configureServer(server: string) {
+    this._sendMessage(BRIDGE_CONFIG_RETRIEVED, { server });
+  }
+
   updateCss(iframeCss: IframeCss | null = null) {
     if (iframeCss) {
 
-      if (this.wrapper ){
+      if (this.wrapper) {
         Object.keys(iframeCss).forEach(key => {
           // @ts-ignore: fix CSS key here
           this.wrapper.style[key] = iframeCss[key];
