@@ -50,7 +50,8 @@ a.try-it {
   border: 1px solid #eee;
 }
 
-#login-form input, #login-form button {
+#login-form input,
+#login-form button {
   margin: 10px auto;
   display: block;
   width: 250px;
@@ -66,4 +67,42 @@ a.try-it {
 .event-container {
   background-color: #fafafa;
   padding: 20px;
+}
+
+#minimize-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 201;
+  background: #ddd;
+  color: #aaa;
+  border: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .225s ease-out;
+}
+
+#minimize-button:hover {
+  background: #25a;
+  color: #fff;
+}
+
+#maximize-button {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 201;
+  height: 24px;
+  width: 140px;
+  background: #b00;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
 }

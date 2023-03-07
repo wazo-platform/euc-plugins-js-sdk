@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* global window, document */
+import EventEmitter from 'events';
+
 import { SoftphoneInitArguments, Call, WDASession, Card, CallLog, IframeCss } from './types';
 
 const BRIDGE_CONFIG_RETRIEVED = 'bridge/CONFIG_RETRIEVED';
@@ -49,6 +51,10 @@ const SDK_CALL_ENDED = 'sdk/ON_CALL_ENDED';
 const SDK_CALL_INCOMING = 'sdk/SDK_CALL_INCOMING';
 const SDK_AUTHENTICATED = 'sdk/SDK_AUTHENTICATED';
 
+// Events
+export const SHOW = 'show';
+export const HIDE = 'hide';
+
 interface SoftphoneBridgeConfig {
   server: string;
   language?: string;
@@ -61,12 +67,13 @@ interface SoftphoneBridgeConfig {
 
 type Message = [string, Object];
 
-class Softphone {
+class Softphone extends EventEmitter {
   url: string = 'https://softphone.wazo.io';
   width: number = 500;
   height: number = 600;
-  iframeCss: IframeCss = { left: 0, bottom : 0 };
+  iframeCss: IframeCss = { left: 0, bottom: 0 };
   displayed: boolean = false;
+  wrapper: HTMLDivElement | null = null;
   iframe: HTMLIFrameElement | null = null;
   iframeLoaded: boolean = false;
   session: WDASession | null = null;
@@ -74,48 +81,48 @@ class Softphone {
   // Message waiting for the iframe to be loaded
   _pendingMessages: Message[] = [];
 
-  onLinkEnabled(link: HTMLLinkElement) {}
-  onIFrameLoaded() {}
+  onLinkEnabled(link: HTMLLinkElement) { }
+  onIFrameLoaded() { }
 
-  onCallLocallyAnswered(call: Call) {}
-  onCallEstablished(call: Call) {}
-  onOutgoingCallMade(call: Call) {}
-  onCallIncoming(call: Call) {}
-  onCallRejected(call: Call) {}
-  onCallEnded(call: Call, card: Card, direction: string, fromExtension: string) {}
+  onCallLocallyAnswered(call: Call) { }
+  onCallEstablished(call: Call) { }
+  onOutgoingCallMade(call: Call) { }
+  onCallIncoming(call: Call) { }
+  onCallRejected(call: Call) { }
+  onCallEnded(call: Call, card: Card, direction: string, fromExtension: string) { }
 
-  onCardSaved(card: Card) {}
-  onCardCanceled() {}
-  onAuthenticated(session: WDASession) {}
-  onLoggedOut() {}
+  onCardSaved(card: Card) { }
+  onCardCanceled() { }
+  onAuthenticated(session: WDASession) { }
+  onLoggedOut() { }
 
   onSearchOptions(fieldId: string, query: string) {
     this.onOptionsResults(fieldId, []);
   }
 
-  onDisplayLinkedOption(optionId: string) {}
-  onWazoContactSearch(query: string) {}
-  onAgentLoggedIn() {}
-  onAgentLoggedOut() {}
-  onAgentPaused() {}
-  onAgentResumed() {}
-  onLanguageChanged(language: string) {}
-  onCallHeld() {}
-  onCallResumed() {}
-  onCallMuted() {}
-  onCallUnMuted() {}
-  onDtmfSent(tone: string) {}
-  onDirectTransfer(number: string) {}
-  onCreateIndirectTransfer(number: string) {}
-  onCancelIndirectTransfer() {}
-  onConfirmIndirectTransfer() {}
-  onIndirectCallMade(call: Call) {}
-  onIndirectTransferDone(call: Call) {}
-  onStartRecording() {}
-  onStopRecording() {}
-  onCallLogCreated(callLog: CallLog) {}
-  onWebsocketMessage(message: Object) {}
-  onUnHandledEvent(event: Object) {}
+  onDisplayLinkedOption(optionId: string) { }
+  onWazoContactSearch(query: string) { }
+  onAgentLoggedIn() { }
+  onAgentLoggedOut() { }
+  onAgentPaused() { }
+  onAgentResumed() { }
+  onLanguageChanged(language: string) { }
+  onCallHeld() { }
+  onCallResumed() { }
+  onCallMuted() { }
+  onCallUnMuted() { }
+  onDtmfSent(tone: string) { }
+  onDirectTransfer(number: string) { }
+  onCreateIndirectTransfer(number: string) { }
+  onCancelIndirectTransfer() { }
+  onConfirmIndirectTransfer() { }
+  onIndirectCallMade(call: Call) { }
+  onIndirectTransferDone(call: Call) { }
+  onStartRecording() { }
+  onStopRecording() { }
+  onCallLogCreated(callLog: CallLog) { }
+  onWebsocketMessage(message: Object) { }
+  onUnHandledEvent(event: Object) { }
 
   init({
     url,
@@ -201,20 +208,20 @@ class Softphone {
   }
 
   makeCall(number: string) {
-    this.displaySoftphone();
+    this.show();
 
     this._sendMessage(BRIDGE_ON_CLICK_TO_CALL, { number });
   }
 
-  toggleSoftphoneDisplay() {
+  toggleDisplay() {
     if (this.displayed) {
-      this.hideSoftphone();
+      this.hide();
     } else {
-      this.displaySoftphone();
+      this.show();
     }
   }
 
-  displaySoftphone() {
+  show() {
     if (!this.iframe) {
       this._createIframe();
     }
@@ -224,20 +231,27 @@ class Softphone {
     }
 
     this.displayed = true;
+    this.emit(SHOW);
   }
 
-  hideSoftphone() {
+  hide() {
     if (this.iframe) {
       this.iframe.style.display = 'none';
     }
+
     this.displayed = false;
+    this.emit(HIDE);
   }
 
-  removeSoftphone() {
+  remove() {
     if (this.iframe) {
       this.iframe.remove();
     }
+    if (this.wrapper) {
+      this.wrapper.remove();
+    }
     this.iframe = null;
+    this.wrapper = null;
   }
 
   optionsFetched(fieldId: string, options: any[]) {
@@ -268,26 +282,39 @@ class Softphone {
     this._sendMessage(BRIDGE_LOGIN_WITH_TOKEN, { token, refreshToken });
   }
 
+  configureServer(server: string) {
+    this._sendMessage(BRIDGE_CONFIG_RETRIEVED, { server });
+  }
+
+  updateCss(iframeCss: IframeCss | null = null) {
+    if (iframeCss) {
+
+      if (this.wrapper) {
+        Object.keys(iframeCss).forEach(key => {
+          // @ts-ignore: fix CSS key here
+          this.wrapper.style[key] = iframeCss[key];
+        });
+      }
+
+      this.iframeCss = iframeCss;
+    }
+  }
+
   _createIframe(cb?: ((this: GlobalEventHandlers, ev: Event) => any) | null) {
+    this.wrapper = document.createElement('div');
+    this.wrapper.id = 'iframe-wrapper';
+    this.wrapper.style.position = 'fixed';
+
+    this.updateCss(this.iframeCss);
+
     this.iframe = document.createElement('iframe');
-    // $FlowFixMe
     this.iframe.width = String(this.width);
-    // $FlowFixMe
     this.iframe.height = String(this.height);
-    // $FlowFixMe
     this.iframe.allow = 'camera *; microphone *; autoplay *; display-capture *';
-    this.iframe.style.position = 'absolute';
 
     this.iframe.style.border = '1px solid #aaa';
     this.iframe.style.backgroundColor = 'white';
     this.iframe.style.display = 'none';
-
-    Object.keys(this.iframeCss).forEach(key => {
-      if (this.iframe) {
-        // @ts-ignore: fix CSS key here
-        this.iframe.style[key] = this.iframeCss[key];
-      }
-    })
 
     this.iframe.src = this.url;
     this.iframe.id = 'wazo-softphone';
@@ -296,8 +323,8 @@ class Softphone {
       this.iframe.onload = cb;
     }
 
-    // $FlowFixMe
-    document.body.appendChild(this.iframe);
+    this.wrapper.appendChild(this.iframe);
+    document.body.appendChild(this.wrapper);
   }
 
   _getLinks() {
@@ -336,7 +363,6 @@ class Softphone {
         this.onCallIncoming(event.data.callSession);
         break;
       case SDK_AUTHENTICATED:
-        // $FlowFixMe
         this._onAuthenticated(event.data.session);
         this.onAuthenticated(event.data.session);
         break;

@@ -48,14 +48,14 @@ softphone.makeCall(number);
 
 ### Showing / hidding the softphone
 ```js
-softphone.toggleSoftphoneDisplay();
-softphone.displaySoftphone();
-softphone.hideSoftphone();
+softphone.toggleDisplay();
+softphone.show();
+softphone.hide();
 ```
 
 ### Removing the softphone from the page
 ```js
-softphone.removeSoftphone();
+softphone.remove();
 ```
 
 ### Parsing links on the page

@@ -3,24 +3,8 @@ if (typeof window !== "undefined") {
   const { softphone } = require('@wazo/euc-plugins-sdk');
   const Wazo = require('@wazo/sdk/lib/simple').default;
 
-  let defaultServer = typeof localStorage !== 'undefined' ? localStorage.getItem('softphone-server') || 'my-server' : 'my-server';
-  let displayed = false;
-
-  softphone.init({ server: defaultServer, width: 400 });
-
-  const initFixedSoftphone = (server = defaultServer) => {
-    softphone.removeSoftphone();
-    softphone.init({
-      server,
-      width: 400,
-      iframeCss: {
-        position: 'fixed',
-        right: 0,
-        top: '80px',
-      },
-    });
-    softphone.displaySoftphone();
-    displayed = true;
+  const initSoftphone = (server = defaultServer) => {
+    softphone.init({ server: defaultServer, width: 400 });
 
     softphone.onIFrameLoaded = () => {
       document.getElementById('iframe-loaded-event').innerText = 'Softphone iframe is loaded';
@@ -137,38 +121,74 @@ if (typeof window !== "undefined") {
     softphone.onWebsocketMessage = (message) => {
       document.getElementById('websocket-event').innerHTML = `A new websocket message was received: ${JSON.stringify(message)}`;
     };
+
+    softphone.on('show', () => {
+      minimizeButton.style.display = 'block';
+      maximizeButton.style.display = 'none';
+    })
+
+    softphone.on('hide', () => {
+      minimizeButton.style.display = 'none';
+      maximizeButton.style.display = 'block';
+    })
+
+    // add minimize / maximize buttons
+    const minimizeButton = document.createElement('button');
+    minimizeButton.id = 'minimize-button';
+    minimizeButton.innerHTML = 'X';
+    softphone.wrapper.appendChild(minimizeButton);
+
+    const maximizeButton = document.createElement('button');
+    maximizeButton.id = 'maximize-button';
+    maximizeButton.innerHTML = 'Show Softphone';
+    softphone.wrapper.appendChild(maximizeButton);
+
+    minimizeButton.addEventListener('click', softphone.hide.bind(softphone));
+    maximizeButton.addEventListener('click', softphone.show.bind(softphone));
   }
 
+  const updateSoftphone = (extra = { right: 'auto', top: 'auto', left: 0, bottom: 0 }, server = null) => {
+    softphone.updateCss(extra);
+    softphone.show();
+    if (server) {
+      softphone.configureServer(server);
+    }
+  }
 
   // Had to use setTimeout because `window.load` or `window.addEventListener('load', ...)` aren't called
   global.initButtons = () => {
     const events = document.querySelector('#events');
 
     // Display softphone when we scroll in the events section
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
       const position = events.getBoundingClientRect();
       if (position.top >= 0 && position.bottom <= window.innerHeight && !displayed) {
-        initFixedSoftphone();
+        updateSoftphone();
       }
     });
 
     // Display
     document.querySelector('#display-softphone').addEventListener('click', e => {
       e.preventDefault();
-      softphone.displaySoftphone();
+      softphone.show();
     });
 
     // Hide
     document.querySelector('#hide-softphone').addEventListener('click', e => {
       e.preventDefault();
-      softphone.hideSoftphone();
+      softphone.hide();
     });
 
     // Move right
     document.querySelector('#move-right').addEventListener('click', e => {
       e.preventDefault();
 
-      initFixedSoftphone();
+      updateSoftphone({
+        bottom: 'auto',
+        left: 'auto',
+        right: 0,
+        top: '80px',
+      });
     });
 
     // Login from token
@@ -182,7 +202,7 @@ if (typeof window !== "undefined") {
       localStorage.setItem('softphone-server', server);
       defaultServer = server;
 
-      initFixedSoftphone(server);
+      updateSoftphone(null, server);
       Wazo.Auth.init('softphone-example');
       Wazo.Auth.setHost(server);
 
@@ -198,7 +218,7 @@ if (typeof window !== "undefined") {
     document.querySelector('#call-start-ten').addEventListener('click', e => {
       e.preventDefault();
       if (!displayed) {
-        initFixedSoftphone();
+        updateSoftphone();
       }
 
       softphone.makeCall('*10');
@@ -208,7 +228,7 @@ if (typeof window !== "undefined") {
     document.querySelector('#parse-links').addEventListener('click', e => {
       e.preventDefault();
       if (!displayed) {
-        initFixedSoftphone();
+        updateSoftphone();
       }
 
       softphone.removeParsedLinksEvent();
@@ -222,7 +242,7 @@ if (typeof window !== "undefined") {
     document.querySelector('#inject-css').addEventListener('click', e => {
       e.preventDefault();
       if (!displayed) {
-        initFixedSoftphone();
+        updateSoftphone();
       }
 
       softphone.injectCss(`
@@ -230,13 +250,13 @@ if (typeof window !== "undefined") {
           background-color: green !important;
         }
       `);
-      });
+    });
 
     // Customize appearance
     document.querySelector('#customize-appearance').addEventListener('click', e => {
       e.preventDefault();
       if (!displayed) {
-        initFixedSoftphone();
+        updateSoftphone();
       }
 
       softphone.customizeAppearance({
@@ -258,7 +278,7 @@ if (typeof window !== "undefined") {
         // Assets
         logo: 'http://localhost:3000/examples/softphone/assets/logo.png',
       });
-      softphone.displaySoftphone();
+      softphone.show();
     });
 
     document.querySelector('#update-form-value').addEventListener('click', e => {
@@ -272,14 +292,14 @@ if (typeof window !== "undefined") {
       e.preventDefault();
 
       if (!displayed) {
-        initFixedSoftphone();
+        updateSoftphone();
       }
 
       softphone.setFormSchema({
         type: 'object',
         required: ['subject', 'title'],
         properties: {
-          subject: { type: "string", enum: ["Support", "Greetings", "Want to talk to Bob"],  title: 'Subject' },
+          subject: { type: "string", enum: ["Support", "Greetings", "Want to talk to Bob"], title: 'Subject' },
           title: { type: 'string', title: 'Title' },
           note: { type: 'string', title: 'Note' },
         },
@@ -292,7 +312,7 @@ if (typeof window !== "undefined") {
     document.querySelector('#advanced-form').addEventListener('click', e => {
       e.preventDefault();
       if (!displayed) {
-        initFixedSoftphone();
+        updateSoftphone();
       }
 
       softphone.setFormSchema({
@@ -324,17 +344,22 @@ if (typeof window !== "undefined") {
         },
       }, {
         note: { 'ui:widget': 'textarea' },
-        clientId :{ 'ui:field': 'autocomplete'},
+        clientId: { 'ui:field': 'autocomplete' },
       });
 
-      softphone.onOptionsResults('clientId',  [{ label: 'Alice', id: 1 }, { label: 'Bob', id: 2 }, { label: 'Charlies', id: 3 }]);
+      softphone.onOptionsResults('clientId', [{ label: 'Alice', id: 1 }, { label: 'Bob', id: 2 }, { label: 'Charlies', id: 3 }]);
 
       softphone.onSearchOptions = (fieldId, query) => {
-        const results = [{ label: 'Charles', id: 4}, { label: 'David', id: 5 }, { label: 'Henry', id: 6 }];
+        const results = [{ label: 'Charles', id: 4 }, { label: 'David', id: 5 }, { label: 'Henry', id: 6 }];
         softphone.onOptionsResults(fieldId, results);
       };
     });
   };
+
+  let defaultServer = typeof localStorage !== 'undefined' ? localStorage.getItem('softphone-server') || 'my-server' : 'my-server';
+  let displayed = false;
+
+  initSoftphone();
 }
 
 
