@@ -25,7 +25,6 @@ You must provide the following information in a manifest file (json format) that
     "name": "My Name",
     "websiteUrl": "https://website.com/",
     "privacyUrl": "https://website.com/privacy",
-    "mpnId": "1234567890"
   },
   "name": {
     "short": "App Name",
