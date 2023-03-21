@@ -353,6 +353,9 @@ class App {
 
   _resetEvents = () => {
     this.onUnLoaded = (e: Event) => {};
+    this.onAppUnLoaded = (tabId: string) => {};
+    this.onIframeMessage = (message: Object) => { };
+    this.onBackgroundMessage = (message: Object) => { };
 
     // WDA
     this.onLogout = () => {};

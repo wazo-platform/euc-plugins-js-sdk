@@ -277,7 +277,7 @@ app.onCallAnswered = (call) => {
 
 Should be used in a `backgroundScript` to know when a custom tab is unloaded.
 
-As `app.onUnLoaded` is only triggered for tabs (iframes), and this event doesn't allow sophisticated actions (like sending messages to backgroundScript, API calls, ...)
+⚠️ As `app.onUnLoaded` is only triggered for tabs (iframes), and this event doesn't allow sophisticated actions (like sending messages to backgroundScript, API calls, ...)
 we should use `onAppUnLoaded` to perform action when a tab is unloaded.
 
 ```js
