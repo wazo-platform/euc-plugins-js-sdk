@@ -41,7 +41,8 @@ The context will give you access to the app information like :
   - `token: string`: The token that can be used for API calls
   - `refreshToken: string`: A refresh token that should be used if the `token` expires
   - `uuid: string`: The user uuid
-  See the `WDASession` and the `PortalSession` types for more information.
+  - `host`: In the web or desktop application: representing the stack hostname where the user is connected.
+  See the [`WDASession`](https://github.com/wazo-communication/euc-plugins-js-sdk/blob/master/src/types.ts#L83) and the [`PortalSession`](https://github.com/wazo-communication/euc-plugins-js-sdk/blob/master/src/types.ts#L79) types for more information.
 
 
 ## Interacting with the Web and Desktop application
@@ -144,11 +145,11 @@ You can use your own sound files in the application, with:
 
 ```js
 app.configureSounds({
-  progress: 'http://example/com/progress.mpg',
-  ring: 'http://example/com/ring.wav',
-  message: 'http://example/com/message.ogg',
-  inboundCall: 'http://example/com/inbound.vaw',
-  hangup: 'http://example/com/hangup.ogg',
+  progress: 'http://example/com/progress.mpg', // Played when making an outgoing call (ringback)
+  ring: 'http://example/com/ring.wav', // Played for the first incoming call
+  message: 'http://example/com/message.ogg', // Played when the user receive a chat message
+  hangup: 'http://example/com/hangup.ogg',// Played when the call is hanged up
+  inboundCall: 'http://example/com/inbound.vaw', // Played when we are in call and another call is incoming. Also played in Switchboard.
 })
 ```
 
