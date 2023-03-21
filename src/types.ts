@@ -91,6 +91,7 @@ export interface WDASession {
   engineVersion: string | null;
   profile: Profile | null;
   expiresAt: Date;
+  host: string, // Representing the stack hostname where the user is connected
   authorizations: Array<Authorization>;
 }
 
