@@ -121,6 +121,15 @@ app.onMeetingCreated = newMeeting => {
   app.openMeetingLobby(newMeeting.exten);
 };
 ```
+
+# Ignoring an incoming call
+
+```js
+app.onCallIncoming = call => {
+  app.ignoreCall(call);
+};
+```
+
 ### Playing a sound
 
 ```js

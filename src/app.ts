@@ -47,6 +47,7 @@ const EVENT_USER_JOIN_ROOM = 'wazo/EVENT_USER_JOIN_ROOM';
 const EVENT_USER_LEAVE_ROOM = 'wazo/EVENT_USER_LEAVE_ROOM';
 const EVENT_PARTICIPANT_JOIN_ROOM = 'wazo/EVENT_PARTICIPANT_JOIN_ROOM';
 const EVENT_PARTICIPANT_LEAVE_ROOM = 'wazo/EVENT_PARTICIPANT_LEAVE_ROOM';
+const EVENT_IGNORE_CALL = 'wazo/EVENT_IGNORE_CALL';
 
 // Portal
 const EVENT_ON_CONNECTED_TO_STACK = 'wazo/EVENT_ON_CONNECTED_TO_STACK';
@@ -180,6 +181,10 @@ class App {
     // @TODO: Fix it in WDA
     // this._sendMessage(EVENT_OPEN_SETTINGS);
   };
+
+  ignoreCall(call: Call) {
+    this._sendMessage(EVENT_IGNORE_CALL, { call });
+  }
 
   closeLeftPanel = () => this._sendMessage(EVENT_CLOSE_LEFT_PANEL);
 
