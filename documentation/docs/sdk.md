@@ -36,6 +36,9 @@ The context will give you access to the app information like :
   - `theme: Object`: Colors used by the EUC app.
   - `host: AppHostInfo`: Contains a `clientType` value that can be `web` / `desktop` / `ios` or `android`
   - `extra: Object`: Contains extra information about the app context, like the `contact` when you use the `contactTab` manifest context.
+    Among extra parameters, you'll always receive:
+    - `extra.baseUrl`: The base url of your `manifest.json` file
+    - `extra.pluginId`: The `entityId` of the current plugin.
 
 - `user: UserInfo`: Information about the connected user in the EUC app:
   - `token: string`: The token that can be used for API calls
@@ -307,6 +310,13 @@ app.onUnLoaded = () => {};
 
 ```js
 app.onLogout = () => {};
+```
+
+#### User session refreshed
+
+The token of the authenticated user as an expiration date. When the token expires, a session is created with a new token.
+```js
+app.onNewSession(session:  WDASession | PortalSession) {}
 ```
 
 #### A call for the current user is incoming

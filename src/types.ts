@@ -185,6 +185,11 @@ export interface Extra {
   clientType: HostClientType;
 }
 
+export interface PluginConfiguration {
+  baseUrl?: string,
+  pluginId?: string,
+}
+
 export interface ModalParameter {
   url?: string;
   title?: string;

@@ -1,8 +1,22 @@
 /* global Wazo */
-import { Call, Room, Contact, Context, Meeting, UserInfo, Extra, ModalParameter, Sounds } from './types';
+import {
+  Call,
+  Room,
+  Contact,
+  Context,
+  Meeting,
+  UserInfo,
+  Extra,
+  ModalParameter,
+  Sounds,
+  PluginConfiguration,
+  WDASession, PortalSession
+} from './types';
 
 declare global {
+  // Deprecated, use `_configurePlugin` instead
   var _setPluginId: Function;
+  var _configurePlugin: Function;
   var Wazo: any;
 }
 
@@ -48,6 +62,7 @@ const EVENT_USER_LEAVE_ROOM = 'wazo/EVENT_USER_LEAVE_ROOM';
 const EVENT_PARTICIPANT_JOIN_ROOM = 'wazo/EVENT_PARTICIPANT_JOIN_ROOM';
 const EVENT_PARTICIPANT_LEAVE_ROOM = 'wazo/EVENT_PARTICIPANT_LEAVE_ROOM';
 const EVENT_IGNORE_CALL = 'wazo/EVENT_IGNORE_CALL';
+const EVENT_ON_NEW_SESSION = 'wazo/EVENT_ON_NEW_SESSION';
 
 // Portal
 const EVENT_ON_CONNECTED_TO_STACK = 'wazo/EVENT_ON_CONNECTED_TO_STACK';
@@ -67,10 +82,12 @@ class App {
   _initializeResolve: Function | null;
   _initializeTimeout: ReturnType<typeof setTimeout> | null;
   _pluginId: string | null;
+  _baseUrl: string | null;
   _queuedMessages: DelayedMessage[];
   _isBackground: boolean;
 
   // Global
+  onNewSession = (session: WDASession | PortalSession) => {}
   onUnLoaded = (e: Event) => {};
   onAppUnLoaded = (tabId: string) => {};
   onIframeMessage = (message: Object) => { };
@@ -101,6 +118,7 @@ class App {
     this._initializeResolve = null;
     this._initializeTimeout = null;
     this._pluginId = null;
+    this._baseUrl = null;
     this._isBackground = !window.name;
     this._queuedMessages = [];
 
@@ -123,11 +141,18 @@ class App {
 
     // Used to fetch pluginId when loaded in an iframe
     if (window.name) {
-      this._setPluginId(window.name);
+      try {
+        // Is window.name a valid JSON ?
+        this._configurePlugin(JSON.parse(window.name));
+      } catch (_) {
+        // Deprecated way to do it, remove it in futures version
+        this._configurePlugin({ pluginId: window.name });
+      }
     }
 
-    // Used in background script, we expose a global method to be used in the <script> tag directly after importing the backgroundScript url
+    // deprecated: Used in background script, we expose a global method to be used in the <script> tag directly after importing the backgroundScript url
     globalThis._setPluginId = this._setPluginId;
+    globalThis._configurePlugin = this._configurePlugin;
   }
 
   initialize = async () => {
@@ -138,7 +163,7 @@ class App {
     window.addEventListener('message', this._onMessage, false);
 
     return new Promise((resolve, reject) => {
-      this._sendMessage(EVENT_APP_INITIALIZE, { bg: this._isBackground });
+      this._sendMessage(EVENT_APP_INITIALIZE, { bg: this._isBackground, pluginId: this._pluginId });
 
       this._initializeTimeout = setTimeout(() => {
         this._initializeTimeout = null;
@@ -243,6 +268,9 @@ class App {
         this.onLogout();
         this._resetEvents();
         break;
+      case EVENT_ON_NEW_SESSION:
+        this.onNewSession(event.data.session);
+        break;
       case EVENT_ON_IFRAME_MESSAGE:
         if (event.data._pluginId === this._pluginId) {
           this.onIframeMessage(event.data.payload);
@@ -340,7 +368,11 @@ class App {
       host: {
         clientType: extra ? extra.clientType : null,
       },
-      extra: extra,
+      extra: {
+        ...extra,
+        baseUrl: this._baseUrl,
+        pluginId: this._pluginId,
+      },
     };
 
     this.context.user = session;
@@ -352,8 +384,18 @@ class App {
     this._sendQueuedMessages();
   };
 
+  // Deprecated, we should use `_configurePlugin` instead
   _setPluginId = (pluginId: string) => {
     this._pluginId = pluginId;
+  }
+
+  _configurePlugin = (configuration: PluginConfiguration) => {
+    if (configuration.pluginId) {
+      this._pluginId = configuration.pluginId;
+    }
+    if (configuration.baseUrl) {
+      this._baseUrl = configuration.baseUrl;
+    }
   }
 
   _resetEvents = () => {
@@ -364,6 +406,7 @@ class App {
 
     // WDA
     this.onLogout = () => {};
+    this.onNewSession = (session: WDASession | PortalSession) => {};
     this.onCallIncoming = (call: Call) =>  {};
     this.onCallMade = (call: Call) => {};
     this.onCallAnswered = (call: Call) => {};
