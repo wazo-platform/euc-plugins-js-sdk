@@ -167,6 +167,14 @@ app.configureSounds({
 
 You can omit a value, the default sound will be used.
 
+### Resetting sounds
+
+You can reset all applications sounds with:
+
+```js
+app.resetSounds();
+```
+
 ### Displaying a notification
 
 Wazo will display browser or desktop notification depending on the environment where WDA is running.

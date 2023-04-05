@@ -52,6 +52,7 @@ const EVENT_PLAY_DOUBLE_CALL_SOUND = 'wazo/EVENT_PLAY_DOUBLE_CALL_SOUND';
 const EVENT_PLAY_HANGUP_SOUND = 'wazo/EVENT_PLAY_HANGUP_SOUND';
 const EVENT_STOP_CURRENT_SOUND = 'wazo/EVENT_STOP_CURRENT_SOUND';
 const EVENT_CONFIGURE_SOUNDS = 'wazo/EVENT_CONFIGURE_SOUNDS';
+const EVENT_RESET_SOUNDS = 'wazo/EVENT_RESET_SOUNDS';
 const EVENT_DISPLAY_NOTIFICATION = 'wazo/EVENT_DISPLAY_NOTIFICATION';
 const EVENT_CHANGE_NAVBAR_COLOR = 'wazo/EVENT_CHANGE_NAVBAR_COLOR';
 const EVENT_RESET_NAVBAR_COLOR = 'wazo/EVENT_RESET_NAVBAR_COLOR';
@@ -228,6 +229,8 @@ class App {
   stopCurrentSound = () => this._sendMessage(EVENT_STOP_CURRENT_SOUND);
 
   configureSounds = (sounds: Sounds) => this._sendMessage(EVENT_CONFIGURE_SOUNDS, { sounds });
+
+  resetSounds = () => this._sendMessage(EVENT_RESET_SOUNDS);
 
   changeNavBarColor = (color: string) => this._sendMessage(EVENT_CHANGE_NAVBAR_COLOR, { color });
 
