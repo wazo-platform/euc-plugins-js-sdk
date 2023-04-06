@@ -26,6 +26,15 @@ You must provide the following information in a manifest file (json format) that
     "websiteUrl": "https://website.com/",
     "privacyUrl": "https://website.com/privacy",
   },
+  "localizationInfo": {
+    "defaultLanguageTag": "en",
+    "additionalLanguages": [
+      {
+        "languageTag": "fr",
+        "file": "fr.json"
+      }
+    ]
+  },
   "name": {
     "short": "App Name",
     "full": "Full app name"
@@ -65,3 +74,49 @@ In the *Advanced* section, add a new key with the name `manifest_urls`  and valu
 ![App configuration](/img/app-config-portal.png)
 
 Now you're all set you can choose to customize the [Web and Desktop application](/docs/web-desktop-application), the [Mobile Application](/docs/mobile) or [Portal](/docs/portal)
+
+### Translating manifest elements
+
+Using the `localizationInfo` you can add other `manifest.json` files containing the translations for a specific language.
+
+In your main `manifest.json` file:
+```json
+"localizationInfo": {
+  "defaultLanguageTag": "en",
+  "additionalLanguages": [
+    {
+      "languageTag": "fr",
+      "file": "fr.json"
+    }
+  ]
+}
+```
+
+The `file` path can be relative to the `manifest.json` path or absolute.
+
+The `fr.json` file will look lie this :
+```json
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.5/MicrosoftTeams.Localization.schema.json",
+  "manifestVersion": "0.1",
+  "staticTabs[0].name": "Texto"
+}
+```
+
+You can create an entry with the JSON path to every `manifest.json` elements, here we change the `staticTabs[0].name` element.
+So if we have in our `manifest.json` file :
+
+```json
+"staticTabs": [
+  {
+    "entityId": "sms",
+    "context": ["generalTab"],
+    "name": "SMS",
+    "contentUrl": "./general.html"
+  }
+],
+```
+
+The value `SMS` will be translated to `Texto` when the user changes to the locale `fr`.
+
+The current supported locales are : `en` and `fr`.
