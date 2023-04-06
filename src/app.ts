@@ -37,7 +37,7 @@ const EVENT_START_CALL = 'wazo/START_CALL';
 const EVENT_ON_CALL_INCOMING = 'wazo/EVENT_ON_CALL_INCOMING';
 const EVENT_ON_CALL_MADE = 'wazo/EVENT_ON_CALL_MADE';
 const EVENT_ON_CALL_ANSWERED = 'wazo/EVENT_ON_CALL_ANSWERED';
-const EVENT_ON_CALL_HANGED_UP = 'wazo/EVENT_ON_CALL_HANGED_UP';
+const EVENT_ON_CALL_HUNG_UP = 'wazo/EVENT_ON_CALL_HUNG_UP';
 const EVENT_OPEN_LINK = 'wazo/EVENT_OPEN_LINK';
 const EVENT_CREATE_MEETING = 'wazo/EVENT_CREATE_MEETING';
 const EVENT_OPEN_MEETING_LOBBY = 'wazo/EVENT_OPEN_MEETING_LOBBY';
@@ -99,7 +99,7 @@ class App {
   onCallIncoming = (call: Call) =>  {};
   onCallMade = (call: Call) => {};
   onCallAnswered = (call: Call) => {};
-  onCallHangedUp = (call: Call) => {};
+  onCallHungUp = (call: Call) => {};
   onUnHandledEvent = (event: MessageEvent) => {};
   onWebsocketMessage = (message: MessageEvent) => {};
   onMeetingCreated = (meeting: Meeting) => {};
@@ -146,7 +146,7 @@ class App {
         // Is window.name a valid JSON ?
         this._configurePlugin(JSON.parse(window.name));
       } catch (_) {
-        // Deprecated way to do it, remove it in futures version
+        // Deprecated way to do it, remove it in future version
         this._configurePlugin({ pluginId: window.name });
       }
     }
@@ -316,8 +316,8 @@ class App {
       case EVENT_ON_CALL_ANSWERED:
         this.onCallAnswered(event.data.call);
         break;
-      case EVENT_ON_CALL_HANGED_UP:
-        this.onCallHangedUp(event.data.call);
+      case EVENT_ON_CALL_HUNG_UP:
+        this.onCallHungUp(event.data.call);
         break;
 
       // Portal
@@ -413,7 +413,7 @@ class App {
     this.onCallIncoming = (call: Call) =>  {};
     this.onCallMade = (call: Call) => {};
     this.onCallAnswered = (call: Call) => {};
-    this.onCallHangedUp = (call: Call) => {};
+    this.onCallHungUp = (call: Call) => {};
     this.onUnHandledEvent = (event: MessageEvent) => {};
     this.onWebsocketMessage = (message: MessageEvent) => {};
     this.onMeetingCreated = (meeting: Meeting) => {};

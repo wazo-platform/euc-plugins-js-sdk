@@ -77,7 +77,7 @@ Now you're all set you can choose to customize the [Web and Desktop application]
 
 ### Translating manifest elements
 
-Using the `localizationInfo` you can add other `manifest.json` files containing the translations for a specific language.
+Using the `localizationInfo` you can add other `manifest.json` files containing translations for a specific language.
 
 In your main `manifest.json` file:
 ```json
@@ -94,7 +94,7 @@ In your main `manifest.json` file:
 
 The `file` path can be relative to the `manifest.json` path or absolute.
 
-The `fr.json` file will look lie this :
+The `fr.json` file will look like this :
 ```json
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.5/MicrosoftTeams.Localization.schema.json",
@@ -117,6 +117,6 @@ So if we have in our `manifest.json` file :
 ],
 ```
 
-The value `SMS` will be translated to `Texto` when the user changes to the locale `fr`.
+The value `SMS` will be translated to `Texto` when the user changes locale to `fr`.
 
-The current supported locales are : `en` and `fr`.
+Currently supported locales are : `en` and `fr`.

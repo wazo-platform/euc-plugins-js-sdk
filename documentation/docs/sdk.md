@@ -159,8 +159,8 @@ You can use your own sound files in the application, with:
 app.configureSounds({
   progress: 'http://example/com/progress.mpg', // Played when making an outgoing call (ringback)
   ring: 'http://example/com/ring.wav', // Played for the first incoming call
-  message: 'http://example/com/message.ogg', // Played when the user receive a chat message
-  hangup: 'http://example/com/hangup.ogg',// Played when the call is hanged up
+  message: 'http://example/com/message.ogg', // Played when the user receives a chat message
+  hangup: 'http://example/com/hangup.ogg',// Played when the call is hung up
   inboundCall: 'http://example/com/inbound.vaw', // Played when we are in call and another call is incoming. Also played in Switchboard.
 })
 ```
@@ -169,7 +169,7 @@ You can omit a value, the default sound will be used.
 
 ### Resetting sounds
 
-You can reset all applications sounds with:
+You can reset all application sounds with:
 
 ```js
 app.resetSounds();
@@ -322,7 +322,7 @@ app.onLogout = () => {};
 
 #### User session refreshed
 
-The token of the authenticated user as an expiration date. When the token expires, a session is created with a new token.
+The token of the authenticated user has an expiration date; when the token expires, a session is created with a new token.
 ```js
 app.onNewSession(session:  WDASession | PortalSession) {}
 ```
@@ -351,10 +351,10 @@ app.onCallAnswered = (call: Call) =>  {
 };
 ```
 
-#### A call is hanged up
+#### A call is hung up
 
 ```js
-app.onCallHangedUp = (call: Call) =>  {
+app.onCallHungUp = (call: Call) =>  {
   // Useful to react in a `backgroundScript`.
 };
 ```
