@@ -2180,10 +2180,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@wazo/euc-plugins-sdk@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@wazo/euc-plugins-sdk/-/euc-plugins-sdk-0.0.8.tgz#a4ee43282736bf8c6c6c6c02cf3b316d843dc48b"
-  integrity sha512-fkc35oQPzFde025pMM+FMXjkeFHxtl86dt+Vtw6/+kbMxIyjQYGj5FclI8cbybCol8pvJ91ITvyaKD+UPXux8w==
+"@wazo/euc-plugins-sdk@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@wazo/euc-plugins-sdk/-/euc-plugins-sdk-0.0.13.tgz#078fede6d821a2e90992fbb86135727d513b3f78"
+  integrity sha512-TkvkMVxsRzxQJgfHqLuRWmiF4cjnkujjsbZPxYHYPbELI1ihOvxSL2+NY4lNhrx9fiPOzI81kIYsc2MB6XL5rw==
 
 "@wazo/sdk@^0.39.0-beta.5":
   version "0.39.0-beta.5"
@@ -4106,7 +4106,7 @@ get-stream@^6.0.0:
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-6.0.1.tgz#a262d8eef67aced57c2852ad6167526a43cbf7b7"
   integrity sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==
 
-"getstats@github:manuquentin/getStats#fix_stats_mobile":
+getstats@manuquentin/getStats#fix_stats_mobile:
   version "1.2.0"
   resolved "https://codeload.github.com/manuquentin/getStats/tar.gz/664ad959bad42ca794b12dcee3f936e9eac0d88d"
 

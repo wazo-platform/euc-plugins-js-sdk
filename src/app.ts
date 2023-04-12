@@ -1,8 +1,22 @@
 /* global Wazo */
-import { Call, Room, Contact, Context, Meeting, UserInfo, Extra, ModalParameter, Sounds } from './types';
+import {
+  Call,
+  Room,
+  Contact,
+  Context,
+  Meeting,
+  UserInfo,
+  Extra,
+  ModalParameter,
+  Sounds,
+  PluginConfiguration,
+  WDASession, PortalSession
+} from './types';
 
 declare global {
+  // Deprecated, use `_configurePlugin` instead
   var _setPluginId: Function;
+  var _configurePlugin: Function;
   var Wazo: any;
 }
 
@@ -23,7 +37,7 @@ const EVENT_START_CALL = 'wazo/START_CALL';
 const EVENT_ON_CALL_INCOMING = 'wazo/EVENT_ON_CALL_INCOMING';
 const EVENT_ON_CALL_MADE = 'wazo/EVENT_ON_CALL_MADE';
 const EVENT_ON_CALL_ANSWERED = 'wazo/EVENT_ON_CALL_ANSWERED';
-const EVENT_ON_CALL_HANGED_UP = 'wazo/EVENT_ON_CALL_HANGED_UP';
+const EVENT_ON_CALL_HUNG_UP = 'wazo/EVENT_ON_CALL_HUNG_UP';
 const EVENT_OPEN_LINK = 'wazo/EVENT_OPEN_LINK';
 const EVENT_CREATE_MEETING = 'wazo/EVENT_CREATE_MEETING';
 const EVENT_OPEN_MEETING_LOBBY = 'wazo/EVENT_OPEN_MEETING_LOBBY';
@@ -38,6 +52,7 @@ const EVENT_PLAY_DOUBLE_CALL_SOUND = 'wazo/EVENT_PLAY_DOUBLE_CALL_SOUND';
 const EVENT_PLAY_HANGUP_SOUND = 'wazo/EVENT_PLAY_HANGUP_SOUND';
 const EVENT_STOP_CURRENT_SOUND = 'wazo/EVENT_STOP_CURRENT_SOUND';
 const EVENT_CONFIGURE_SOUNDS = 'wazo/EVENT_CONFIGURE_SOUNDS';
+const EVENT_RESET_SOUNDS = 'wazo/EVENT_RESET_SOUNDS';
 const EVENT_DISPLAY_NOTIFICATION = 'wazo/EVENT_DISPLAY_NOTIFICATION';
 const EVENT_CHANGE_NAVBAR_COLOR = 'wazo/EVENT_CHANGE_NAVBAR_COLOR';
 const EVENT_RESET_NAVBAR_COLOR = 'wazo/EVENT_RESET_NAVBAR_COLOR';
@@ -47,6 +62,8 @@ const EVENT_USER_JOIN_ROOM = 'wazo/EVENT_USER_JOIN_ROOM';
 const EVENT_USER_LEAVE_ROOM = 'wazo/EVENT_USER_LEAVE_ROOM';
 const EVENT_PARTICIPANT_JOIN_ROOM = 'wazo/EVENT_PARTICIPANT_JOIN_ROOM';
 const EVENT_PARTICIPANT_LEAVE_ROOM = 'wazo/EVENT_PARTICIPANT_LEAVE_ROOM';
+const EVENT_IGNORE_CALL = 'wazo/EVENT_IGNORE_CALL';
+const EVENT_ON_NEW_SESSION = 'wazo/EVENT_ON_NEW_SESSION';
 
 // Portal
 const EVENT_ON_CONNECTED_TO_STACK = 'wazo/EVENT_ON_CONNECTED_TO_STACK';
@@ -66,10 +83,12 @@ class App {
   _initializeResolve: Function | null;
   _initializeTimeout: ReturnType<typeof setTimeout> | null;
   _pluginId: string | null;
+  _baseUrl: string | null;
   _queuedMessages: DelayedMessage[];
   _isBackground: boolean;
 
   // Global
+  onNewSession = (session: WDASession | PortalSession) => {}
   onUnLoaded = (e: Event) => {};
   onAppUnLoaded = (tabId: string) => {};
   onIframeMessage = (message: Object) => { };
@@ -80,7 +99,7 @@ class App {
   onCallIncoming = (call: Call) =>  {};
   onCallMade = (call: Call) => {};
   onCallAnswered = (call: Call) => {};
-  onCallHangedUp = (call: Call) => {};
+  onCallHungUp = (call: Call) => {};
   onUnHandledEvent = (event: MessageEvent) => {};
   onWebsocketMessage = (message: MessageEvent) => {};
   onMeetingCreated = (meeting: Meeting) => {};
@@ -100,6 +119,7 @@ class App {
     this._initializeResolve = null;
     this._initializeTimeout = null;
     this._pluginId = null;
+    this._baseUrl = null;
     this._isBackground = !window.name;
     this._queuedMessages = [];
 
@@ -122,11 +142,18 @@ class App {
 
     // Used to fetch pluginId when loaded in an iframe
     if (window.name) {
-      this._setPluginId(window.name);
+      try {
+        // Is window.name a valid JSON ?
+        this._configurePlugin(JSON.parse(window.name));
+      } catch (_) {
+        // Deprecated way to do it, remove it in future version
+        this._configurePlugin({ pluginId: window.name });
+      }
     }
 
-    // Used in background script, we expose a global method to be used in the <script> tag directly after importing the backgroundScript url
+    // deprecated: Used in background script, we expose a global method to be used in the <script> tag directly after importing the backgroundScript url
     globalThis._setPluginId = this._setPluginId;
+    globalThis._configurePlugin = this._configurePlugin;
   }
 
   initialize = async () => {
@@ -137,7 +164,7 @@ class App {
     window.addEventListener('message', this._onMessage, false);
 
     return new Promise((resolve, reject) => {
-      this._sendMessage(EVENT_APP_INITIALIZE, { bg: this._isBackground });
+      this._sendMessage(EVENT_APP_INITIALIZE, { bg: this._isBackground, pluginId: this._pluginId });
 
       this._initializeTimeout = setTimeout(() => {
         this._initializeTimeout = null;
@@ -181,6 +208,10 @@ class App {
     // this._sendMessage(EVENT_OPEN_SETTINGS);
   };
 
+  ignoreCall(call: Call) {
+    this._sendMessage(EVENT_IGNORE_CALL, { call });
+  }
+
   closeLeftPanel = () => this._sendMessage(EVENT_CLOSE_LEFT_PANEL);
 
   openLeftPanel = () => this._sendMessage(EVENT_OPEN_LEFT_PANEL);
@@ -198,6 +229,8 @@ class App {
   stopCurrentSound = () => this._sendMessage(EVENT_STOP_CURRENT_SOUND);
 
   configureSounds = (sounds: Sounds) => this._sendMessage(EVENT_CONFIGURE_SOUNDS, { sounds });
+
+  resetSounds = () => this._sendMessage(EVENT_RESET_SOUNDS);
 
   changeNavBarColor = (color: string) => this._sendMessage(EVENT_CHANGE_NAVBAR_COLOR, { color });
 
@@ -237,6 +270,9 @@ class App {
       case EVENT_ON_LOGOUT:
         this.onLogout();
         this._resetEvents();
+        break;
+      case EVENT_ON_NEW_SESSION:
+        this.onNewSession(event.data.session);
         break;
       case EVENT_ON_IFRAME_MESSAGE:
         if (event.data._pluginId === this._pluginId) {
@@ -280,8 +316,8 @@ class App {
       case EVENT_ON_CALL_ANSWERED:
         this.onCallAnswered(event.data.call);
         break;
-      case EVENT_ON_CALL_HANGED_UP:
-        this.onCallHangedUp(event.data.call);
+      case EVENT_ON_CALL_HUNG_UP:
+        this.onCallHungUp(event.data.call);
         break;
 
       // Portal
@@ -335,7 +371,11 @@ class App {
       host: {
         clientType: extra ? extra.clientType : null,
       },
-      extra: extra,
+      extra: {
+        ...extra,
+        baseUrl: this._baseUrl,
+        pluginId: this._pluginId,
+      },
     };
 
     this.context.user = session;
@@ -347,19 +387,33 @@ class App {
     this._sendQueuedMessages();
   };
 
+  // Deprecated, we should use `_configurePlugin` instead
   _setPluginId = (pluginId: string) => {
     this._pluginId = pluginId;
   }
 
+  _configurePlugin = (configuration: PluginConfiguration) => {
+    if (configuration.pluginId) {
+      this._pluginId = configuration.pluginId;
+    }
+    if (configuration.baseUrl) {
+      this._baseUrl = configuration.baseUrl;
+    }
+  }
+
   _resetEvents = () => {
     this.onUnLoaded = (e: Event) => {};
+    this.onAppUnLoaded = (tabId: string) => {};
+    this.onIframeMessage = (message: Object) => { };
+    this.onBackgroundMessage = (message: Object) => { };
 
     // WDA
     this.onLogout = () => {};
+    this.onNewSession = (session: WDASession | PortalSession) => {};
     this.onCallIncoming = (call: Call) =>  {};
     this.onCallMade = (call: Call) => {};
     this.onCallAnswered = (call: Call) => {};
-    this.onCallHangedUp = (call: Call) => {};
+    this.onCallHungUp = (call: Call) => {};
     this.onUnHandledEvent = (event: MessageEvent) => {};
     this.onWebsocketMessage = (message: MessageEvent) => {};
     this.onMeetingCreated = (meeting: Meeting) => {};

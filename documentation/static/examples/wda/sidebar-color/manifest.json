@@ -12,5 +12,6 @@
       "contentUrl": "./tab.html",
       "icon": "./tab.svg"
     }
-  ]
+  ],
+  "backgroundScript": "./background.js"
 }

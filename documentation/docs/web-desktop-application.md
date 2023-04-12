@@ -37,7 +37,7 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 
 ![App configuration (small)](/img/wda-sidebar.png)
 
-To create a new tab in the main screen, add a `sidebarTab` in your manifest with a `generalTab` `context` :
+To create a new tab in the main screen, add a `staticTabs` in your manifest with a `sidebarTab` `context` :
 ```json
 "staticTabs": [
   {
@@ -60,7 +60,7 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 
 ![App configuration](/img/wda-contact.png)
 
-To create a new tab in the main screen, add a `contactTab` in your manifest with a `generalTab` `context` :
+To create a new tab in the main screen, add a `staticTabs` in your manifest with a `contactTab` `context` :
 ```json
 "staticTabs": [
   {
@@ -80,7 +80,7 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 
 ![App configuration](/img/wda-phonebook.png)
 
-To create a new tab in the main screen, add a `phonebookTab` in your manifest with a `generalTab` `context` :
+To create a new tab in the main screen, add a `staticTabs` in your manifest with a `phonebookTab` `context` :
 ```json
 "staticTabs": [
   {
@@ -100,7 +100,7 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 
 ![App configuration](/img/wda-settings-menu.png)
 
-To create a new tab in the settings menu, add a `settingsTab` in your manifest with a `generalTab` `context` :
+To create a new tab in the settings menu, add a `staticTabs` in your manifest with a `settingsTab` `context` :
 ```json
 "staticTabs": [
   {
@@ -136,6 +136,28 @@ You can define the menu item's position using the `position` attributes. Existin
 Your menu will be ordered depending on the `position` value.
 
 When the user clicks on the tab, the `contentUrl` will be loaded.
+
+## Adding a custom panel inside the setting menu
+
+![App configuration](/img/wda-settings-inner.png)
+
+To create a new tab in the settings menu, add a `staticTabs` in your manifest with a `innerSettingsTab` `context` :
+```json
+"staticTabs": [
+  {
+    "entityId": "settings-tab",
+    "context": [
+      "innerSettingsTab"
+    ],
+    "position": 101,
+    "name": "My settings",
+    "contentUrl": "./tab.html",
+    "icon": "./tab.svg"
+  }
+]
+```
+
+Please refer to the documentation of `settingsTab` about the position attribute.
 
 ## Adding a background script
 

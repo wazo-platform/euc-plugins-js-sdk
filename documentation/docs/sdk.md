@@ -36,12 +36,16 @@ The context will give you access to the app information like :
   - `theme: Object`: Colors used by the EUC app.
   - `host: AppHostInfo`: Contains a `clientType` value that can be `web` / `desktop` / `ios` or `android`
   - `extra: Object`: Contains extra information about the app context, like the `contact` when you use the `contactTab` manifest context.
+    Among extra parameters, you'll always receive:
+    - `extra.baseUrl`: The base url of your `manifest.json` file
+    - `extra.pluginId`: The `entityId` of the current plugin.
 
 - `user: UserInfo`: Information about the connected user in the EUC app:
   - `token: string`: The token that can be used for API calls
   - `refreshToken: string`: A refresh token that should be used if the `token` expires
   - `uuid: string`: The user uuid
-  See the `WDASession` and the `PortalSession` types for more information.
+  - `host`: In the web or desktop application: representing the stack hostname where the user is connected.
+  See the [`WDASession`](https://github.com/wazo-communication/euc-plugins-js-sdk/blob/master/src/types.ts#L83) and the [`PortalSession`](https://github.com/wazo-communication/euc-plugins-js-sdk/blob/master/src/types.ts#L79) types for more information.
 
 
 ## Interacting with the Web and Desktop application
@@ -120,6 +124,15 @@ app.onMeetingCreated = newMeeting => {
   app.openMeetingLobby(newMeeting.exten);
 };
 ```
+
+# Ignoring an incoming call
+
+```js
+app.onCallIncoming = call => {
+  app.ignoreCall(call);
+};
+```
+
 ### Playing a sound
 
 ```js
@@ -144,15 +157,23 @@ You can use your own sound files in the application, with:
 
 ```js
 app.configureSounds({
-  progress: 'http://example/com/progress.mpg',
-  ring: 'http://example/com/ring.wav',
-  message: 'http://example/com/message.ogg',
-  inboundCall: 'http://example/com/inbound.vaw',
-  hangup: 'http://example/com/hangup.ogg',
+  progress: 'http://example/com/progress.mpg', // Played when making an outgoing call (ringback)
+  ring: 'http://example/com/ring.wav', // Played for the first incoming call
+  message: 'http://example/com/message.ogg', // Played when the user receives a chat message
+  hangup: 'http://example/com/hangup.ogg',// Played when the call is hung up
+  inboundCall: 'http://example/com/inbound.vaw', // Played when we are in call and another call is incoming. Also played in Switchboard.
 })
 ```
 
 You can omit a value, the default sound will be used.
+
+### Resetting sounds
+
+You can reset all application sounds with:
+
+```js
+app.resetSounds();
+```
 
 ### Displaying a notification
 
@@ -277,7 +298,7 @@ app.onCallAnswered = (call) => {
 
 Should be used in a `backgroundScript` to know when a custom tab is unloaded.
 
-As `app.onUnLoaded` is only triggered for tabs (iframes), and this event doesn't allow sophisticated actions (like sending messages to backgroundScript, API calls, ...)
+⚠️ As `app.onUnLoaded` is only triggered for tabs (iframes), and this event doesn't allow sophisticated actions (like sending messages to backgroundScript, API calls, ...)
 we should use `onAppUnLoaded` to perform action when a tab is unloaded.
 
 ```js
@@ -297,6 +318,13 @@ app.onUnLoaded = () => {};
 
 ```js
 app.onLogout = () => {};
+```
+
+#### User session refreshed
+
+The token of the authenticated user has an expiration date; when the token expires, a session is created with a new token.
+```js
+app.onNewSession(session:  WDASession | PortalSession) {}
 ```
 
 #### A call for the current user is incoming
@@ -323,10 +351,10 @@ app.onCallAnswered = (call: Call) =>  {
 };
 ```
 
-#### A call is hanged up
+#### A call is hung up
 
 ```js
-app.onCallHangedUp = (call: Call) =>  {
+app.onCallHungUp = (call: Call) =>  {
   // Useful to react in a `backgroundScript`.
 };
 ```

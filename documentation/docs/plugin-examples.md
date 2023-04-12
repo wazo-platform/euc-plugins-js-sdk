@@ -8,18 +8,22 @@ sidebar_label: Plugins Examples
 ### Changing the sidebar color when entering the module, and resetting the color when leaving it
 
 ```js
-app.onUnLoaded = () => {
-  app.openLeftPanel();
-  app.resetNavBarColor();
-};
-
+// background.js
+app.onAppUnLoaded(tabId => {
+  if (tabId === 'sidebar-color') {
+    app.openLeftPanel();
+    app.resetNavBarColor();
+  }
+})
+  
+// tab.js
 (async () => {
   await app.initialize();
   app.closeLeftPanel();
   app.changeNavBarColor('#8e6a3a');
 })();
-
 ```
+[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/sidebar-color)
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/sidebar-color/manifest.json" target="_blank">
     🎨 Try changing the sidebar !
@@ -40,6 +44,7 @@ app.onCallIncoming = async call => {
 
 await app.initialize();
 ```
+[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/incoming-call-modal)
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/incoming-call-modal/manifest.json" target="_blank">
     ☎️ Try the incoming call modal !
@@ -67,8 +72,10 @@ app.onBackgroundMessage = msg => {
 app.initialize();
 ```
 
-<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/incoming-call-modal/manifest.json" target="_blank">
-    📣 Try sending messages between background and tab
+[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/iframe-bg-messaging)
+
+<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/iframe-bg-messaging/manifest.json" target="_blank">
+    📣 Try messaging background ↔️ tab
 </a>
 
 ### Adding a settings menu
@@ -87,6 +94,8 @@ app.initialize();
   }
 ]
 ```
+
+[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/settings-menu)
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/settings-menu/manifest.json" target="_blank">
     📣 Try adding a new settings menu
@@ -131,6 +140,7 @@ app.onCallAnswered = (call) => {
   }
 };
 ```
+[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/video-pip)
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/video-pip/manifest.json" target="_blank">
     🎥 Try displaying videos as miniatures in a video call
@@ -152,6 +162,8 @@ setTimeout(() => {
 }, 2000);
 ```
 
+[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/configure-sounds)
+
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/configure-sounds/manifest.json" target="_blank">
     🎺 Try configuring the application sounds
 </a>
@@ -169,6 +181,8 @@ setTimeout(() => {
 })();
 ```
 
+[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/portal/pbx-dashboard-tab)
+
 <a class="try-it button button--secondary button--lg" href="https://portal.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/portal/pbx-dashboard-tab/manifest.json" target="_blank">
     📊 Add a tab in the PBX dashboard
 </a>
@@ -181,14 +195,6 @@ You may want to create you own page / form in a PBX form.
 See [This section](./portal#adding-tabs-in-a-form) for more information.
 
 ```js
-app.onUnLoaded = () => {
-  // Displaying the toolbar again when we leave the tab
-  app.changeToolbarDisplay(true);
-}
-
-// Removing the toolbar
-app.changeToolbarDisplay(false);
-
 (async () => {
   await app.initialize();
   const context = app.getContext();
@@ -197,6 +203,8 @@ app.changeToolbarDisplay(false);
   document.getElementById('name').innerHTML = context.app.extra.record.auth.username;
 })();
 ```
+
+[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/portal/pbx-user-form-tab)
 
 <a class="try-it button button--secondary button--lg" href="https://portal.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/portal/pbx-user-form-tab/manifest.json" target="_blank">
     👨‍🦰 Add a tab in the PBX user form !

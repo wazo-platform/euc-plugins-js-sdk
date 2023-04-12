@@ -91,6 +91,7 @@ export interface WDASession {
   engineVersion: string | null;
   profile: Profile | null;
   expiresAt: Date;
+  host: string, // Representing the stack hostname where the user is connected
   authorizations: Array<Authorization>;
 }
 
@@ -182,6 +183,11 @@ export interface Meeting {
 
 export interface Extra {
   clientType: HostClientType;
+}
+
+export interface PluginConfiguration {
+  baseUrl?: string,
+  pluginId?: string,
 }
 
 export interface ModalParameter {
