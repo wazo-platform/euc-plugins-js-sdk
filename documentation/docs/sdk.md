@@ -78,7 +78,7 @@ app.startCall({ targets , requestedModalities = ['audio'] });
 Example:
 
 ```js
-app.startCall({ targets: '8008' , requestedModalities: ['video'] });
+app.startCall({ targets: ['8008'], requestedModalities: ['video'] });
 ```
 
 ### Opening a link in the application
