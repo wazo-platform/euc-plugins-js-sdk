@@ -283,24 +283,28 @@ class Softphone extends EventEmitter {
   }
 
   configureServer(server: string) {
-    this._sendMessage(BRIDGE_CONFIG_RETRIEVED, { server });
+    this._sendMessage(BRIDGE_CONFIG_RETRIEVED, { config: { server } });
   }
 
   updateCss(iframeCss: IframeCss | null = null) {
-    if (iframeCss) {
-
-      if (this.wrapper) {
-        Object.keys(iframeCss).forEach(key => {
-          // @ts-ignore: fix CSS key here
-          this.wrapper.style[key] = iframeCss[key];
-        });
-      }
-
-      this.iframeCss = iframeCss;
+    if (!iframeCss) {
+      return
     }
+
+    if (this.wrapper) {
+      Object.keys(iframeCss).forEach(key => {
+        // @ts-ignore: fix CSS key here
+        this.wrapper.style[key] = iframeCss[key];
+      });
+    }
+
+    this.iframeCss = iframeCss;
   }
 
   _createIframe(cb?: ((this: GlobalEventHandlers, ev: Event) => any) | null) {
+    // Remove iframe before creating it.
+    this.remove();
+
     this.wrapper = document.createElement('div');
     this.wrapper.id = 'iframe-wrapper';
     this.wrapper.style.position = 'fixed';

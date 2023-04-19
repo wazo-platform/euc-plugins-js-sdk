@@ -157,15 +157,7 @@ if (typeof window !== "undefined") {
 
   // Had to use setTimeout because `window.load` or `window.addEventListener('load', ...)` aren't called
   global.initButtons = () => {
-    const events = document.querySelector('#events');
-
-    // Display softphone when we scroll in the events section
-    window.addEventListener('scroll', function () {
-      const position = events.getBoundingClientRect();
-      if (position.top >= 0 && position.bottom <= window.innerHeight && !displayed) {
-        updateSoftphone();
-      }
-    });
+    initSoftphone();
 
     // Display
     document.querySelector('#display-softphone').addEventListener('click', e => {
@@ -184,10 +176,9 @@ if (typeof window !== "undefined") {
       e.preventDefault();
 
       updateSoftphone({
-        bottom: 'auto',
+        bottom: 0,
         left: 'auto',
         right: 0,
-        top: '80px',
       });
     });
 
@@ -354,6 +345,10 @@ if (typeof window !== "undefined") {
         softphone.onOptionsResults(fieldId, results);
       };
     });
+  };
+
+  global.removeSoftphone = () => {
+    softphone.remove();
   };
 
   let defaultServer = typeof localStorage !== 'undefined' ? localStorage.getItem('softphone-server') || 'my-server' : 'my-server';
