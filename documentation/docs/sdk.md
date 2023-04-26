@@ -292,6 +292,32 @@ app.onCallAnswered = (call) => {
 }
 ```
 
+### Sending and receiving message between iframe and background script
+
+Inside an iframe
+
+```js
+// Sending message to background
+app.sendMessageToBackground({ value: 'ping' });
+
+// Receiving a message from the background script
+app.onIframeMessage = (msg) => {
+  console.log('onIframeMessage', msg);
+}
+```
+
+In the background script
+
+```js
+// Sending a message to the iframe
+app.sendMessageToIframe({ value: 'pong' });
+
+// Receiving a message from the iframe
+app.onBackgroundMessage = msg => {
+  console.log('onBackgroundMessage', msg);
+}
+```
+
 ### Events
 
 #### Application is unloaded (in backgroundScript)
