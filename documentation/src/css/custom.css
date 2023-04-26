@@ -81,11 +81,11 @@ a.try-it {
   width: 24px;
   border-radius: 12px;
   line-height: 0;
-  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all .225s ease-out;
+  display: none;
 }
 
 #minimize-button:hover {
@@ -94,9 +94,7 @@ a.try-it {
 }
 
 #maximize-button {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
+  margin: 10px;
   z-index: 201;
   height: 24px;
   width: 140px;
