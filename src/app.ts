@@ -10,7 +10,9 @@ import {
   ModalParameter,
   Sounds,
   PluginConfiguration,
-  WDASession, PortalSession
+  WDASession,
+  PortalSession,
+  UpdateBadgeArgs,
 } from './types';
 
 declare global {
@@ -64,6 +66,7 @@ const EVENT_PARTICIPANT_JOIN_ROOM = 'wazo/EVENT_PARTICIPANT_JOIN_ROOM';
 const EVENT_PARTICIPANT_LEAVE_ROOM = 'wazo/EVENT_PARTICIPANT_LEAVE_ROOM';
 const EVENT_IGNORE_CALL = 'wazo/EVENT_IGNORE_CALL';
 const EVENT_ON_NEW_SESSION = 'wazo/EVENT_ON_NEW_SESSION';
+const EVENT_UPDATE_BADGE = 'wazo/EVENT_UPDATE_BADGE';
 
 // Portal
 const EVENT_ON_CONNECTED_TO_STACK = 'wazo/EVENT_ON_CONNECTED_TO_STACK';
@@ -84,6 +87,7 @@ class App {
   _initializeTimeout: ReturnType<typeof setTimeout> | null;
   _pluginId: string | null;
   _baseUrl: string | null;
+  _entityId: string | null;
   _queuedMessages: DelayedMessage[];
   _isBackground: boolean;
 
@@ -120,6 +124,7 @@ class App {
     this._initializeTimeout = null;
     this._pluginId = null;
     this._baseUrl = null;
+    this._entityId = null;
     this._isBackground = !window.name;
     this._queuedMessages = [];
 
@@ -251,6 +256,8 @@ class App {
 
   getRemoteVideoStream = (call: Call) => Wazo.Phone.phone.getRemoteVideoStream(call);
 
+  updateBadge = (args: UpdateBadgeArgs) => this._sendMessage(EVENT_UPDATE_BADGE, args);
+
   // Portal
   changeToolbarDisplay = (display: boolean) => this._sendMessage(EVENT_CHANGE_TOOLBAR_DISPLAY, { display });
 
@@ -344,10 +351,10 @@ class App {
     // @ts-ignore
     if (window.ReactNativeWebView) {
       // @ts-ignore (Mobile)
-      return window.ReactNativeWebView.postMessage(JSON.stringify({ type, _pluginId: this._pluginId, ...payload }));
+      return window.ReactNativeWebView.postMessage(JSON.stringify({ type, _pluginId: this._pluginId, _entityId: this._entityId, ...payload }));
     }
 
-    window.parent.postMessage({ type, _pluginId: this._pluginId, ...payload }, '*');
+    window.parent.postMessage({ type, _pluginId: this._pluginId, _entityId: this._entityId, ...payload }, '*');
   }
 
   _sendQueuedMessages = () => {
@@ -398,6 +405,9 @@ class App {
     }
     if (configuration.baseUrl) {
       this._baseUrl = configuration.baseUrl;
+    }
+    if (configuration.entityId) {
+      this._entityId = configuration.entityId;
     }
   }
 
