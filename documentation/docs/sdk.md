@@ -462,3 +462,9 @@ app.onSwitchTenant = (uuid: string, name: string) => {
   
 };
 ```
+
+#### Display a notification next to the navigation bar icon button
+Uses MUI's [Badge](https://mui.com/material-ui/react-badge/) component to display a notification, generally an integer. Requires `entityId` as set in the `staticTabs` section of `manifest.json`.
+```js
+app.updateBadge = ({ _entityId: string, badgeContent: number, color?: string, variant?: string, max?: number, overlap?: string, anchorOrigin?: Object });
+```

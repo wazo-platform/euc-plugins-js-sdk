@@ -240,6 +240,7 @@ export interface CallLog {
 }
 
 enum MuiColors {
+  DEFAULT = 'default',
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
   SUCCESS = 'success',
@@ -249,7 +250,13 @@ enum MuiColors {
 }
 
 export type UpdateBadgeArgs = {
+  _entityId: string,
+  badgeContent: string | number,
   color: keyof typeof MuiColors,
-  badgeContent: any,
+  variant?: 'dot' | 'variant',
+  max?: number,
+  overlap?: 'circular' | 'rectangular',
+  showZero?: boolean, 
+  anchorOrigin?: { horizontal: 'left' | 'right', vertical: 'top' | 'bottom' }
 };
 
