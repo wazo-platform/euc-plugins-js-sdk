@@ -245,7 +245,7 @@ export type UpdateBadgeArgs = {
   entityId?: string,
   badgeContent: string | number,
   color?: MuiColor,
-  variant?: 'dot' | 'variant',
+  variant?: 'dot' | 'standard',
   max?: number,
   overlap?: 'circular' | 'rectangular',
   showZero?: boolean, 
