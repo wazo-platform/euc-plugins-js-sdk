@@ -256,7 +256,7 @@ class App {
 
   getRemoteVideoStream = (call: Call) => Wazo.Phone.phone.getRemoteVideoStream(call);
 
-  updateBadge = (args: UpdateBadgeArgs) => this._sendMessage(EVENT_UPDATE_BADGE, args);
+  updateBadge = (args: UpdateBadgeArgs) => this._sendMessage(EVENT_UPDATE_BADGE, { ...args, entityId: args.entityId || this._entityId || 'update-badge-null-entity-id' });
 
   // Portal
   changeToolbarDisplay = (display: boolean) => this._sendMessage(EVENT_CHANGE_TOOLBAR_DISPLAY, { display });

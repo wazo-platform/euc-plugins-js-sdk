@@ -239,20 +239,12 @@ export interface CallLog {
   start: Date | null
 }
 
-enum MuiColors {
-  DEFAULT = 'default',
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-  SUCCESS = 'success',
-  WARNING = 'warning',
-  ERROR = 'error',
-  INFO = 'info',
-}
+type MuiColor = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
 
 export type UpdateBadgeArgs = {
-  _entityId: string,
+  entityId?: string,
   badgeContent: string | number,
-  color: keyof typeof MuiColors,
+  color?: MuiColor,
   variant?: 'dot' | 'variant',
   max?: number,
   overlap?: 'circular' | 'rectangular',
