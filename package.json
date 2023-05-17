@@ -1,6 +1,6 @@
 {
   "name": "@wazo/euc-plugins-sdk",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Wazo's Unified Enterprise Communication JavaScript Software Development Kit.",
   "author": "Wazo (http://wazo.io)",
   "maintainers": [
@@ -33,11 +33,11 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./lib/esm/types/index.d.ts",
+        "types": "./lib/esm/types/types.d.ts",
         "default": "./lib/esm/index.js"
       },
       "require": {
-        "types": "./lib/cjs/types/index.d.ts",
+        "types": "./lib/cjs/types/types.d.ts",
         "default": "./lib/cjs/index.js"
       }
     }
