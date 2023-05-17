@@ -34,7 +34,7 @@ The context will give you access to the app information like :
 - `app: AppInfo`: Information about the EUC application
   - `locale: string`: The locale code of the application on 2 characters, like `en` or `it`.
   - `theme: Object`: Colors used by the EUC app. 
-    It uses the [aterial UI theme](https://mui.com/material-ui/customization/palette/) palette structure, so you can use it directly with `createTheme()` or just pick the color you want in your plugin.
+    It uses the [Material UI theme](https://mui.com/material-ui/customization/palette/) palette structure, so you can use it directly with `createTheme()` or just pick the color you want in your plugin.
   - `host: AppHostInfo`: Contains a `clientType` value that can be `web` / `desktop` / `ios` or `android`
   - `extra: Object`: Contains extra information about the app context, like the `contact` when you use the `contactTab` manifest context.
     Among extra parameters, you'll always receive:
