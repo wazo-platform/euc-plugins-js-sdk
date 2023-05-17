@@ -188,6 +188,7 @@ export interface Extra {
 export interface PluginConfiguration {
   baseUrl?: string,
   pluginId?: string,
+  entityId?: string,
 }
 
 export interface ModalParameter {
@@ -237,3 +238,17 @@ export interface CallLog {
   source:  { extension: string, name: string, uuid: string | null };
   start: Date | null
 }
+
+type MuiColor = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
+
+export type UpdateBadgeArgs = {
+  entityId?: string,
+  badgeContent: string | number,
+  color?: MuiColor,
+  variant?: 'dot' | 'standard',
+  max?: number,
+  overlap?: 'circular' | 'rectangular',
+  showZero?: boolean, 
+  anchorOrigin?: { horizontal: 'left' | 'right', vertical: 'top' | 'bottom' }
+};
+
