@@ -243,12 +243,12 @@ type MuiColor = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'e
 
 export type UpdateBadgeArgs = {
   entityId?: string,
-  badgeContent: string | number,
+  badgeContent: string | number | null,
   color?: MuiColor,
   variant?: 'dot' | 'standard',
   max?: number,
   overlap?: 'circular' | 'rectangular',
-  showZero?: boolean, 
+  showZero?: boolean,
   anchorOrigin?: { horizontal: 'left' | 'right', vertical: 'top' | 'bottom' }
 };
 
