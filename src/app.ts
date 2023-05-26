@@ -80,7 +80,7 @@ type DelayedMessage = {
   payload: Object;
 };
 
-class App {
+export class App {
   context: Context;
   _initializeCompleted: boolean;
   _initializeResolve: Function | null;
@@ -435,4 +435,5 @@ class App {
   };
 }
 
+// @deprecated: can conflict with other app when using the instance directly
 export default new App();

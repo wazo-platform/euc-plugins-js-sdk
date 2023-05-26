@@ -1,7 +1,8 @@
-import app from './app';
+import app, { App } from './app';
 import softphone from './softphone';
 
 export {
-  app,
+  app, // @deprecated
+  App,
   softphone,
 };
