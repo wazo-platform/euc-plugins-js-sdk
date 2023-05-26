@@ -23,7 +23,8 @@ yarn add @wazo/euc-plugins-sdk
 Then
 
 ```js
-import { app } from '@wazo/euc-plugins-sdk';
+import { App } from '@wazo/euc-plugins-sdk';
+const app = new App();
 ```
 
 ## Using a Content Delivery Networks (CDN)
@@ -33,14 +34,18 @@ Alternatively, you may load the Wazo SDK from a CDN. Use one of the following Co
 ### UNPKG
 
 ```js
-import app from 'https://unpkg.com/@wazo/euc-plugins-sdk@latest/lib/esm/app.js';
+import { App } from 'https://unpkg.com/@wazo/euc-plugins-sdk@latest/lib/esm/app.js';
 import softphone from 'https://unpkg.com/@wazo/euc-plugins-sdk@latest/lib/esm/softphone.js';
+
+const app = new App();
 ```
 
 ### jsDelivr
 
 ```js
-import app from 'https://cdn.jsdelivr.net/npm/@wazo/euc-plugins-sdk@latest/lib/esm/app.js';
+import { App } from 'https://cdn.jsdelivr.net/npm/@wazo/euc-plugins-sdk@latest/lib/esm/app.js';
 import softphone from 'https://cdn.jsdelivr.net/npm/@wazo/euc-plugins-sdk@latest/lib/esm/softphone.js';
+
+const app = new App();
 ```
 

@@ -10,7 +10,8 @@ sidebar_label: EUC Plugins SDK
 After installing the SDK, you can now require it with:
 
 ```js
-import { app } from '@wazo/euc-plugins-sdk';
+import { App } from '@wazo/euc-plugins-sdk';
+const app = new App();
 ```
 
 ## Initializing your application
@@ -351,7 +352,7 @@ app.onLogout = () => {};
 
 The token of the authenticated user has an expiration date; when the token expires, a session is created with a new token.
 ```js
-app.onNewSession(session:  WDASession | PortalSession) {}
+app.onNewSession = (session:  WDASession | PortalSession) => {}
 ```
 
 #### A call for the current user is incoming

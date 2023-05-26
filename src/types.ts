@@ -77,7 +77,12 @@ export interface Authorization {
 }
 
 export interface PortalSession {
-
+  uuid: string;
+  token: string;
+  refreshToken: string;
+  expiresAt: string;
+  sessionUuid: string;
+  tenantUuid: string;
 }
 
 export interface WDASession {

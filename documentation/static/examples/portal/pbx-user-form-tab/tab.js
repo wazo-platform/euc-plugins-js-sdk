@@ -1,4 +1,5 @@
-import app from 'https://unpkg.com/@wazo/euc-plugins-sdk@latest/lib/esm/app.js';
+import { App } from 'https://unpkg.com/@wazo/euc-plugins-sdk@latest/lib/esm/app.js';
+const app = new App();
 
 (async () => {
   await app.initialize();
