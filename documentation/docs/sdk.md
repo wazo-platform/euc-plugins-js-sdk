@@ -371,10 +371,18 @@ app.onCallMade = (call: Call) =>  {
 };
 ```
 
-#### A call is answered by the user
+#### An incoming call is answered by the current user
 
 ```js
 app.onCallAnswered = (call: Call) =>  {
+  // Useful to react in a `backgroundScript`.
+};
+```
+
+#### A call is answered (by one or the other side)
+
+```js
+app.onCallAccepted = (call: Call) =>  {
   // Useful to react in a `backgroundScript`.
 };
 ```
