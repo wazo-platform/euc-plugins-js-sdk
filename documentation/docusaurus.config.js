@@ -9,8 +9,9 @@ const isDev = process.env.NODE_ENV === 'development';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Wazo EUC plugins SDK',
-  tagline: 'Create plugins for Wazo EUC apps',
+  title: 'Wazo EUC Plugins SDK',
+  tagline: 'Extend every functionality in Wazo Products or integrate Wazo softphone into any existing tool.',
+
   url: 'https://wazo.io',
   baseUrl: isDev ? '/' : 'euc-plugins-js-sdk/',
   onBrokenLinks: 'throw',
@@ -57,6 +58,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
+        hideOnScroll: true,
         title: 'Wazo',
         logo: {
           alt: 'Wazo Logo',
@@ -71,56 +73,24 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'configuration',
+            docId: 'plugins/introduction',
             position: 'left',
-            label: 'Configuration',
+            label: 'Plugins',
           },
           {
             type: 'doc',
-            docId: 'web-desktop-application',
-            position: 'left',
-            label: 'Web and Desktop',
-          },
-          {
-            type: 'doc',
-            docId: 'mobile',
-            position: 'left',
-            label: 'Mobile',
-          },
-          {
-            type: 'doc',
-            docId: 'portal',
-            position: 'left',
-            label: 'Portal',
-          },
-          {
-            type: 'doc',
-            docId: 'softphone',
+            docId: 'softphone/introduction',
             position: 'left',
             label: 'Softphone',
           },
-          {
-            type: 'doc',
-            docId: 'sdk',
-            position: 'left',
-            label: 'SDK',
-          },
-          {
-            type: 'doc',
-            docId: 'plugin-examples',
-            position: 'left',
-            label: 'Plugins Examples',
-          },
-          {
-            type: 'doc',
-            docId: 'softphone-examples',
-            position: 'left',
-            label: 'Softphone Examples',
-          },
+
+          // Right
           {
             href: 'https://github.com/wazo-communication/euc-plugins-js-sdk',
-            label: 'GitHub',
+            className: 'header-github-link',
             position: 'right',
+            title: 'GitHub Repository',
+            'aria-label': 'GitHub Repository',
           },
         ],
       },

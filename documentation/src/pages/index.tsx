@@ -16,16 +16,21 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
+            className={`button button--lg ${styles.primaryButton}`}
             to="/docs/installation">
             Installation 🚀️
           </Link>
-        </div>
-        <div className={styles.buttons}>
+
           <Link
-            className="button button--secondary button--lg"
-            to="/docs/configuration">
-            Configuration 🔧
+            className={`button button--lg ${styles.secondaryButton}`}
+            to="/docs/plugins/introduction">
+            Build a Plugin
+          </Link>
+
+          <Link
+            className={`button button--lg ${styles.secondaryButton}`}
+            to="/docs/softphone/introduction">
+            Build a Softphone
           </Link>
         </div>
       </div>

@@ -5,11 +5,33 @@
   width: 100%;
 }
 
-.feature:hover {
+.feature {
+  transition: 250ms ease background;
+  color: var(--ifm-font-color-base);
+  padding: 10px;
+}
+
+.feature:hover, .feature:active {
+  cursor: pointer;
   text-decoration: none;
+  color: var(--ifm-font-color-base);
+  background: #F7F7F7;
+  border-radius: 5px;
+}
+
+.feature:hover svg, .feature:active svg {
+  scale: 1.1;
 }
 
 .featureSvg {
+  transition: 250ms ease scale;
   height: 200px;
   width: 200px;
+  margin-bottom: 10px;
+}
+
+[data-theme='dark'] {
+  .features { color: #FFF; }
+
+  .feature:hover, .feature:active { background: #202020; }
 }
