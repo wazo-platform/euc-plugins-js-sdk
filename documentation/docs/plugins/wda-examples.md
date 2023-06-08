@@ -1,9 +1,8 @@
 ---
-sidebar_position: 8
-sidebar_label: Plugins Examples
+displayed_sidebar: pluginsSidebar
 ---
 
-# Web and Desktop application examples
+# E-UC Apps Plugins Examples
 
 ### Changing the sidebar color when entering the module, and resetting the color when leaving it
 
@@ -15,7 +14,7 @@ app.onAppUnLoaded(tabId => {
     app.resetNavBarColor();
   }
 })
-  
+
 // tab.js
 (async () => {
   await app.initialize();
@@ -166,46 +165,4 @@ setTimeout(() => {
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/configure-sounds/manifest.json" target="_blank">
     🎺 Try configuring the application sounds
-</a>
-
-# Portal
-
-### Adding a tab in the PBX dashboard page
-
-```js
-(async () => {
-  await app.initialize();
-  const context = app.getContext();
-  
-  document.getElementById('name').innerHTML = context.app.extra.record.auth.username;
-})();
-```
-
-[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/portal/pbx-dashboard-tab)
-
-<a class="try-it button button--secondary button--lg" href="https://portal.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/portal/pbx-dashboard-tab/manifest.json" target="_blank">
-    📊 Add a tab in the PBX dashboard
-</a>
-
-### Adding a new tab in the PBX user edition form
-
-![New pbx user tab (small)](/img/portal-custom-pbx-user-tab.png)
-
-You may want to create you own page / form in a PBX form.
-See [This section](./portal#adding-tabs-in-a-form) for more information.
-
-```js
-(async () => {
-  await app.initialize();
-  const context = app.getContext();
-
-  // You'll find information about the PBX user in `context.app.extra.record`;
-  document.getElementById('name').innerHTML = context.app.extra.record.auth.username;
-})();
-```
-
-[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/portal/pbx-user-form-tab)
-
-<a class="try-it button button--secondary button--lg" href="https://portal.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/portal/pbx-user-form-tab/manifest.json" target="_blank">
-    👨‍🦰 Add a tab in the PBX user form !
 </a>

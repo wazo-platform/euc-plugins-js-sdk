@@ -9,7 +9,7 @@ const isDev = process.env.NODE_ENV === 'development';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Wazo EUC Plugins SDK',
+  title: 'Wazo E-UC Plugins SDK',
   tagline: 'Extend every functionality in Wazo Products or integrate Wazo softphone into any existing tool.',
 
   url: 'https://wazo.io',
@@ -69,19 +69,21 @@ const config = {
             type: 'doc',
             docId: 'installation',
             position: 'left',
-            label: 'Installation',
+            label: 'Javascript SDK',
           },
           {
             type: 'doc',
             docId: 'plugins/introduction',
             position: 'left',
             label: 'Plugins',
+            activeBaseRegex: '/plugins/'
           },
           {
             type: 'doc',
             docId: 'softphone/introduction',
             position: 'left',
             label: 'Softphone',
+            activeBaseRegex: '/softphone/'
           },
 
           // Right

@@ -1,15 +1,17 @@
 ---
-sidebar_position: 2
-sidebar_label: Configuration
+displayed_sidebar: pluginsSidebar
 ---
 
 # Configuration your plugins with the Wazo Portal
 
-⚠️ This part is still in development process, changes may happen frequently.
+:::caution
+This part is still in development process, changes may happen frequently to the schema.
+:::
 
 ## Manifest file
 
-Using one or multiple manifest file you can customize all the Wazo EUC application.
+This files describes how your plugin is integrated into a Wazo's Product. Using one or multiple manifest file you can
+customize all the Wazo E-UC (Web, Desktop, Portal and Mobile).
 
 ### Example of a Manifest file
 

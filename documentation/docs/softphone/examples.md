@@ -1,6 +1,5 @@
 ---
-sidebar_position: 9
-sidebar_label: Softphone Examples
+displayed_sidebar: softphoneSidebar
 ---
 
 # Softphone Examples
@@ -17,7 +16,7 @@ softphone.show();
     🚀 Display the Softphone
 </a>
 
-import '../src/softphone-example.js';
+import '../../src/softphone-example.js';
 
 ## Hiding the softphone
 
@@ -31,7 +30,7 @@ softphone.hide();
 
 ## Minimize / restore the softphone
 
-You can minimize and restore the softphone the way you would any regular window by adding your buttons to the wrapper element, which will allow to position your buttons relative to the iframe. 
+You can minimize and restore the softphone the way you would any regular window by adding your buttons to the wrapper element, which will allow to position your buttons relative to the iframe.
 
 ```js
 const minimizeButton = document.createElement('button');
@@ -280,7 +279,7 @@ softphone.onLoggedOut = () => {
     ⏰ Will react when the user logs out
 </div>
 
-### Call incoming 
+### Call incoming
 
 ```js
 softphone.onCallIncoming = call => {
@@ -397,7 +396,7 @@ softphone.onWazoContactSearch = query => {
 ```
 
 <div className="event-container" id="wazo-search-contact-event">
-    ⏰ Will react when the user searches for a contact 
+    ⏰ Will react when the user searches for a contact
 </div>
 
 ### User logs in as an agent

@@ -1,6 +1,5 @@
 ---
-sidebar_position: 3
-sidebar_label: Web and Desktop
+displayed_sidebar: pluginsSidebar
 ---
 
 # Customizing the Web and Desktop application
@@ -126,7 +125,7 @@ You can define the menu item's position using the `position` attributes. Existin
 | 400      | Integrations    |
 | 500      | Connection      |
 | 600      | Language        |
-| 700      | Country         | 
+| 700      | Country         |
 | 800      | Shortcuts       |
 | 900:     | Switchboard     |
 | 1000     | Divider         |

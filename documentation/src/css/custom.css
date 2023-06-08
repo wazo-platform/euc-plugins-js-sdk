@@ -122,3 +122,8 @@ a.try-it {
   cursor: pointer;
   border: none;
 }
+
+
+footer a:hover, footer a:active {
+  color: #FFF !important;
+}

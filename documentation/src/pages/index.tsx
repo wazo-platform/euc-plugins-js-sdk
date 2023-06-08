@@ -40,8 +40,8 @@ function HomepageHeader() {
 
 const Home = (): JSX.Element => (
   <Layout
-    title="Wazo EUC Plugins documentation"
-    description="Wazo EUC Plugins documentation">
+    title="Wazo E-UC Plugins documentation"
+    description="Our SDK allows any developer to extend all Wazo Products' functionalities or to build a softphone powered by Wazo.">
     <HomepageHeader />
     <main>
       <HomepageFeatures />

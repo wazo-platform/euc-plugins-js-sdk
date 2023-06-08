@@ -1,6 +1,5 @@
 ---
-sidebar_position: 5
-sidebar_label: Portal
+displayed_sidebar: pluginsSidebar
 ---
 
 # Customizing the Portal (coming soon)
