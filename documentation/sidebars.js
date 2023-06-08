@@ -52,7 +52,7 @@ const sidebars = {
         {
           type: 'ref',
           id: 'plugins/configuration',
-          label: 'Configure your plugin',
+          label: 'Base Configuration',
         },
         {
           type: 'ref',
@@ -69,7 +69,17 @@ const sidebars = {
           id: 'plugins/portal',
           label: 'E-UC Portal',
         },
+        {
+          type: 'ref',
+          id: 'plugins/translation',
+          label: 'Translation',
+        },
       ]
+    },
+    {
+      type: 'ref',
+      id: 'plugins/deploy',
+      label: 'Deployment',
     },
     {
       type: 'category',

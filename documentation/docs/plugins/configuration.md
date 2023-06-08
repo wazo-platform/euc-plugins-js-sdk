@@ -1,8 +1,9 @@
 ---
 displayed_sidebar: pluginsSidebar
+pagination_next: plugins/translation
 ---
 
-# Configuration Your Plugin
+# Plugins Configuration
 
 :::caution
 This part is still in development process, changes may happen frequently to the schema.
@@ -69,19 +70,13 @@ You must provide the following information in a manifest file (json format) that
 }
 ```
 
-### Configuring the Manifest URL in Portal
+## Enable my plugin
 
-When connected to your stack in portal go to **Settings > Applications > App Configuration**.
+For development or production environement, the process is the same. See our deployment section on how to deploy each type of application.
 
-If no application is configured, create a new configuration for your application.
+After that you'll be ready to customize the [Web and Desktop application](/docs/web-desktop-application), the [Mobile Application](/docs/mobile) or [Portal](/docs/portal)
 
-In the *Advanced* section, add a new key with the name `manifest_urls`  and value the value of your manifest file(s) URL(s), like:
-
-![App configuration](/img/app-config-portal.png)
-
-Now you're all set you can choose to customize the [Web and Desktop application](/docs/web-desktop-application), the [Mobile Application](/docs/mobile) or [Portal](/docs/portal)
-
-### Translating Manifest Elements
+## Translation Support
 
 Using the `localizationInfo` you can add other `manifest.json` files containing translations for a specific language.
 
@@ -126,3 +121,4 @@ So if we have in our `manifest.json` file :
 The value `SMS` will be translated to `Texto` when the user changes locale to `fr`.
 
 Currently supported locales are : `en` and `fr`.
+
