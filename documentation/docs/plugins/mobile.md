@@ -2,7 +2,7 @@
 displayed_sidebar: pluginsSidebar
 ---
 
-# Customizing the Mobile application
+# Customizing our Mobile App
 
 :::info
 This part is still in development, changes may occur frequently.

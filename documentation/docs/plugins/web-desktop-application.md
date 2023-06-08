@@ -2,7 +2,7 @@
 displayed_sidebar: pluginsSidebar
 ---
 
-# Customizing the Web and Desktop application
+# Customizing our Web and Desktop App
 
 :::info
 This part is still in development, changes may occur frequently.

@@ -2,18 +2,18 @@
 displayed_sidebar: pluginsSidebar
 ---
 
-# Configuration your plugins with the Wazo Portal
+# Configuration Your Plugin
 
 :::caution
 This part is still in development process, changes may happen frequently to the schema.
 :::
 
-## Manifest file
+## Manifest File
 
 This files describes how your plugin is integrated into a Wazo's Product. Using one or multiple manifest file you can
-customize all the Wazo E-UC (Web, Desktop, Portal and Mobile).
+customize all the Wazo E-UC Products (Web, Desktop, Portal and Mobile).
 
-### Example of a Manifest file
+### Example of a Manifest File
 
 You must provide the following information in a manifest file (json format) that will be hosted in your environment.
 
@@ -65,7 +65,7 @@ You must provide the following information in a manifest file (json format) that
 }
 ```
 
-### Configuring the manifest URL in Portal
+### Configuring the Manifest URL in Portal
 
 When connected to your stack in portal go to **Settings > Applications > App Configuration**.
 
@@ -77,7 +77,7 @@ In the *Advanced* section, add a new key with the name `manifest_urls`  and valu
 
 Now you're all set you can choose to customize the [Web and Desktop application](/docs/web-desktop-application), the [Mobile Application](/docs/mobile) or [Portal](/docs/portal)
 
-### Translating manifest elements
+### Translating Manifest Elements
 
 Using the `localizationInfo` you can add other `manifest.json` files containing translations for a specific language.
 

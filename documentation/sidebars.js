@@ -39,7 +39,11 @@ const sidebars = {
   ],
 
   pluginsSidebar: [
-    'plugins/introduction',
+    {
+      type: 'ref',
+      id: 'plugins/introduction',
+      label: 'Introduction',
+    },
     {
       type: 'category',
       collapsed: false,

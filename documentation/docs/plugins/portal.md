@@ -2,7 +2,7 @@
 displayed_sidebar: pluginsSidebar
 ---
 
-# Customizing the Portal (coming soon)
+# Customizing E-UC Portal (coming soon)
 
 :::info
 This part is still in development, customization is unavailable for now.
