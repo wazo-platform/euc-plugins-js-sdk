@@ -15,6 +15,10 @@ customize all the Wazo E-UC Products (Web, Desktop, Portal and Mobile).
 
 ### Example of a Manifest File
 
+:::info
+`manifest.json` files should be served using a CORS-enabled http server.
+:::
+
 You must provide the following information in a manifest file (json format) that will be hosted in your environment.
 
 ```json
