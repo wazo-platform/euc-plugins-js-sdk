@@ -8,7 +8,7 @@ Like said previously plugins must be hosted on your own infrastructure. This giv
 
 ## Where to deploy
 
-You can deploy your plugin / app anywhere. It required to make the plugin / app accessible from the web, to make the features available to your users and customers.
+You can deploy your plugin / app anywhere. But it's import to make the plugin accessible publicly from the web. Other feature won't be available for customers and users.
 
 ## CORS Enabled
 
@@ -18,21 +18,23 @@ The `manifest.json` of your application should be served using a CORS-enabled ht
 If not well configured, it will not be impossible the install the plugin.
 :::
 
-## Distribute
+## Distribute a Plugin
 
-### E-UC App Plugins
+### For E-UC App
 
 - Connect to [E-UC Portal](https://portal.wazo.io)
-- Connect to any stack or location
+- Connect to a stack or location
 - Go to `Settings > Applications > App Configuration`.
 - If no application is configured, create a new configuration for your application.
 - In the *Plugins* section, insert the URL to your `manifest.json`
+- Enjoy!
 
 ![App configuration](/img/app-config-portal.png)
 
-### E-UC Portal Plugins
+### For E-UC Portal
 
-- Connect to [E-UC Portal](https://portal.wazo.io)
-- Go to `Plugins > Create`
-- Insert the URL to your `manifest.json` and complete the form
-- Enable for a customer or globally to make it visible
+- You must be connected to [E-UC Portal](https://portal.wazo.io)
+- Go to `Plugins` > `Create` and insert the URL to your `manifest.json`
+- Enable the plugin for a customer or globally
+  ![Portal Plugin Manifest](/img/plugin-portal-enable.png)
+- Enjoy!
