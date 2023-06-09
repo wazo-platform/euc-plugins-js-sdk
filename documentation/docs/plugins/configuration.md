@@ -6,18 +6,18 @@ pagination_next: plugins/translation
 # Plugins Configuration
 
 :::caution
-This part is still in development process, changes may happen frequently to the schema.
+This part is still in the development process, changes may happen frequently to the schema.
 :::
 
 ## Manifest File
 
-This files describes how your plugin is integrated into a Wazo's Product. Using one or multiple manifest file you can
+This file describes how your plugin is integrated into a Wazo Product. Using one or multiple manifest files you can
 customize all the Wazo E-UC Products (Web, Desktop, Portal and Mobile).
 
 ### Example of a Manifest File
 
 :::info
-`manifest.json` files should be served using a CORS-enabled http server.
+`manifest.json` files should be served using a CORS-enabled HTTP server.
 :::
 
 You must provide the following information in a manifest file (json format) that will be hosted in your environment.
@@ -70,9 +70,9 @@ You must provide the following information in a manifest file (json format) that
 }
 ```
 
-## Enable my plugin
+## Enabling your Plugin
 
-For development or production environement, the process is the same. See our deployment section on how to deploy each type of application.
+For development or production environment, the process is the same. See our deployment section on how to deploy each type of application.
 
 After that you'll be ready to customize the [Web and Desktop application](/docs/web-desktop-application), the [Mobile Application](/docs/mobile) or [Portal](/docs/portal)
 

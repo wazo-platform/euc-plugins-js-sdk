@@ -2,23 +2,23 @@
 displayed_sidebar: pluginsSidebar
 ---
 
-# Plugins Deployment
+# Deploying your Plugin
 
-Like said previously plugins must be hosted on your own infrastructure. This gives you the full control on the techonologies and when you want to update your plugin(s).
+As previously mentioned, plugins must be hosted on your own infrastructure. This gives you full control over the technologies you use and when to update your plugin(s).
 
-## Where to deploy
+## Where to Deploy
 
-You can deploy your plugin / app anywhere. But it's import to make the plugin accessible publicly from the web. Other feature won't be available for customers and users.
+You can deploy your plugin/app anywhere. But it's import to make the plugin accessible publicly from the web. Other features won't be available for customers and users.
 
 ## CORS Enabled
 
-The `manifest.json` of your application should be served using a CORS-enabled http server. Since everything this file is fetching from our application, this must be enabled on your infrastruction in order to allow us to fetch your `manifest.json` content and enable related features.
+The `manifest.json` of your application should be served using a CORS-enabled HTTP server. Since everything this file is fetching from our application, this must be enabled on your infrastructure in order to allow us to fetch your `manifest.json` content and enable related features.
 
 :::caution
 If not well configured, it will not be impossible the install the plugin.
 :::
 
-## Distribute a Plugin
+## Distributing your Plugin
 
 ### For E-UC App
 

@@ -30,7 +30,7 @@ softphone.hide();
 
 ## Minimize / restore the softphone
 
-You can minimize and restore the softphone the way you would any regular window by adding your buttons to the wrapper element, which will allow to position your buttons relative to the iframe.
+You can minimize and restore the softphone the way you would any regular window by adding your buttons to the wrapper element, which will allow you to position your buttons relative to the iframe.
 
 ```js
 const minimizeButton = document.createElement('button');
@@ -279,7 +279,7 @@ softphone.onLoggedOut = () => {
     ⏰ Will react when the user logs out
 </div>
 
-### Call incoming
+### Call Incoming
 
 ```js
 softphone.onCallIncoming = call => {

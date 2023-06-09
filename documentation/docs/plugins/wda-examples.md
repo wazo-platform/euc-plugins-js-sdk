@@ -2,7 +2,7 @@
 displayed_sidebar: pluginsSidebar
 ---
 
-# E-UC Apps Plugins Examples
+# E-UC Apps Plugin Examples
 
 ### Changing the sidebar color when entering the module, and resetting the color when leaving it
 

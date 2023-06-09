@@ -10,9 +10,9 @@ This part is still in development, changes may occur frequently.
 
 ## The Possibilities
 
-Mobile plugins allows many great ways to extend the interface. He's a quick summary, scroll down for more information.
+Mobile plugins allow many great ways to extend the interface. He's a quick summary, scroll down for more information.
 
-- Add tabs in the main page of the application
+- Add tabs on the main page of the application
 
 ## Adding tabs in the main page
 

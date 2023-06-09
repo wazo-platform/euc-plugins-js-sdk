@@ -2,9 +2,9 @@
 displayed_sidebar: pluginsSidebar
 ---
 
-# Portal's Plugins Examples
+# Portal Plugin Examples
 
-### Adding a tab in the PBX dashboard page
+### Adding a Tab in the PBX Dashboard Page
 
 ```js
 (async () => {
@@ -21,11 +21,11 @@ displayed_sidebar: pluginsSidebar
     📊 Add a tab in the PBX dashboard
 </a>
 
-### Adding a new tab in the PBX user edition form
+### Adding a New Tab in the PBX User Edition Form
 
 ![New pbx user tab (small)](/img/portal-custom-pbx-user-tab.png)
 
-You may want to create you own page / form in a PBX form.
+You may want to create your own page/form in a PBX form.
 See [This section](./portal#adding-tabs-in-a-form) for more information.
 
 ```js

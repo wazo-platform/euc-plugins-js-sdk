@@ -14,12 +14,12 @@ This part is still in development, customization is unavailable for now.
 
 ## The Possibilities
 
-Portal plugins allows many great ways to extend the interface. He's a quick summary, scroll down for more information.
+Portal plugins allow many great ways to extend the interface. He's a quick summary, scroll down for more information.
 
 - Add new sections and links in the stack menu
 - Add new sections in Global Settings
 - Extend forms with new tabs
-- Extend exsiting menu with new links
+- Extend existing menu with new links
 - Extend dashboards
 - Run code logic inside a background script
 

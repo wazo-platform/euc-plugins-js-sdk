@@ -14,7 +14,7 @@ This part is still in development, changes may occur frequently.
 
 ## The Possibilities
 
-Apps plugins allows many great ways to extend the interface. He's a quick summary, scroll down for more information.
+Apps plugins allow many great ways to extend the interface. He's a quick summary, scroll down for more information.
 
 - Add new pages/sections
 - Extend existing pages with new tabs

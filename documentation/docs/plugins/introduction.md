@@ -5,9 +5,9 @@ pagination_next: plugins/configuration
 
 # Plugins Introduction
 
-Modular plugins give the capacity to any partner to add new features and third-party inside our applications. Plugins interact and extend our products in every possible ways.
+Modular plugins give the capacity to any partner to add new features and third-party inside our applications. Plugins interact and extend our products in every possible way.
 
-Plugins must be hosted on your own infrastructure. This gives you the full control on the techonologies and when you want to update your plugin(s).
+Plugins must be hosted on your own infrastructure. This gives you full control over the technologies you use and when you want to update your plugin(s).
 
 ## Use Cases
 

@@ -5,7 +5,7 @@ displayed_sidebar: installSidebar
 # Using the EUC plugins SDK
 
 :::caution
-This part is still in development process, changes may happen frequently.
+This part is still in the development process, changes may happen frequently.
 :::
 
 After installing the SDK, you can now require it with:
@@ -328,7 +328,7 @@ app.onBackgroundMessage = msg => {
 Should be used in a `backgroundScript` to know when a custom tab is unloaded.
 
 :::caution
-As `app.onUnLoaded` is only triggered for tabs (iframes), and this event doesn't allow sophisticated actions (like sending messages to backgroundScript, API calls, ...) we should use `onAppUnLoaded` to perform action when a tab is unloaded.
+As `app.onUnLoaded` is only triggered for tabs (iframes), and this event doesn't allow sophisticated actions (like sending messages to a background script, API calls, ...) we should use `onAppUnLoaded` to perform an action when a tab is unloaded.
 :::
 
 ```js

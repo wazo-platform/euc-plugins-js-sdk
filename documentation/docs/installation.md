@@ -8,7 +8,7 @@ Let's install the **Wazo EUC Plugins SDK in less than 5 minutes**.
 
 ## Using a Package Manager
 
-You can install our SDK with you favortie package manager with the following ways:
+You can install our SDK with your favorite package manager in the following ways:
 
 ```bash
 # NPM
@@ -18,7 +18,7 @@ npm install @wazo/euc-plugins-sdk
 yarn add @wazo/euc-plugins-sdk
 ```
 
-Then import SDK in any file of your project.
+Then import the SDK in any file of your project.
 
 ```js
 import { App } from '@wazo/euc-plugins-sdk';
@@ -47,9 +47,9 @@ import softphone from 'https://cdn.jsdelivr.net/npm/@wazo/euc-plugins-sdk@latest
 const app = new App();
 ```
 
-## What's next?
+## What's Next?
 
-🎉 Good job, you officialy installed our SDK. The next step is to decide if you want to [build a plugin](./plugins/introduction) to extends our
+🎉 Good job, you officially installed our SDK. The next step is to decide if you want to [build a plugin](./plugins/introduction) to extend our
 products or [integrate a softphone](./softphone/introduction) in an external system.
 
 Enjoy!

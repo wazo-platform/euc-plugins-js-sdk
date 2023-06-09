@@ -45,7 +45,7 @@ So if we have in our `manifest.json` file :
 ],
 ```
 
-The value `SMS` will be translated to `Texto` when the user changes locale to `fr`.
+The value `SMS` will be translated to `Texto` when the user changes their locale to `fr`.
 
 ## Supported Locales
 
