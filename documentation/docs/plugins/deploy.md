@@ -8,7 +8,7 @@ As previously mentioned, plugins must be hosted on your own infrastructure. This
 
 ## Where to Deploy
 
-You can deploy your plugin/app anywhere. But it's import to make the plugin accessible publicly from the web. Other features won't be available for customers and users.
+You can deploy your plugin/app anywhere. But it's import to make the plugin accessible publicly from the web. Otherwise, the features of your plugin will not be visible to users.
 
 ## CORS Enabled
 
