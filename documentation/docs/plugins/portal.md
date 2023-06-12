@@ -19,7 +19,7 @@ Portal plugins allow many great ways to extend the interface. He's a quick summa
 - Add new sections and links in the stack menu
 - Add new sections in Global Settings
 - Extend forms with new tabs
-- Extend existing menu with new links
+- Extend existing menus with new links
 - Extend dashboards
 - Run code logic inside a background script
 

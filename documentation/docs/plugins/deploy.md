@@ -8,14 +8,14 @@ As previously mentioned, plugins must be hosted on your own infrastructure. This
 
 ## Where to Deploy
 
-You can deploy your plugin/app anywhere. But it's import to make the plugin accessible publicly from the web. Otherwise, the features of your plugin will not be visible to users.
+You can deploy your plugin/app anywhere. But it's important to make the plugin accessible publicly from the web. Otherwise, the features of your plugin will not be visible to users.
 
 ## CORS Enabled
 
-The `manifest.json` of your application should be served using a CORS-enabled HTTP server. Since everything this file is fetching from our application, this must be enabled on your infrastructure in order to allow us to fetch your `manifest.json` content and enable related features.
+The `manifest.json` of your application should be served using a CORS-enabled HTTP server. This must be enabled on your infrastructure to allow Wazo Product to fetch the file's content and enable related features.
 
 :::caution
-If not well configured, it will not be impossible the install the plugin.
+If not well configured, it will be impossible to install the plugin.
 :::
 
 ## Distributing your Plugin
