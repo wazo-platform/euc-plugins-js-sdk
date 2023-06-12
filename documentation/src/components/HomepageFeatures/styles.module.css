@@ -9,6 +9,7 @@
   transition: 250ms ease background;
   color: var(--ifm-font-color-base);
   padding: 10px;
+  border-radius: 5px;
 }
 
 .feature:hover, .feature:active {
@@ -16,7 +17,6 @@
   text-decoration: none;
   color: var(--ifm-font-color-base);
   background: #F7F7F7;
-  border-radius: 5px;
 }
 
 .feature:hover svg, .feature:active svg {
@@ -30,8 +30,5 @@
   margin-bottom: 10px;
 }
 
-[data-theme='dark'] {
-  .features { color: #FFF; }
-
-  .feature:hover, .feature:active { background: #202020; }
-}
+[data-theme='dark'] .features { color: #FFF; }
+[data-theme='dark'] .feature:hover, .feature:active { background: #202020; }
