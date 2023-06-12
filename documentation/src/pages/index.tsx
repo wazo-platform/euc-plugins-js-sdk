@@ -16,16 +16,21 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
+            className={`button button--lg ${styles.primaryButton}`}
             to="/docs/installation">
             Installation 🚀️
           </Link>
-        </div>
-        <div className={styles.buttons}>
+
           <Link
-            className="button button--secondary button--lg"
-            to="/docs/configuration">
-            Configuration 🔧
+            className={`button button--lg ${styles.secondaryButton}`}
+            to="/docs/plugins/introduction">
+            Build a Plugin
+          </Link>
+
+          <Link
+            className={`button button--lg ${styles.secondaryButton}`}
+            to="/docs/softphone/introduction">
+            Build a Softphone
           </Link>
         </div>
       </div>
@@ -35,8 +40,8 @@ function HomepageHeader() {
 
 const Home = (): JSX.Element => (
   <Layout
-    title="Wazo EUC Plugins documentation"
-    description="Wazo EUC Plugins documentation">
+    title="Wazo E-UC Plugins documentation"
+    description="Our SDK allows any developer to extend all Wazo Products' functionalities or to build a softphone powered by Wazo.">
     <HomepageHeader />
     <main>
       <HomepageFeatures />

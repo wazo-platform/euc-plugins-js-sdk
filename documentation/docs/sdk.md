@@ -1,11 +1,12 @@
 ---
-sidebar_position: 7
-sidebar_label: EUC Plugins SDK
+displayed_sidebar: installSidebar
 ---
 
 # Using the EUC plugins SDK
 
-⚠️ This part is still in development process, changes may happen frequently.
+:::caution
+This part is still in the development process, changes may happen frequently.
+:::
 
 After installing the SDK, you can now require it with:
 
@@ -20,7 +21,7 @@ const app = new App();
 await app.initialize();
 ```
 
-This method is asynchronous so the EUC application can know that your app is registered and your app will acknowledge it. 
+This method is asynchronous so the EUC application can know that your app is registered and your app will acknowledge it.
 
 ## Retrieving the EUC app context
 
@@ -34,7 +35,7 @@ const context: Context = app.getContext();
 The context will give you access to the app information like :
 - `app: AppInfo`: Information about the EUC application
   - `locale: string`: The locale code of the application on 2 characters, like `en` or `it`.
-  - `theme: Object`: Colors used by the EUC app. 
+  - `theme: Object`: Colors used by the EUC app.
     It uses the [Material UI theme](https://mui.com/material-ui/customization/palette/) palette structure, so you can use it directly with `createTheme()` or just pick the color you want in your plugin.
   - `host: AppHostInfo`: Contains a `clientType` value that can be `web` / `desktop` / `ios` or `android`
   - `extra: Object`: Contains extra information about the app context, like the `contact` when you use the `contactTab` manifest context.
@@ -228,7 +229,7 @@ Displaying client data when receiving a call
 app.onCallIncoming = async call => {
   console.log('background onCallIncoming', call);
   const clientData = await fetchClientData(call.number); // Where `fetchClientData` is a method that return client information from an extension
-  
+
   app.displayModal({
     title: `Incoming call for ${call.displayName}`,
     text: `Last call was: ${clientData.lastCall} for : ${clientData.lastCallSubject}`,
@@ -326,8 +327,9 @@ app.onBackgroundMessage = msg => {
 
 Should be used in a `backgroundScript` to know when a custom tab is unloaded.
 
-⚠️ As `app.onUnLoaded` is only triggered for tabs (iframes), and this event doesn't allow sophisticated actions (like sending messages to backgroundScript, API calls, ...)
-we should use `onAppUnLoaded` to perform action when a tab is unloaded.
+:::caution
+As `app.onUnLoaded` is only triggered for tabs (iframes), and this event doesn't allow sophisticated actions (like sending messages to a background script, API calls, ...) we should use `onAppUnLoaded` to perform an action when a tab is unloaded.
+:::
 
 ```js
 app.onAppUnLoaded = (tabId) => {};
@@ -461,7 +463,7 @@ app.changeToolbarDisplay(displayed: boolean);
 
 ```js
 app.onConnectedToStack = (stackSession: Object) => {
-  
+
 };
 ```
 
@@ -469,7 +471,7 @@ app.onConnectedToStack = (stackSession: Object) => {
 
 ```js
 app.onSwitchTenant = (uuid: string, name: string) => {
-  
+
 };
 ```
 

@@ -1,17 +1,25 @@
 ---
-sidebar_position: 3
-sidebar_label: Web and Desktop
+displayed_sidebar: pluginsSidebar
 ---
 
-# Customizing the Web and Desktop application
+# Customizing our Web and Desktop App
 
-:::info
+:::caution
 This part is still in development, changes may occur frequently.
 :::
 
-:::caution
+:::info
 `manifest.json` files should be served using a CORS-enabled http server.
 :::
+
+## The Possibilities
+
+Apps plugins allow many great ways to extend the interface. He's a quick summary, scroll down for more information.
+
+- Add new pages/sections
+- Extend existing pages with new tabs
+- Extend Settings pannel
+- Run code logic inside a background script
 
 ## Adding tabs in the main page
 
@@ -126,7 +134,7 @@ You can define the menu item's position using the `position` attributes. Existin
 | 400      | Integrations    |
 | 500      | Connection      |
 | 600      | Language        |
-| 700      | Country         | 
+| 700      | Country         |
 | 800      | Shortcuts       |
 | 900:     | Switchboard     |
 | 1000     | Divider         |

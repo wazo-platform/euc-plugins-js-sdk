@@ -1,11 +1,10 @@
 ---
-sidebar_position: 6
-sidebar_label: Softphone
+displayed_sidebar: softphoneSidebar
 ---
 
-# Softphone integration
+# Softphone Introduction
 
-This SDK allows you to easily embed and customize a Wazo Softphone in your application. 
+This SDK allows you to easily embed and customize a Wazo Softphone in your application.
 If you have a CRM that requires a click-to-call feature, redirecting the user to the customer information when answering a call, ... this softphone will fit your needs.
 
 To be able to integrate Wazo softphone in any web page, you can add :
@@ -13,7 +12,7 @@ To be able to integrate Wazo softphone in any web page, you can add :
 ```ts
 import { softphone } from '@wazo/euc-plugins-sdk';
 
-softphone.init({ 
+softphone.init({
   url?: string, //  Url of the softphone to be loaded in the iframe (optional, default to https://softphone.wazo.io).
   width?: number, // Width (in px) of the softphone (optional, default to 500).
   height?: number, // Height (in px) of the softphone (optional, default to 600).
@@ -30,7 +29,7 @@ softphone.init({
 });
 ```
 
-## Methods
+## SDK Methods
 
 ### Login the user directly
 
@@ -438,7 +437,7 @@ softphone.onCallIncoming = call => {
 softphone.onAuthenticated = async session => {
   Wazo.Auth.setHost(server);
   Wazo.Auth.setApiToken(session.token);
-  
+
   const callLogs = await Wazo.api.callLogd.listCallLogs();
 };
 ```

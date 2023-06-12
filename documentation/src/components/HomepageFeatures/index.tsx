@@ -17,7 +17,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Add tabs, icons, new pages and lot of new feature to your Web and Desktop app.
-        EUC plugin SDK allows you to take control of your Web and Desktop app.
+        E-UC plugin SDK allows you to take control of your Web and Desktop app.
       </>
     ),
   },{

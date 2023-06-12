@@ -1,17 +1,24 @@
 ---
-sidebar_position: 2
-sidebar_label: Configuration
+displayed_sidebar: pluginsSidebar
+pagination_next: plugins/translation
 ---
 
-# Configuration your plugins with the Wazo Portal
+# Plugins Configuration
 
-⚠️ This part is still in development process, changes may happen frequently.
+:::caution
+This part is still in the development process, changes may happen frequently to the schema.
+:::
 
-## Manifest file
+## Manifest File
 
-Using one or multiple manifest file you can customize all the Wazo EUC application.
+This file describes how your plugin is integrated into a Wazo Product. Using one or multiple manifest files you can
+customize all the Wazo E-UC Products (Web, Desktop, Portal and Mobile).
 
-### Example of a Manifest file
+### Example of a Manifest File
+
+:::info
+`manifest.json` files should be served using a CORS-enabled HTTP server.
+:::
 
 You must provide the following information in a manifest file (json format) that will be hosted in your environment.
 
@@ -63,19 +70,13 @@ You must provide the following information in a manifest file (json format) that
 }
 ```
 
-### Configuring the manifest URL in Portal
+## Enabling your Plugin
 
-When connected to your stack in portal go to **Settings > Applications > App Configuration**.
+For development or production environment, the process is the same. See our deployment section on how to deploy each type of application.
 
-If no application is configured, create a new configuration for your application.
+After that you'll be ready to customize the [Web and Desktop application](/docs/web-desktop-application), the [Mobile Application](/docs/mobile) or [Portal](/docs/portal)
 
-In the *Advanced* section, add a new key with the name `manifest_urls`  and value the value of your manifest file(s) URL(s), like:
-
-![App configuration](/img/app-config-portal.png)
-
-Now you're all set you can choose to customize the [Web and Desktop application](/docs/web-desktop-application), the [Mobile Application](/docs/mobile) or [Portal](/docs/portal)
-
-### Translating manifest elements
+## Translation Support
 
 Using the `localizationInfo` you can add other `manifest.json` files containing translations for a specific language.
 
@@ -120,3 +121,4 @@ So if we have in our `manifest.json` file :
 The value `SMS` will be translated to `Texto` when the user changes locale to `fr`.
 
 Currently supported locales are : `en` and `fr`.
+
