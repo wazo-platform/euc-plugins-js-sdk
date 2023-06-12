@@ -74,7 +74,7 @@ You must provide the following information in a manifest file (json format) that
 
 For development or production environment, the process is the same. See our deployment section on how to deploy each type of application.
 
-After that you'll be ready to customize the [Web and Desktop application](/docs/web-desktop-application), the [Mobile Application](/docs/mobile) or [Portal](/docs/portal)
+After that you'll be ready to customize the [Web and Desktop application](./web-desktop-application), the [Mobile Application](./mobile) or [Portal](./portal)
 
 ## Translation Support
 

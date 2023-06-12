@@ -173,6 +173,6 @@ You can add custom code when the user is not using a custom tab. It can be usefu
   "backgroundScript": "https://my-website/background.js"
 ```
 
-Please refer to the [SDK](/docs/sdk) documentation to know how to inject custom code in the application.
+Please refer to the [SDK](../sdk) documentation to know how to inject custom code in the application.
 
 The background script is always running, even when the user is logged out. Please make sure to remove all related background tasks when the `onLogout` listener event is fired.
