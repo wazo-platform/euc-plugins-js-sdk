@@ -13,7 +13,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: 'Web and Desktop application',
     Svg: require('@site/static/img/wda.svg').default,
-    link: './docs/web-desktop-application',
+    link: './docs/plugins/web-desktop-application',
     description: (
       <>
         Add tabs, icons, new pages and lot of new feature to your Web and Desktop app.
@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   },{
     title: 'Mobile application',
     Svg: require('@site/static/img/mobile.svg').default,
-    link: './docs/mobile',
+    link: './docs/plugins/mobile',
     description: (
       <>
         Create new tab to display your own contact and pilot the Wazo Mobile Application.
@@ -32,7 +32,7 @@ const FeatureList: FeatureItem[] = [
   },{
     title: 'Portal',
     Svg: require('@site/static/img/portal.svg').default,
-    link: './docs/portal',
+    link: './docs/plugins/portal',
     description: (
       <>
         Customize the Wazo Portal to add new tabs and menu items. Add your own dashboard and add more values to your clients.
@@ -42,7 +42,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: 'Softphone',
     Svg: require('@site/static/img/softphone.svg').default,
-    link: './docs/softphone',
+    link: './docs/softphone/introduction',
     description: (
       <>
         Enhance your application with a Softphone that you can embed and control with ease.

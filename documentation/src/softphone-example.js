@@ -349,12 +349,10 @@ if (typeof window !== "undefined") {
 
   global.removeSoftphone = () => {
     softphone.remove();
+    document.querySelector('#minimize-button')?.remove();
+    document.querySelector('#maximize-button')?.remove();
   };
 
   let defaultServer = typeof localStorage !== 'undefined' ? localStorage.getItem('softphone-server') || 'my-server' : 'my-server';
   let displayed = false;
-
-  initSoftphone();
 }
-
-
