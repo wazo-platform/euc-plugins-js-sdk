@@ -16,13 +16,11 @@ app.onAppUnLoaded(tabId => {
 })
 
 // tab.js
-(async () => {
-  await app.initialize();
-  app.closeLeftPanel();
-  app.changeNavBarColor('#8e6a3a');
-})();
+await app.initialize();
+app.closeLeftPanel();
+app.changeNavBarColor('#8e6a3a');
 ```
-[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/sidebar-color)
+[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/sidebar-color)
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/sidebar-color/manifest.json" target="_blank">
     🎨 Try changing the sidebar !
@@ -43,7 +41,7 @@ app.onCallIncoming = async call => {
 
 await app.initialize();
 ```
-[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/incoming-call-modal)
+[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/incoming-call-modal)
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/incoming-call-modal/manifest.json" target="_blank">
     ☎️ Try the incoming call modal !
@@ -71,7 +69,7 @@ app.onBackgroundMessage = msg => {
 app.initialize();
 ```
 
-[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/iframe-bg-messaging)
+[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/iframe-bg-messaging)
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/iframe-bg-messaging/manifest.json" target="_blank">
     📣 Try messaging background ↔️ tab
@@ -94,7 +92,7 @@ app.initialize();
 ]
 ```
 
-[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/settings-menu)
+[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/settings-menu)
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/settings-menu/manifest.json" target="_blank">
     📣 Try adding a new settings menu
@@ -139,7 +137,7 @@ app.onCallAnswered = (call) => {
   }
 };
 ```
-[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/video-pip)
+[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/video-pip)
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/video-pip/manifest.json" target="_blank">
     🎥 Try displaying videos as miniatures in a video call
@@ -161,7 +159,7 @@ setTimeout(() => {
 }, 2000);
 ```
 
-[👀 See full example](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/configure-sounds)
+[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/configure-sounds)
 
 <a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/configure-sounds/manifest.json" target="_blank">
     🎺 Try configuring the application sounds

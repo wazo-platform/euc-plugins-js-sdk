@@ -4,6 +4,8 @@ displayed_sidebar: softphoneSidebar
 
 # Softphone Examples
 
+import '../../src/softphone-example.js';
+
 ## Displaying the softphone
 
 Please refer to the [Installation page](../installation) for information on how to import the Softphone SDK.
@@ -16,7 +18,6 @@ softphone.show();
     🚀 Display the Softphone
 </a>
 
-import '../../src/softphone-example.js';
 
 ## Hiding the softphone
 
