@@ -16,13 +16,26 @@ const sidebars = {
   installSidebar: [
     'installation',
     {
-      type: 'ref',
-      id: 'sdk',
-      label: 'SDK API',
+      type: 'category',
+      collapsible: false,
+      label: 'SDK APIs',
+      items: [
+        {
+          type: 'ref',
+          id: 'plugins/sdk',
+          label: 'Plugins',
+        },
+        {
+          type: 'ref',
+          id: 'softphone/introduction',
+          label: 'Softphone',
+        },
+      ]
     },
     {
       type: 'category',
       label: 'Guides',
+      collapsible: false,
       items: [
         {
           type: 'ref',
@@ -46,7 +59,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      collapsed: false,
+      collapsible: false,
       label: 'Configuration',
       items: [
         {
@@ -78,12 +91,17 @@ const sidebars = {
     },
     {
       type: 'ref',
+      id: 'plugins/sdk',
+      label: 'SDK API',
+    },
+    {
+      type: 'ref',
       id: 'plugins/deploy',
       label: 'Deployment',
     },
     {
       type: 'category',
-      collapsed: false,
+      collapsible: false,
       label: 'Examples',
       items: [
         {

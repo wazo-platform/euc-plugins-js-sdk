@@ -39,4 +39,4 @@ The `mobileIcon` should be one of the [Ionic icons](https://ionic.io/ionicons) v
 
 When the user clicks on the tab, the `contentUrl` will be loaded.
 
-Please refer to the [SDK](/docs/sdk) documentation to know how to inject custom code in the application.
+Please refer to the [SDK](./sdk) documentation to know how to inject custom code in the application.
