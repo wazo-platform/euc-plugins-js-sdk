@@ -1,6 +1,7 @@
 // Global
 export const EVENT_ON_LOADED = 'wazo/ON_LOADED';
 export const EVENT_APP_UNLOADED = 'wazo/EVENT_APP_UNLOADED';
+export const EVENT_PLUGIN_UNLOADED = 'wazo/EVENT_PLUGIN_UNLOADED';
 export const EVENT_APP_INITIALIZE = 'wazo/EVENT_APP_INITIALIZE';
 export const EVENT_ON_LOGOUT = 'wazo/EVENT_ON_LOGOUT';
 export const EVENT_SEND_IFRAME_MESSAGE = 'wazo/EVENT_SEND_IFRAME_MESSAGE';

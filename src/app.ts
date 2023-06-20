@@ -18,6 +18,7 @@ import {
 import {
   EVENT_ON_LOADED,
   EVENT_APP_UNLOADED,
+  EVENT_PLUGIN_UNLOADED,
   EVENT_APP_INITIALIZE,
   EVENT_ON_LOGOUT,
   EVENT_SEND_IFRAME_MESSAGE,
@@ -92,6 +93,7 @@ export class App {
   // Global
   onNewSession = (session: WDASession | PortalSession) => {}
   onUnLoaded = (e: Event) => {};
+  onPluginUnLoaded = () => {};
   onAppUnLoaded = (tabId: string) => {};
   onIframeMessage = (message: Object) => { };
   onBackgroundMessage = (message: Object) => { };
@@ -273,9 +275,12 @@ export class App {
       case EVENT_APP_UNLOADED:
         this.onAppUnLoaded(event.data.tabId);
         break;
+      case EVENT_PLUGIN_UNLOADED:
+        this._unloadPlugin();
+        break;
       case EVENT_ON_LOGOUT:
         this.onLogout();
-        this._resetEvents();
+        this._unloadPlugin();
         break;
       case EVENT_ON_NEW_SESSION:
         this.onNewSession(event.data.session);
@@ -401,6 +406,11 @@ export class App {
     this._pluginId = pluginId;
   }
 
+  _unloadPlugin = () => {
+    this.onPluginUnLoaded();
+    this._resetEvents();
+  }
+
   _configurePlugin = (configuration: PluginConfiguration) => {
     if (configuration.pluginId) {
       this._pluginId = configuration.pluginId;
@@ -415,6 +425,7 @@ export class App {
 
   _resetEvents = () => {
     this.onUnLoaded = (e: Event) => {};
+    this.onPluginUnLoaded = () => {};
     this.onAppUnLoaded = (tabId: string) => {};
     this.onIframeMessage = (message: Object) => { };
     this.onBackgroundMessage = (message: Object) => { };
