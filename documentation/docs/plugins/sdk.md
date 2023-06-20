@@ -1,8 +1,8 @@
 ---
-displayed_sidebar: installSidebar
+displayed_sidebar: pluginsSidebar
 ---
 
-# Using the EUC plugins SDK
+# Plugins SDK API
 
 :::caution
 This part is still in the development process, changes may happen frequently.
