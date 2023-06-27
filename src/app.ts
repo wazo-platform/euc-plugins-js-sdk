@@ -15,64 +15,62 @@ import {
   UpdateBadgeArgs,
 } from './types';
 
+import {
+  EVENT_ON_LOADED,
+  EVENT_APP_UNLOADED,
+  EVENT_PLUGIN_UNLOADED,
+  EVENT_APP_INITIALIZE,
+  EVENT_ON_LOGOUT,
+  EVENT_SEND_IFRAME_MESSAGE,
+  EVENT_SEND_BACKGROUND_MESSAGE,
+  EVENT_ON_IFRAME_MESSAGE,
+  EVENT_ON_BACKGROUND_MESSAGE,
+  EVENT_CLOSE_LEFT_PANEL,
+  EVENT_OPEN_LEFT_PANEL,
+  EVENT_START_CALL,
+  EVENT_ON_CALL_INCOMING,
+  EVENT_ON_CALL_MADE,
+  EVENT_ON_CALL_ANSWERED,
+  EVENT_ON_CALL_ACCEPTED,
+  EVENT_ON_CALL_HUNG_UP,
+  EVENT_OPEN_LINK,
+  EVENT_CREATE_MEETING,
+  EVENT_OPEN_MEETING_LOBBY,
+  EVENT_OPEN_SETTINGS,
+  EVENT_ON_MEETING_CREATED,
+  EVENT_ROUTE_CHANGE,
+  EVENT_WS_MESSAGE,
+  EVENT_PLAY_PROGRESS_SOUND,
+  EVENT_PLAY_NEW_MESSAGE_SOUND,
+  EVENT_PLAY_INCOMING_CALL_SOUND,
+  EVENT_PLAY_DOUBLE_CALL_SOUND,
+  EVENT_PLAY_HANGUP_SOUND,
+  EVENT_STOP_CURRENT_SOUND,
+  EVENT_CONFIGURE_SOUNDS,
+  EVENT_RESET_SOUNDS,
+  EVENT_DISPLAY_NOTIFICATION,
+  EVENT_CHANGE_NAVBAR_COLOR,
+  EVENT_RESET_NAVBAR_COLOR,
+  EVENT_DISPLAY_MODAL,
+  EVENT_REMOVE_MODAL,
+  EVENT_USER_JOIN_ROOM,
+  EVENT_USER_LEAVE_ROOM,
+  EVENT_PARTICIPANT_JOIN_ROOM,
+  EVENT_PARTICIPANT_LEAVE_ROOM,
+  EVENT_IGNORE_CALL,
+  EVENT_ON_NEW_SESSION,
+  EVENT_UPDATE_BADGE,
+  EVENT_ON_CONNECTED_TO_STACK,
+  EVENT_ON_SWITCH_STACK_TENANT,
+  EVENT_CHANGE_TOOLBAR_DISPLAY,
+} from './constants';
+
 declare global {
   // Deprecated, use `_configurePlugin` instead
   var _setPluginId: Function;
   var _configurePlugin: Function;
   var Wazo: any;
 }
-
-// Global
-const EVENT_ON_LOADED = 'wazo/ON_LOADED';
-const EVENT_APP_UNLOADED = 'wazo/EVENT_APP_UNLOADED';
-const EVENT_APP_INITIALIZE = 'wazo/EVENT_APP_INITIALIZE';
-const EVENT_ON_LOGOUT = 'wazo/EVENT_ON_LOGOUT';
-const EVENT_SEND_IFRAME_MESSAGE = 'wazo/EVENT_SEND_IFRAME_MESSAGE';
-const EVENT_SEND_BACKGROUND_MESSAGE = 'wazo/EVENT_SEND_BACKGROUND_MESSAGE';
-const EVENT_ON_IFRAME_MESSAGE = 'wazo/EVENT_ON_IFRAME_MESSAGE';
-const EVENT_ON_BACKGROUND_MESSAGE = 'wazo/EVENT_ON_BACKGROUND_MESSAGE';
-
-// WDA
-const EVENT_CLOSE_LEFT_PANEL = 'wazo/EVENT_CLOSE_LEFT_PANEL';
-const EVENT_OPEN_LEFT_PANEL = 'wazo/EVENT_OPEN_LEFT_PANEL';
-const EVENT_START_CALL = 'wazo/START_CALL';
-const EVENT_ON_CALL_INCOMING = 'wazo/EVENT_ON_CALL_INCOMING';
-const EVENT_ON_CALL_MADE = 'wazo/EVENT_ON_CALL_MADE';
-const EVENT_ON_CALL_ANSWERED = 'wazo/EVENT_ON_CALL_ANSWERED';
-const EVENT_ON_CALL_ACCEPTED = 'wazo/EVENT_ON_CALL_ACCEPTED';
-const EVENT_ON_CALL_HUNG_UP = 'wazo/EVENT_ON_CALL_HUNG_UP';
-const EVENT_OPEN_LINK = 'wazo/EVENT_OPEN_LINK';
-const EVENT_CREATE_MEETING = 'wazo/EVENT_CREATE_MEETING';
-const EVENT_OPEN_MEETING_LOBBY = 'wazo/EVENT_OPEN_MEETING_LOBBY';
-const EVENT_OPEN_SETTINGS = 'wazo/EVENT_OPEN_SETTINGS';
-const EVENT_ON_MEETING_CREATED = 'wazo/EVENT_ON_MEETING_CREATED';
-const EVENT_ROUTE_CHANGE = 'wazo/EVENT_ROUTE_CHANGE';
-const EVENT_WS_MESSAGE = 'wazo/EVENT_WS_MESSAGE';
-const EVENT_PLAY_PROGRESS_SOUND = 'wazo/EVENT_PLAY_PROGRESS_SOUND';
-const EVENT_PLAY_NEW_MESSAGE_SOUND = 'wazo/EVENT_PLAY_NEW_MESSAGE_SOUND';
-const EVENT_PLAY_INCOMING_CALL_SOUND = 'wazo/EVENT_PLAY_INCOMING_CALL_SOUND';
-const EVENT_PLAY_DOUBLE_CALL_SOUND = 'wazo/EVENT_PLAY_DOUBLE_CALL_SOUND';
-const EVENT_PLAY_HANGUP_SOUND = 'wazo/EVENT_PLAY_HANGUP_SOUND';
-const EVENT_STOP_CURRENT_SOUND = 'wazo/EVENT_STOP_CURRENT_SOUND';
-const EVENT_CONFIGURE_SOUNDS = 'wazo/EVENT_CONFIGURE_SOUNDS';
-const EVENT_RESET_SOUNDS = 'wazo/EVENT_RESET_SOUNDS';
-const EVENT_DISPLAY_NOTIFICATION = 'wazo/EVENT_DISPLAY_NOTIFICATION';
-const EVENT_CHANGE_NAVBAR_COLOR = 'wazo/EVENT_CHANGE_NAVBAR_COLOR';
-const EVENT_RESET_NAVBAR_COLOR = 'wazo/EVENT_RESET_NAVBAR_COLOR';
-const EVENT_DISPLAY_MODAL = 'wazo/EVENT_DISPLAY_MODAL';
-const EVENT_REMOVE_MODAL = 'wazo/EVENT_REMOVE_MODAL';
-const EVENT_USER_JOIN_ROOM = 'wazo/EVENT_USER_JOIN_ROOM';
-const EVENT_USER_LEAVE_ROOM = 'wazo/EVENT_USER_LEAVE_ROOM';
-const EVENT_PARTICIPANT_JOIN_ROOM = 'wazo/EVENT_PARTICIPANT_JOIN_ROOM';
-const EVENT_PARTICIPANT_LEAVE_ROOM = 'wazo/EVENT_PARTICIPANT_LEAVE_ROOM';
-const EVENT_IGNORE_CALL = 'wazo/EVENT_IGNORE_CALL';
-const EVENT_ON_NEW_SESSION = 'wazo/EVENT_ON_NEW_SESSION';
-const EVENT_UPDATE_BADGE = 'wazo/EVENT_UPDATE_BADGE';
-
-// Portal
-const EVENT_ON_CONNECTED_TO_STACK = 'wazo/EVENT_ON_CONNECTED_TO_STACK';
-const EVENT_ON_SWITCH_STACK_TENANT = 'wazo/EVENT_ON_SWITCH_STACK_TENANT';
-const EVENT_CHANGE_TOOLBAR_DISPLAY = 'wazo/EVENT_CHANGE_TOOLBAR_DISPLAY';
 
 const initializationTimeoutInMs = 5000;
 
@@ -95,6 +93,7 @@ export class App {
   // Global
   onNewSession = (session: WDASession | PortalSession) => {}
   onUnLoaded = (e: Event) => {};
+  onPluginUnLoaded = () => {};
   onAppUnLoaded = (tabId: string) => {};
   onIframeMessage = (message: Object) => { };
   onBackgroundMessage = (message: Object) => { };
@@ -276,9 +275,12 @@ export class App {
       case EVENT_APP_UNLOADED:
         this.onAppUnLoaded(event.data.tabId);
         break;
+      case EVENT_PLUGIN_UNLOADED:
+        this._unloadPlugin();
+        break;
       case EVENT_ON_LOGOUT:
         this.onLogout();
-        this._resetEvents();
+        this._unloadPlugin();
         break;
       case EVENT_ON_NEW_SESSION:
         this.onNewSession(event.data.session);
@@ -404,6 +406,11 @@ export class App {
     this._pluginId = pluginId;
   }
 
+  _unloadPlugin = () => {
+    this.onPluginUnLoaded();
+    this._resetEvents();
+  }
+
   _configurePlugin = (configuration: PluginConfiguration) => {
     if (configuration.pluginId) {
       this._pluginId = configuration.pluginId;
@@ -418,6 +425,7 @@ export class App {
 
   _resetEvents = () => {
     this.onUnLoaded = (e: Event) => {};
+    this.onPluginUnLoaded = () => {};
     this.onAppUnLoaded = (tabId: string) => {};
     this.onIframeMessage = (message: Object) => { };
     this.onBackgroundMessage = (message: Object) => { };
