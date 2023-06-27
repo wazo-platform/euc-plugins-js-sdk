@@ -77,7 +77,7 @@ If you're using a **background script**, it's important to close any WebSocket o
 app.onUnLoaded = () => {};
 ```
 
-It's a sugar of `window.`onunload`, useful when you want to store information before page/tab exit. **Important:** You can't do an action here like API call because the app (iframe) can be closed before the action will be finished.
+It's a sugar of `window.onunload`, useful when you want to store information before page/tab exit. **Important:** You can't do an action here like API call because the app (iframe) can be closed before the action will be finished.
 
 #### Background Script Listener
 
