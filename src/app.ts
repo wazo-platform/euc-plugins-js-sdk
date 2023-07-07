@@ -13,6 +13,7 @@ import {
   WDASession,
   PortalSession,
   UpdateBadgeArgs,
+  MobileMenuItem,
 } from './types';
 
 import {
@@ -63,6 +64,12 @@ import {
   EVENT_ON_CONNECTED_TO_STACK,
   EVENT_ON_SWITCH_STACK_TENANT,
   EVENT_CHANGE_TOOLBAR_DISPLAY,
+  EVENT_MOBILE_HEADER,
+  EVENT_MOBILE_CONTEXTUAL_MENU,
+  EVENT_MOBILE_SHOW_BOTTOM_NAV,
+  EVENT_MOBILE_REGISTER_HEADER_BACK_CALLBACK,
+  EVENT_MOBILE_ON_MENU_ACTION,
+  EVENT_MOBILE_ON_HEADER_BACK,
 } from './constants';
 
 declare global {
@@ -89,6 +96,7 @@ export class App {
   _entityId: string | null;
   _queuedMessages: DelayedMessage[];
   _isBackground: boolean;
+  _headerBackCallbacks: Record<string, Function>;
 
   // Global
   onNewSession = (session: WDASession | PortalSession) => {}
@@ -128,6 +136,7 @@ export class App {
     this._entityId = null;
     this._isBackground = !window.name;
     this._queuedMessages = [];
+    this._headerBackCallbacks = {};
 
     this.context = {
       app: {
@@ -262,6 +271,34 @@ export class App {
   // Portal
   changeToolbarDisplay = (display: boolean) => this._sendMessage(EVENT_CHANGE_TOOLBAR_DISPLAY, { display });
 
+  // App to Mobile
+  setMobileHeader = ({ title, callback }: { title?: string | null, callback?: Function | null }, entityId?: string) => {
+    const id = entityId || this._entityId;
+
+    if (id) {
+      delete this._headerBackCallbacks[id];
+      if (typeof callback === 'function') {
+        this._headerBackCallbacks[id] = callback; 
+      }
+    }
+
+    this._sendMessage(EVENT_MOBILE_HEADER, {
+      headerTitle: title,
+      emitHeaderBack: !!callback,
+      entityId: entityId || this._entityId,
+    });
+  }
+
+  // @WIP
+  setMobileContextualMenu = (contextualMenu: MobileMenuItem[], entityId?: string) => this._sendMessage(EVENT_MOBILE_CONTEXTUAL_MENU, { contextualMenu, entityId: entityId || this._entityId });
+
+  // @WIP
+  setMobileShowBottomNav = (showBottomNav: boolean, entityId?: string) =>  this._sendMessage(EVENT_MOBILE_SHOW_BOTTOM_NAV, { showBottomNav, entityId: entityId || this._entityId });
+
+  // Mobile to app
+  // @WIP
+  onMobileMenuAction = (id: string) => this.sendMessageToIframe({ type: EVENT_MOBILE_ON_MENU_ACTION, id }); 
+
   _onMessage = (event: MessageEvent) => {
     if (!event.data) {
       return;
@@ -273,6 +310,7 @@ export class App {
         this._onLoaded(event.data.session, event.data.theme, event.data.locale, event.data.extra);
         break;
       case EVENT_APP_UNLOADED:
+        delete this._headerBackCallbacks[event.data.tabId];
         this.onAppUnLoaded(event.data.tabId);
         break;
       case EVENT_PLUGIN_UNLOADED:
@@ -341,6 +379,18 @@ export class App {
 
       case EVENT_ON_SWITCH_STACK_TENANT:
         this.onSwitchTenant(event.data.tenant.uuid, event.data.tenant.name);
+        break;
+
+      // Mobile
+      case EVENT_MOBILE_ON_HEADER_BACK:
+        const action = this._headerBackCallbacks[event.data.entityId || this._entityId];
+        if (typeof action === 'function') {
+          action();
+        }
+        break;
+
+      case EVENT_MOBILE_ON_MENU_ACTION:
+        this.onMobileMenuAction(event.data);
         break;
 
       default:

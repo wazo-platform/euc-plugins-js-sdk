@@ -257,3 +257,7 @@ export type UpdateBadgeArgs = {
   anchorOrigin?: { horizontal: 'left' | 'right', vertical: 'top' | 'bottom' }
 };
 
+export type MobileMenuItem = {
+  label: string,
+  id: string,
+}
