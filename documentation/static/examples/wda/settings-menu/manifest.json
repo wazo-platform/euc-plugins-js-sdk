@@ -1,7 +1,22 @@
 {
   "manifestVersion": "0.1",
   "version": "1.0.0",
-  "id": "sidebar-color",
+  "id": "wda-settings-menu",
+  "packageName": "io.wazo.wda.settings-menu",
+  "name" : {
+    "short": "Example - Settings Menu",
+    "full": "Example - Settings Menu"
+  },
+  "developer": {
+    "name": "Wazo Inc"
+  },
+  "description": {
+    "short": "Example on how to implement: Settings Menu",
+    "full": "Example on how to implement: Settings Menu"
+  },
+  "icons": {
+    "color": "https://avatars.githubusercontent.com/u/68688703?s=200&v=4"
+  },
   "staticTabs": [
     {
       "entityId": "settings-tab",
