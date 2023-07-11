@@ -489,3 +489,24 @@ app.onConnectedToStack = (stackSession: Object) => {};
 ```js
 app.onSwitchTenant = (uuid: string, name: string) => {};
 ```
+
+## E-UC Mobile {#mobile}
+
+### Methods
+
+#### Change the header
+
+`title`: Changes the label displayed in the header. Set this value to `null` to set it back to the default value.
+
+`callback`: Handles the back button click. If a callback is registered, the app will forgo its normal behavior and run it. Setting the value to `null` reinstates the original behavior.
+
+```js
+app.setMobileHeader({ title?: string | null, callback?: Function | null });
+```
+#### Show / hide bottom navigation
+
+Define whether you want to show or hide the bottom navigation
+
+```js
+app.setMobileShowBottomNav(show: boolean);
+```
