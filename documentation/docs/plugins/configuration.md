@@ -20,53 +20,93 @@ customize all the Wazo E-UC Products (Web, Desktop, Portal and Mobile).
 `manifest.json` files should be served using a CORS-enabled HTTP server.
 :::
 
-You must provide the following information in a manifest file (json format) that will be hosted in your environment.
+You must provide the following information in a manifest file (JSON format) that will be hosted in your environment.
+**Please note that comments are not valid in JSON files**
 
 ```json
 {
+  // (Required) Version of the schema this manifest is using.
+  //            Supported version: "0.1"
   "manifestVersion": "0.1",
+
+  // (Required) Version of your plugin in semver (http://semver.org).
+  //            Any Changes the manifest should cause a version bump
   "version": "1.0.0",
-  "id": "my-application-id",
-  "packageName": "com.acme.myapp",
+
+  // (Required) Unique identifier for this plugin.
+  "id": "my-plugin-id",
+
+  // (Required) Unique identifier for this plugin in reverse domain format.
+  //            E.g: com.example.myplugin
+  "packageName": "com.example.myplugin",
+
+  // (Required) Plugin name
+  "name": {
+    // (Required) Short display name. (max length: 30)
+    "short": "Plugin Name",
+    // (Required) Full display name.
+    "full": "Full Plugin name"
+  },
+
+  // (Required) Plugin description
+  "description": {
+    // (Required) Short description of your plugin
+    "short": "Short description of your plugin (<= 80 chars)",
+    // (Required) Full description of your plugin
+    "full": "Full description of your plugin (<= 4000 chars)"
+  },
+
+  // (Required) Plugin icons
+  "icons": {
+    // (Required) File URL or path to a full color PNG / SVG icon.
+    "color": "https://fr.m.wikipedia.org/wiki/Fichier:Cat_%28113020%29_-_The_Noun_Project.svg",
+    // (Optional) File URL or path to a transparent outlined icon in black.
+    "outline": "https://fr.m.wikipedia.org/wiki/Fichier:Cat_%28113020%29_-_The_Noun_Project.svg",
+  },
+
+  // (Required) Developer / author information
   "developer": {
+    // (Required) Name for the developer / author.
     "name": "My Name",
+    // (Optional) Url to the page that provides support information for the plugin.
     "websiteUrl": "https://website.com/",
+    // (Optional) Url to the page that provides privacy information for the plugin.
     "privacyUrl": "https://website.com/privacy",
   },
-  "localizationInfo": {
-    "defaultLanguageTag": "en",
-    "additionalLanguages": [
-      {
-        "languageTag": "fr",
-        "file": "fr.json"
-      }
-    ]
-  },
-  "name": {
-    "short": "App Name",
-    "full": "Full app name"
-  },
-  "description": {
-    "short": "Short description of your app (<= 80 chars)",
-    "full": "Full description of your app (<= 4000 chars)"
-  },
-  "icons": {
-    "outline": "https://fr.m.wikipedia.org/wiki/Fichier:Cat_%28113020%29_-_The_Noun_Project.svg",
-    "color": "https://fr.m.wikipedia.org/wiki/Fichier:Cat_%28113020%29_-_The_Noun_Project.svg"
-  },
+
+  // (Required) A set of tabs that may be 'pinned' by default, without the user adding them manually. Static tabs declared in personal scope are always pinned to the app's personal experience. Static tabs do not currently support the 'teams' scope
   "staticTabs": [
     {
+      // (Required) Unique identifier for this tab.
       "entityId": "sms",
+      // (Required) Context where the tab by accessible.
       "context": [
         "generalTab",
         "userTab",
         "phonebookTab"
       ],
+      // (Required) Tab display name
       "name": "SMS",
-      "contentUrl": "https://my-websit/sms.html"
+      // (Required) URL or path to show UI of this tab.
+      "contentUrl": "https://example.com/sms.html"
     }
   ],
-  "backgroundScript": "https://my-website/background.js"
+
+  // (Optional) Define a background script, that runs when user is not inside a plugin tabs.
+  "backgroundScript": "https://example.com/background.js",
+
+  // (Optional) Localization configuration
+  "localizationInfo": {
+    // (Optional) Default language used by default and inside this manifest file.
+    "defaultLanguageTag": "en",
+    // (Optionnal) Configure additional languages and respective file
+    "additionalLanguages": [
+      {
+        "languageTag": "fr",
+        "file": "fr.json"
+      },
+    ]
+  }
 }
 ```
 
