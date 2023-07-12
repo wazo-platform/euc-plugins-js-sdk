@@ -95,18 +95,29 @@ To create a new page the PBX menu, add a `staticTabs` in your manifest with a `p
 ```json
 "staticTabs": [
   {
-    "entityId": "my id",
+    "entityId": "my-id",
     "context": [
       "pbxMenu"
     ],
-    "name": "My label",
+    "name": "Menu Item label",
     "parent": "common.layout.pbxMenu.userManagement",
     "contentUrl": "https://my-website.com/content.html"
   }
 ],
 ```
 
-The `parent` key can be one of `common.layout.pbxMenu.*` where `*` is : `globalSettings`, `userManagement`, `callManagement`, `services`, `callCenter`,`reporting`, `soundsAndGreetings`, `settings`.
+To add a link inside an existing sub-menu, you must use one of the following values for `parent` key:
+
+```js
+common.layout.pbxMenu.userManagement      // User Management menu
+common.layout.pbxMenu.reporting           // Reporting menu
+common.layout.pbxMenu.callManagement      // Call Management menu
+common.layout.pbxMenu.services            // Services menu
+common.layout.pbxMenu.soundsAndGreetings  // Sounds & Greetings menu
+common.layout.pbxMenu.callCenter          // Call Center menu
+common.layout.pbxMenu.settings            // Settings menu
+common.layout.pbxMenu.globalSettings      // Global Settings menu
+```
 
 When the user clicks on the tab, the `contentUrl` will be loaded.
 
