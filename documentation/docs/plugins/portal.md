@@ -161,9 +161,158 @@ To create a new menu in the PBX section, add a `staticTabs` in your manifest wit
 ],
 ```
 
-The `icon` should be in the [Material UI icon](https://mui.com/material-ui/material-icons/) list.
-
 When the user clicks on the tab, the `contentUrl` will be loaded.
+
+:::info
+We support only a specific list of `icon` from [Material UI icon](https://mui.com/material-ui/material-icons/) list.
+:::
+
+Here's a supported list of icons for the moment
+- `Accessibility`
+- `AccountBalance`
+- `AccountBox`
+- `AccountCircle`
+- `Add`
+- `AndroidSharp`
+- `Apps`
+- `ArrowBack`
+- `ArrowDownward`
+- `ArrowDropDown`
+- `ArrowForward`
+- `ArrowUpward`
+- `Block`
+- `BrightnessHigh`
+- `BugReport`
+- `Build`
+- `Business`
+- `Call`
+- `CallEnd`
+- `CallMerge`
+- `Cancel`
+- `CancelOutlined`
+- `Check`
+- `CheckCircle`
+- `CheckCircleOutline`
+- `CheckCircleOutlined`
+- `ChevronLeft`
+- `ChevronRight`
+- `Clear`
+- `Close`
+- `Cloud`
+- `CloudDownload`
+- `Dashboard`
+- `DateRangeOutlined`
+- `Delete`
+- `DeleteOutline`
+- `Description`
+- `DesktopMac`
+- `DeviceHub`
+- `DialerSip`
+- `DirectionsCar`
+- `Done`
+- `DoneOutlined`
+- `DragHandle`
+- `Edit`
+- `Email`
+- `Equalizer`
+- `Error`
+- `ErrorOutline`
+- `ErrorOutlineOutlined`
+- `EventSeat`
+- `ExitToApp`
+- `ExpandLess`
+- `ExpandMore`
+- `Extension`
+- `FileCopyOutlined`
+- `FilterList`
+- `FilterTiltShift`
+- `Flag`
+- `FlashOn`
+- `FolderShared`
+- `FormatListBulleted`
+- `GetApp`
+- `Group`
+- `HeadsetMic`
+- `Help`
+- `HelpOutline`
+- `History`
+- `Info`
+- `InfoOutlined`
+- `InsertChart`
+- `InsertDriveFile`
+- `KeyboardArrowLeft`
+- `KeyboardArrowRight`
+- `Laptop`
+- `Launch`
+- `LibraryBooks`
+- `LibraryMusic`
+- `List`
+- `LocationOn`
+- `Lock`
+- `LockOutlined`
+- `Menu`
+- `MoreHoriz`
+- `MoreVert`
+- `MusicNote`
+- `NavigateNext`
+- `NotificationsNone`
+- `OpenInNew`
+- `People`
+- `PermDataSetting`
+- `Person`
+- `Phone`
+- `PhoneForwarded`
+- `PieChart`
+- `PlayArrow`
+- `PlaylistAdd`
+- `Public`
+- `Publish`
+- `Receipt`
+- `ReceiptOutlined`
+- `RecordVoiceOver`
+- `Redo`
+- `Refresh`
+- `Remove`
+- `ReportProblemOutlined`
+- `Restore`
+- `RingVolume`
+- `RoomService`
+- `Schedule`
+- `ScheduleOutlined`
+- `Search`
+- `Send`
+- `Settings`
+- `SettingsApplications`
+- `SettingsBackupRestore`
+- `SettingsPhone`
+- `Shuffle`
+- `SignalCellular4Bar`
+- `Speaker`
+- `Star`
+- `Stop`
+- `Storage`
+- `StoreMallDirectory`
+- `SupervisorAccount`
+- `SwapCalls`
+- `Sync`
+- `Timeline`
+- `Toc`
+- `Transform`
+- `TrendingFlat`
+- `Tune`
+- `Update`
+- `VerifiedUser`
+- `ViewList`
+- `Visibility`
+- `VisibilityOff`
+- `Voicemail`
+- `VolumeDown`
+- `VolumeMute`
+- `VolumeUp`
+- `VpnKey`
+- `VpnLock`
+- `Warning`
+- `Web`
 
 ## Adding a background script
 
