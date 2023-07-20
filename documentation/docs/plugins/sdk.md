@@ -62,6 +62,8 @@ It's at this moment the magic happens, add your own logic inside our products. D
 
 When a plugin is unloaded because of a user action (ex: logout), this listener `app.onPluginUnLoaded()` will be called. Other listeners will be disabled when unloaded. To prevent side effects, it's important to remove any watcher added in the initializing phase.
 
+When the user logs in again, the `backgroundScript` will be loaded again, please make sure to release everything in `onPluginUnLoaded`. 
+
 :::info
 If you're using a **background script**, it's important to close any WebSocket or listeners at this cycle of the plugin.
 :::
