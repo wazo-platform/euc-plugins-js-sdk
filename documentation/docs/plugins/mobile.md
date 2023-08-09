@@ -6,7 +6,7 @@ displayed_sidebar: pluginsSidebar
 
 ## The Possibilities
 
-Mobile plugins allow many great ways to extend the interface. He's a quick summary, scroll down for more information.
+Mobile plugins allow many great ways to extend the interface. Here's a quick summary, scroll down for more information.
 
 - Add tabs on the main page of the application
 

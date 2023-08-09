@@ -10,7 +10,7 @@ displayed_sidebar: pluginsSidebar
 
 ## The Possibilities
 
-Apps plugins allow many great ways to extend the interface. He's a quick summary, scroll down for more information.
+Apps plugins allow many great ways to extend the interface. Here's a quick summary, scroll down for more information.
 
 - Add new pages/sections
 - Extend existing pages with new tabs

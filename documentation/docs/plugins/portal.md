@@ -10,7 +10,7 @@ displayed_sidebar: pluginsSidebar
 
 ## The Possibilities
 
-Portal plugins allow many great ways to extend the interface. He's a quick summary, scroll down for more information.
+Portal plugins allow many great ways to extend the interface. Here's a quick summary, scroll down for more information.
 
 - Add new sections and links in the stack menu
 - Add new sections in Global Settings
