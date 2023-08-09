@@ -4,10 +4,6 @@ displayed_sidebar: pluginsSidebar
 
 # Customizing our Web and Desktop App
 
-:::caution
-This part is still in development, changes may occur frequently.
-:::
-
 :::info
 `manifest.json` files should be served using a CORS-enabled http server.
 :::

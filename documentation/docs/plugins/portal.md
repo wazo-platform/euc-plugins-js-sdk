@@ -4,10 +4,6 @@ displayed_sidebar: pluginsSidebar
 
 # Customizing E-UC Portal (coming soon)
 
-:::caution
-This part is still in development, customization is unavailable for now.
-:::
-
 :::info
 `manifest.json` files should be served using a CORS-enabled http server.
 :::

@@ -85,6 +85,13 @@ const config = {
             label: 'Softphone',
             activeBaseRegex: '/softphone/'
           },
+          {
+            type: 'doc',
+            docId: 'deeplink/deeplink',
+            position: 'left',
+            label: 'Deeplink',
+            activeBaseRegex: '/deeplink/'
+          },
 
           // Right
           {

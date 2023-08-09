@@ -4,10 +4,6 @@ displayed_sidebar: pluginsSidebar
 
 # Customizing our Mobile App
 
-:::caution
-This part is still in development, changes may occur frequently.
-:::
-
 ## The Possibilities
 
 Mobile plugins allow many great ways to extend the interface. He's a quick summary, scroll down for more information.

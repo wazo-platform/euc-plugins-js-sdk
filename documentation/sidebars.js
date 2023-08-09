@@ -130,6 +130,14 @@ const sidebars = {
       label: 'Examples',
     },
   ],
+
+  deeplinkSidebar: [
+    {
+      type: 'ref',
+      id: 'deeplink/deeplink',
+      label: 'Deeplink'
+    },
+  ],
 };
 
 module.exports = sidebars;
