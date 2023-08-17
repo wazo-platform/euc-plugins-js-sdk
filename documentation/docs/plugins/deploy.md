@@ -31,6 +31,19 @@ If not well configured, it will be impossible to install the plugin.
 
 ![App configuration](/img/app-config-portal.png)
 
+#### Enable plugins for specific users
+
+- Connect to a stack or location
+- Go to `Settings > Debugging Tools > Auth. Users`.
+- Choose your user and then click on `Application Configuration`
+- If no application is configured, create a new configuration for your application.
+- In the *Plugins* section, insert the URL to your `manifest.json`
+- Enjoy!
+
+![Debug Auth. Users (small)](/img/debug-auth-users.png)
+
+![App configuration (small)](/img/user-configuration.png)
+
 ### For E-UC Portal
 
 - You must be connected to [E-UC Portal](https://portal.wazo.io)
