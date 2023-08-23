@@ -4,10 +4,6 @@ displayed_sidebar: pluginsSidebar
 
 # Plugins SDK API
 
-:::caution
-This part is still in the development process, changes may happen frequently.
-:::
-
 After installing the SDK, you can now require it with:
 
 ```js

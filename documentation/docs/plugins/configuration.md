@@ -5,10 +5,6 @@ pagination_next: plugins/translation
 
 # Plugins Configuration
 
-:::caution
-This part is still in the development process, changes may happen frequently to the schema.
-:::
-
 ## Manifest File
 
 This file describes how your plugin is integrated into a Wazo Product. Using one or multiple manifest files you can
