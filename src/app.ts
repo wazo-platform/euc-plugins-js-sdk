@@ -69,7 +69,7 @@ import {
   EVENT_MOBILE_SHOW_BOTTOM_NAV,
   EVENT_MOBILE_ON_MENU_ACTION,
   EVENT_MOBILE_ON_HEADER_BACK,
-} from './constants';
+} from './constants.js';
 
 declare global {
   // Deprecated, use `_configurePlugin` instead
