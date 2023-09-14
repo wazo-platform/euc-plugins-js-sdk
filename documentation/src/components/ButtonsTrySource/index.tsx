@@ -29,7 +29,7 @@ export default function ButtonTrySource({
   return (
     <div className="button-group button-group--block">
       { showExample && <a className="button button--primary button--lg" href={productUrl} target="_blank">👀 TRY IT</a> }
-      { showSource && <a className="button button--secondary button--lg" href={source}>⚙️ VIEW SOURCE</a> }
+      { showSource && <a className="button button--secondary button--lg" href={source} target="_blank">⚙️ VIEW SOURCE</a> }
     </div>
   );
 }
