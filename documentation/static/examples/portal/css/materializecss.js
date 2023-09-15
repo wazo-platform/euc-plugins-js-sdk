@@ -1,40 +1,40 @@
-import app from "https://cdn.jsdelivr.net/npm/@wazo/euc-plugins-sdk@0.0.20/lib/esm/app.js";
+import app from 'https://cdn.jsdelivr.net/npm/@wazo/euc-plugins-sdk@0.0.20/lib/esm/app.js';
 
-const generateWhitelabel = (theme) => {
-  if(theme) {
+const applyTheme = (theme) => {
+  if (theme) {
     const primary = theme.palette.primary;
     const secondary = theme.palette.secondary;
 
-    const whiteLabelStyle = document.createElement('style');
-    whiteLabelStyle.innerHTML = `
+    const themeStyle = document.createElement('style');
+
+    themeStyle.innerHTML = `
       :root {
-        --background-color: #FFF;
-        --surface-color: #FCFCFC;
-        --error-color: #CF6679;
+        --primary-main: ${primary.main};
+        --primary-complementaryMain: ${primary.complementaryMain};
+        --primary-mainHover: ${primary.mainHover};
+        --primary-light: ${primary.light};
+        --primary-dark: ${primary.dark};
+        --primary-complementaryDark: ${primary.complementaryDark};
+        --primary-contrastText: ${primary.contrastText};
 
-        --primary-color: ${primary.main};
-        --primary-color-dark: ${primary.dark};
-        --primary-color-numeric: 200, 200, 200;
-        --primary-color-raised-hover-solid: ${primary.mainHover};
-        --primary-color-raised-focus-solid: ${primary.mainHover};
-
-        --secondary-color: ${secondary.main};
-        --secondary-color-hover-solid: ${secondary.dark};
-        --secondary-color-focus-solid: ${secondary.dark};
+        --secondary-main: ${secondary.main};
+        --secondary-light: ${secondary.light};
+        --secondary-dark: ${secondary.dark};
+        --secondary-contrastText: ${secondary.contrastText};
       }
     `;
 
-    document.getElementsByTagName('head')[0].appendChild(whiteLabelStyle);
+    document.getElementsByTagName('head')[0].appendChild(themeStyle);
   }
-}
+};
 
 (async () => {
   await app.initialize();
   const context = app.getContext();
-  generateWhitelabel(context?.app?.theme);
-})()
+  applyTheme(context?.app?.theme);
+})();
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.datepicker');
   M.Datepicker.init(elems);
 

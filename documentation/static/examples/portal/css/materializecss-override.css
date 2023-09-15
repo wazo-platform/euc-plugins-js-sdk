@@ -1,0 +1,15 @@
+:root {
+  --background-color: #fff;
+  --surface-color: #fcfcfc;
+  --error-color: #cf6679;
+
+  --primary-color: var(--primary-main, #203890);
+  --primary-color-dark: var(--primary-dark, #162764);
+  --primary-color-numeric: 200, 200, 200;
+  --primary-color-raised-hover-solid: var(--primary-mainHover, #1a2e75);
+  --primary-color-raised-focus-solid: var(--primary-mainHover, #1a2e75);
+
+  --secondary-color: var(--secondary-main, #e62b40);
+  --secondary-color-hover-solid: var(--secondary-dark, #a11e2c);
+  --secondary-color-focus-solid: var(--secondary-dark, #a11e2c);
+}
