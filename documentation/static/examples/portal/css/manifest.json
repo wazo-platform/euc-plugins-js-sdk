@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "id": "io.wazo.muicss",
   "packageName": "io.wazo.muicss",
+  "productType": "portal",
   "developer": {
     "name": "Wazo"
   },
