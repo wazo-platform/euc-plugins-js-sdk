@@ -40,6 +40,10 @@ You must provide the following information in a manifest file (JSON format) that
   //            E.g: com.example.myplugin
   "packageName": "com.example.myplugin",
 
+  // (Required) Specifies the target Wazo product for this plugin.
+  //            E.g: portal | app | mobile
+  "productType": "app",
+
   // (Required) Plugin name
   "name": {
     // (Required) Short display name. (max length: 30)
