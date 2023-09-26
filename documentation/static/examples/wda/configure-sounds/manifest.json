@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "id": "wda-configure-sound",
   "packageName": "io.wazo.wda.configure-sound",
+  "productType": "app",
   "name" : {
     "short": "Example - Configure sond",
     "full": "Example - Configure sond"

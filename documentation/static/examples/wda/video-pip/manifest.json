@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "id": "wda-video-pip",
   "packageName": "io.wazo.wda.video-pip",
+  "productType": "app",
   "name" : {
     "short": "Example - Local/Remote Video",
     "full": "Example - Local/Remote Video"

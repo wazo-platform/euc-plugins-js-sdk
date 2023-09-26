@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "id": "wda-incoming-call-modal",
   "packageName": "io.wazo.wda.incoming-call-modal",
+  "productType": "app",
   "name" : {
     "short": "Example - Incoming Call Modal",
     "full": "Example - Incoming Call Modal"

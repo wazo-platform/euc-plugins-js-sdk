@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "id": "wda-sidebar-color",
   "packageName": "io.wazo.wda.sidebar-color",
+  "productType": "app",
   "name" : {
     "short": "Example - Sidebar Color",
     "full": "Example - Sidebar Color"
