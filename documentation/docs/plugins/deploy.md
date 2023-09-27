@@ -40,9 +40,7 @@ If not well configured, it will be impossible to install the plugin.
 - In the *Plugins* section, insert the URL to your `manifest.json`
 - Enjoy!
 
-![Debug Auth. Users (small)](/img/debug-auth-users.png)
-
-![App configuration (small)](/img/user-configuration.png)
+![App configuration for a single user](/img/app-config-portal-user.jpg)
 
 ### For E-UC Portal
 
