@@ -1,8 +1,8 @@
-import { app } from '../src/index';
+import { app } from '../lib/esm';
 
 window.parent.postMessage = jest.fn();
 
-test('expected message returned', () => {
+test('expected message returned from a ES Module import', () => {
   app._initializeCompleted = true;
   app.startCall({ targets: ['*10'], requestedModalities: ['video'] });
 
