@@ -14,7 +14,7 @@ import {
   PortalSession,
   UpdateBadgeArgs,
   MobileMenuItem,
-} from './types';
+} from './types.js';
 
 import {
   EVENT_ON_LOADED,
@@ -69,7 +69,7 @@ import {
   EVENT_MOBILE_SHOW_BOTTOM_NAV,
   EVENT_MOBILE_ON_MENU_ACTION,
   EVENT_MOBILE_ON_HEADER_BACK,
-} from './constants';
+} from './constants.js';
 
 declare global {
   // Deprecated, use `_configurePlugin` instead
@@ -277,7 +277,7 @@ export class App {
     if (id) {
       delete this._headerBackCallbacks[id];
       if (typeof callback === 'function') {
-        this._headerBackCallbacks[id] = callback; 
+        this._headerBackCallbacks[id] = callback;
       }
     }
 
@@ -296,7 +296,7 @@ export class App {
 
   // Mobile to app
   // @WIP
-  onMobileMenuAction = (id: string) => this.sendMessageToIframe({ type: EVENT_MOBILE_ON_MENU_ACTION, id }); 
+  onMobileMenuAction = (id: string) => this.sendMessageToIframe({ type: EVENT_MOBILE_ON_MENU_ACTION, id });
 
   _onMessage = (event: MessageEvent) => {
     if (!event.data) {
