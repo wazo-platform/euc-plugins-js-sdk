@@ -31,11 +31,11 @@ Our react template is designed to streamline your development process, allowing 
 
 ## Portal Templates
 
-The following templates are adapted for [E-UC Portal](https://github.com/wazo-communication/euc-plugins-boilerplate) and include whitelabel supports.
+The following templates are adapted for [E-UC Portal](https://github.com/wazo-communication/euc-plugins-boilerplate) and include whitelabel support.
 
 ### HTML/JS/Materialize
 
-This template uses vanilla javascript, HTML and [Materialize](https://materializeweb.com/). Materialize is a modern responsive CSS framework based on Material Design by Google.
+This template uses vanilla Javascript, HTML and [Materialize](https://materializeweb.com/). Materialize is a modern responsive CSS framework based on Material Design by Google.
 
 ```mdx-code-block
 <BrowserWindow url="https://portal.wazo.io">
@@ -53,7 +53,7 @@ This template uses vanilla javascript, HTML and [Materialize](https://materializ
 
 ### HTML/JS/MUICSS
 
-This template uses vanilla javascript, HTML and [MUI (css)](https://www.muicss.com/). MUI is a lightweight CSS framework that follows Google's Material Design guidelines. MUI is designed from the ground up to be fast, small and developer-friendly.
+This template uses vanilla Javascript, HTML and [MUI (css)](https://www.muicss.com/). MUI is a lightweight CSS framework that follows Google's Material Design guidelines. MUI is designed from the ground up to be fast, small and developer-friendly.
 
 ```mdx-code-block
 <BrowserWindow url="https://portal.wazo.io">

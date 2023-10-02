@@ -21,7 +21,8 @@ export default function IframeWindow({url}: {url: string}): JSX.Element {
           maxWidth: '100%',
           overflow: 'hidden',
         }}
-        bodyStyle={{padding: 0}}>
+        bodyStyle={{padding: 0}}
+      >
         <iframe
           src={url}
           title={url}

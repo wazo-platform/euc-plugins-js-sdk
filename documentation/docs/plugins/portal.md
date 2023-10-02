@@ -178,7 +178,7 @@ The background script is always running, even when the user is logged out. Pleas
 ## Icons Support
 
 To defined `icon` and `parentIcon` image, we support two types of values:
-1. Path to a black `.svg` icon (recommanded)
+1. Path to a black `.svg` icon (recommended)
 2. Using a supported Material UI icon
 
     <details>
