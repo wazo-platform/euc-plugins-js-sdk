@@ -2,9 +2,21 @@
 displayed_sidebar: pluginsSidebar
 ---
 
+import BrowserWindow from '@site/src/components/BrowserWindow';
+import ButtonsTrySource from '@site/src/components/ButtonsTrySource';
+
+
 # E-UC Apps Plugin Examples
 
-### Changing the sidebar color when entering the module, and resetting the color when leaving it
+## Changing the sidebar color when entering the module, and resetting the color when leaving it
+
+```mdx-code-block
+<BrowserWindow url="https://app.wazo.io">
+```
+![Change app color](/img/app-example-color.jpg)
+```mdx-code-block
+</BrowserWindow>
+```
 
 ```js
 // background.js
@@ -20,13 +32,22 @@ await app.initialize();
 app.closeLeftPanel();
 app.changeNavBarColor('#8e6a3a');
 ```
-[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/sidebar-color)
 
-<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/sidebar-color/manifest.json" target="_blank">
-    🎨 Try changing the sidebar !
-</a>
+<ButtonsTrySource
+    product="app"
+    manifest="https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/sidebar-color/manifest.json"
+    source="https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/sidebar-color"
+/>
 
-### Displaying a modal for incoming calls
+## Displaying a modal for incoming calls
+
+```mdx-code-block
+<BrowserWindow url="https://app.wazo.io">
+```
+![Incoming modal](/img/app-example-modal.jpg)
+```mdx-code-block
+</BrowserWindow>
+```
 
 ```js
 // backgroundScript
@@ -41,13 +62,22 @@ app.onCallIncoming = async call => {
 
 await app.initialize();
 ```
-[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/incoming-call-modal)
 
-<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/incoming-call-modal/manifest.json" target="_blank">
-    ☎️ Try the incoming call modal !
-</a>
+<ButtonsTrySource
+    product="app"
+    manifest="https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/incoming-call-modal/manifest.json"
+    source="https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/incoming-call-modal"
+/>
 
-### Send and receive message between backgroundScript and tabs
+## Send and receive messages between background script and tabs
+
+```mdx-code-block
+<BrowserWindow url="https://app.wazo.io">
+```
+![Incoming modal](/img/app-example-background.jpg)
+```mdx-code-block
+</BrowserWindow>
+```
 
 ```js
 // tab
@@ -69,13 +99,22 @@ app.onBackgroundMessage = msg => {
 app.initialize();
 ```
 
-[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/iframe-bg-messaging)
+<ButtonsTrySource
+    product="app"
+    manifest="https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/iframe-bg-messaging/manifest.json"
+    source="https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/iframe-bg-messaging"
+/>
 
-<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/iframe-bg-messaging/manifest.json" target="_blank">
-    📣 Try messaging background ↔️ tab
-</a>
+## Adding a settings menu
 
-### Adding a settings menu
+```mdx-code-block
+<BrowserWindow url="https://app.wazo.io">
+```
+![Incoming modal](/img/app-example-setting.jpg)
+```mdx-code-block
+</BrowserWindow>
+```
+
 
 ```json
 "staticTabs": [
@@ -92,13 +131,13 @@ app.initialize();
 ]
 ```
 
-[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/settings-menu)
+<ButtonsTrySource
+    product="app"
+    manifest="https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/settings-menu/manifest.json"
+    source="https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/settings-menu"
+/>
 
-<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/settings-menu/manifest.json" target="_blank">
-    📣 Try adding a new settings menu
-</a>
-
-### Displaying local and remote video as miniature
+## Displaying local and remote video as miniature
 
 ```js
 const createVideoWithStream = stream => {
@@ -137,13 +176,14 @@ app.onCallAnswered = (call) => {
   }
 };
 ```
-[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/video-pip)
 
-<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/video-pip/manifest.json" target="_blank">
-    🎥 Try displaying videos as miniatures in a video call
-</a>
+<ButtonsTrySource
+    product="app"
+    manifest="https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/video-pip/manifest.json"
+    source="https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/video-pip"
+/>
 
-### Configuring and playing sounds
+## Configuring and playing sounds
 
 ```js
 app.initialize();
@@ -159,8 +199,8 @@ setTimeout(() => {
 }, 2000);
 ```
 
-[👀 View source code](https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/configure-sounds)
-
-<a class="try-it button button--secondary button--lg" href="https://app.wazo.io/?manifestUrl=https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/configure-sounds/manifest.json" target="_blank">
-    🎺 Try configuring the application sounds
-</a>
+<ButtonsTrySource
+    product="app"
+    manifest="https://wazo-communication.github.io/euc-plugins-js-sdk/examples/wda/configure-sounds/manifest.json"
+    source="https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/configure-sounds"
+/>

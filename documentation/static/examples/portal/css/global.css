@@ -1,0 +1,37 @@
+.intro {
+  padding: 5rem;
+  background-image: radial-gradient(circle, #203890 0%, #E62B40 150%);
+  color: #FFF;
+}
+
+.intro article {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro h1 {
+  margin: 0 0 5px;
+  font-size: 3rem !important;
+}
+
+.intro p {
+  margin: 15px 0;
+}
+
+.intro article a {
+  background-color: #FFF;
+  color: #203890;
+  padding: 1rem;
+  display: inline-block;
+  font-weight: bold;
+  border-radius: 2px;
+  box-shadow: 2px 0px 3px rgba(0,0,0,0.5);
+  margin-top: 15px;
+  text-decoration: none !important;
+}
+
+main {
+  padding: 20px 40px
+}

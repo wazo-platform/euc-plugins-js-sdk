@@ -1,0 +1,36 @@
+/* Primary */
+.mui-btn--primary,
+.mui-btn--primary:active,
+.mui-btn--primary:hover,
+.mui-btn--primary:focus {
+  background-color: var(--primary-main, #203890);
+}
+
+.mui-btn.mui-btn--flat.mui-btn--primary {
+  color: var(--primary-main, #203890);
+}
+.mui-tabs__bar > li.mui--is-active {
+  border-bottom-color: var(--primary-main, #203890);
+}
+.mui-tabs__bar > li.mui--is-active > a {
+  color: var(--primary-main, #203890);
+}
+.mui-textfield > input:focus ~ label,
+.mui-textfield > textarea:focus ~ label {
+  color: var(--primary-main, #203890);
+}
+.mui-textfield > input:focus,
+.mui-textfield > textarea:focus {
+  border-bottom-color: var(--primary-main, #203890);
+}
+
+/* Accent */
+.mui-btn--accent,
+.mui-btn--accent:active,
+.mui-btn--accent:hover,
+.mui-btn--accent:focus {
+  background-color: var(--secondary-main, #e62b40);
+}
+.mui-btn.mui-btn--flat.mui-btn--accent {
+  color: var(--secondary-main, #e62b40);
+}

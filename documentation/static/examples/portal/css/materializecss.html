@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MUICSS</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- MaterializeCSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.2-alpha/dist/css/materialize.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.2-alpha/dist/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="./materializecss-override.css">
+
+  <!-- Custom styles -->
+  <link href="./global.css" rel="stylesheet">
+  <style>
+    .row {
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <section class="intro">
+    <article>
+      <h1>Materialize</h1>
+      <p>Simple. Built on open source. The responsive front-end library based on Material Design from Google.</p>
+      <a href="https://materializeweb.com/" target="_blank">See Documentation</a>
+    </article>
+  </section>
+
+  <main>
+
+    <h3>Buttons</h3>
+    <div>
+      <a class="waves-effect waves-light btn">Button</a>
+      <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Button</a>
+      <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Button</a>
+    </div>
+
+    <div>
+      <a class="btn-large disabled">Disabled</a>
+      <a class="btn disabled">Disabled</a>
+      <a class="btn-flat disabled">Disabled</a>
+      <a class="btn-floating disabled"><i class="material-icons">add</i></a>
+    </div>
+
+
+    <h3>Forms</h3>
+    <form action="#">
+      <!-- textinputs -->
+      <div class="row">
+        <div class="input-field col m6 s12">
+          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+
+        <div class="input-field col m6 s12">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field error col m6 s12">
+          <input value="Wrong value" id="error" type="text" class="validate">
+          <label for="error">Error</label>
+        </div>
+
+        <div class="input-field col m6 s12">
+          <input disabled value="I am not editable" id="disabled" type="text" class="validate">
+          <label for="disabled">Disabled</label>
+        </div>
+      </div>
+
+      <!-- Textarea -->
+      <div class="row">
+        <div class="input-field col m12 s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Textarea</label>
+        </div>
+      </div>
+
+      <!-- select -->
+      <div class="input-field col m12 s12">
+        <select>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <label>Materialize Select</label>
+      </div>
+
+      <!-- Switch -->
+      <h3>Switches</h3>
+      <p>
+        <strong>Enabled switch</strong>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+      </p>
+
+      <!-- Disabled Switch -->
+      <p>
+        <strong>Disabled switch</strong>
+        <div class="switch">
+          <label>
+            Off
+            <input disabled type="checkbox">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+      </p>
+
+      <!-- radio -->
+      <h3>Radio buttons</h3>
+      <p>
+        <label>
+          <input name="group1" type="radio" checked />
+          <span>Red</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="group1" type="radio" />
+          <span>Yellow</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input class="with-gap" name="group1" type="radio"  />
+          <span>Green</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="group1" type="radio" disabled="disabled" />
+          <span>Brown</span>
+        </label>
+      </p>
+
+      <!-- checkbox -->
+      <h3>Checkboxes</h3>
+      <p>
+        <label>
+          <input type="checkbox" class="filled-in" checked="checked" />
+          <span>Filled in</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input type="checkbox" checked="checked" disabled="disabled" />
+          <span>Disabled</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input type="checkbox" disabled="disabled" />
+          <span>Disabled / Checked</span>
+        </label>
+      </p>
+
+      <!-- Date Picker -->
+      <p class="input-field">
+        <label class="active" for="datepicker">Datepicker</label>
+        <input id="datepicker" type="text" class="datepicker">
+      </p>
+
+      <!-- File input -->
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>File</span>
+          <input type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+    </form>
+
+    <h3>Card</h3>
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Card Title</span>
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Collections</h3>
+    <div class="collection">
+      <a href="#!" class="collection-item"><span class="badge">1</span>Alan</a>
+      <a href="#!" class="collection-item"><span class="new badge">4</span>Alan</a>
+      <a href="#!" class="collection-item active">Alan</a>
+      <a href="#!" class="collection-item"><span class="badge">14</span>Alan</a>
+    </div>
+
+    <h3>Pagination</h3>
+    <ul class="pagination">
+      <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+      <li class="active"><a href="#!">1</a></li>
+      <li class="waves-effect"><a href="#!">2</a></li>
+      <li class="waves-effect"><a href="#!">3</a></li>
+      <li class="waves-effect"><a href="#!">4</a></li>
+      <li class="waves-effect"><a href="#!">5</a></li>
+      <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+
+    <h3>Loader</h3>
+    <div class="progress">
+        <div class="determinate" style="width: 70%"></div>
+    </div>
+
+    <div class="progress">
+        <div class="indeterminate"></div>
+    </div>
+
+    <div class="preloader-wrapper big active">
+      <div class="spinner-layer">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Table</h3>
+    <table>
+      <thead>
+        <tr>
+            <th>Name</th>
+            <th>Item Name</th>
+            <th>Item Price</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Alvin</td>
+          <td>Eclair</td>
+          <td>$0.87</td>
+        </tr>
+        <tr>
+          <td>Alan</td>
+          <td>Jellybean</td>
+          <td>$3.76</td>
+        </tr>
+        <tr>
+          <td>Jonathan</td>
+          <td>Lollipop</td>
+          <td>$7.00</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script type="module" src="./materializecss.js"></script>
+</body>
+</html>

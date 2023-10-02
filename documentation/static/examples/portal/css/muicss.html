@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MUICSS</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- MaterializeCSS -->
+    <link href="https://cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+    <link href="./muicss-override.css" rel="stylesheet" />
+
+    <!-- Custom styles -->
+    <link href="./global.css" rel="stylesheet" />
+    <style>
+      .row {
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="intro">
+      <article>
+        <h1>MUI</h1>
+        <p>MUI is a lightweight CSS framework that follows Google's Material Design guidelines</p>
+        <a href="https://www.muicss.com/" target="_blank">See Documentation</a>
+      </article>
+    </section>
+
+    <main>
+      <h3>Default Buttons</h3>
+      <div>
+        <button class="mui-btn">Default</button>
+        <button class="mui-btn mui-btn--primary">Primary</button>
+        <button class="mui-btn mui-btn--accent">Accent</button>
+        <button class="mui-btn mui-btn--danger">Danger</button>
+      </div>
+      <div>
+        <button class="mui-btn" disabled>Default</button>
+        <button class="mui-btn mui-btn--primary" disabled>Primary</button>
+        <button class="mui-btn mui-btn--accent" disabled>Accent</button>
+        <button class="mui-btn mui-btn--danger" disabled>Danger</button>
+      </div>
+
+      <h3>Flat buttons</h3>
+      <div>
+        <button class="mui-btn mui-btn--flat">Default</button>
+        <button class="mui-btn mui-btn--flat mui-btn--primary">Primary</button>
+        <button class="mui-btn mui-btn--flat mui-btn--accent">Accent</button>
+        <button class="mui-btn mui-btn--flat mui-btn--danger">Danger</button>
+      </div>
+      <div>
+        <button class="mui-btn mui-btn--flat" disabled>Default</button>
+        <button class="mui-btn mui-btn--flat mui-btn--primary" disabled>Primary</button>
+        <button class="mui-btn mui-btn--flat mui-btn--accent" disabled>Accent</button>
+        <button class="mui-btn mui-btn--flat mui-btn--danger" disabled>Danger</button>
+      </div>
+
+      <h3>Raised buttons</h3>
+      <div>
+        <button class="mui-btn mui-btn--raised">Default</button>
+        <button class="mui-btn mui-btn--raised mui-btn--primary">Primary</button>
+        <button class="mui-btn mui-btn--raised mui-btn--accent">Accent</button>
+        <button class="mui-btn mui-btn--raised mui-btn--danger">Danger</button>
+      </div>
+      <div>
+        <button class="mui-btn mui-btn--raised" disabled>Default</button>
+        <button class="mui-btn mui-btn--raised mui-btn--primary" disabled>Primary</button>
+        <button class="mui-btn mui-btn--raised mui-btn--accent" disabled>Accent</button>
+        <button class="mui-btn mui-btn--raised mui-btn--danger" disabled>Danger</button>
+      </div>
+
+      <h3>Floating action button</h3>
+      <div>
+        <button class="mui-btn mui-btn--fab">+</button>
+        <button class="mui-btn mui-btn--fab mui-btn--primary">+</button>
+        <button class="mui-btn mui-btn--fab mui-btn--accent">+</button>
+        <button class="mui-btn mui-btn--fab mui-btn--danger">+</button>
+      </div>
+      <div>
+        <button class="mui-btn mui-btn--fab" disabled>+</button>
+        <button class="mui-btn mui-btn--fab mui-btn--primary" disabled>+</button>
+        <button class="mui-btn mui-btn--fab mui-btn--accent" disabled>+</button>
+        <button class="mui-btn mui-btn--fab mui-btn--danger" disabled>+</button>
+      </div>
+
+      <h3>Dropdown</h3>
+      <div class="mui-dropdown">
+        <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+          Dropdown
+          <span class="mui-caret"></span>
+        </button>
+        <ul class="mui-dropdown__menu">
+          <li><a href="#">Option 1</a></li>
+          <li><a href="#">Option 2</a></li>
+          <li><a href="#">Option 3</a></li>
+          <li><a href="#">Option 4</a></li>
+        </ul>
+      </div>
+
+      <h3>Form (floating label)</h3>
+      <form class="mui-form">
+        <div class="mui-textfield mui-textfield--float-label">
+          <input type="text" />
+          <label>Input 1</label>
+        </div>
+
+        <div class="mui-textfield mui-textfield--float-label">
+          <input type="text" value="Value on load" />
+          <label>Input 2</label>
+        </div>
+
+        <div class="mui-textfield mui-textfield--float-label">
+          <textarea>Value on load</textarea>
+          <label>Textarea</label>
+        </div>
+
+        <div class="mui-checkbox">
+          <label>
+            <input type="checkbox" value="" checked />
+            Option one
+          </label>
+        </div>
+        <div class="mui-checkbox">
+          <label>
+            <input type="checkbox" value="" />
+            Option two
+          </label>
+        </div>
+        <div class="mui-checkbox">
+          <label>
+            <input type="checkbox" value="" disabled />
+            Option three is disabled
+          </label>
+        </div>
+        <div class="mui-radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked />
+            Option one
+          </label>
+        </div>
+        <div class="mui-radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
+            Option two
+          </label>
+        </div>
+        <div class="mui-radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled />
+            Option three is disabled
+          </label>
+        </div>
+
+        <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Submit</button>
+      </form>
+
+      <h3>Tabs</h3>
+      <ul class="mui-tabs__bar">
+        <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-1">Tab-1</a></li>
+        <li><a data-mui-toggle="tab" data-mui-controls="pane-default-2">Tab-2</a></li>
+        <li><a data-mui-toggle="tab" data-mui-controls="pane-default-3">Tab-3</a></li>
+      </ul>
+      <div class="mui-tabs__pane mui--is-active" id="pane-default-1">Pane-1</div>
+      <div class="mui-tabs__pane" id="pane-default-2">Pane-2</div>
+      <div class="mui-tabs__pane" id="pane-default-3">Pane-3</div>
+
+      <h3>Tables</h3>
+      <table class="mui-table">
+        <thead>
+          <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cell 1-1</td>
+            <td>Cell 1-2</td>
+          </tr>
+          <tr>
+            <td>Cell 2-1</td>
+            <td>Cell 2-2</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <script type="module" src="./muicss.js"></script>
+  </body>
+</html>

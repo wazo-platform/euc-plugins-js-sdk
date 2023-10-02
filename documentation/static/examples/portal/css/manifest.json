@@ -1,0 +1,43 @@
+{
+  "manifestVersion": "0.1",
+  "version": "1.0.0",
+  "id": "io.wazo.muicss",
+  "packageName": "io.wazo.muicss",
+  "productType": "portal",
+  "developer": {
+    "name": "Wazo"
+  },
+  "icons": {
+    "color": "https://portal.wazo.io/whitelabel/portal.wazo.io/assets/logo-full.svg"
+  },
+  "name": {
+    "short": "CSS Frameworks",
+    "full": "CSS Frameworks"
+  },
+  "description": {
+    "short": "Testing plugin for many CSS framework",
+    "full": "Testing plugin for many CSS framework"
+  },
+  "staticTabs": [
+    {
+      "entityId": "materializecss",
+      "context": [
+        "pbxMenu"
+      ],
+      "name": "Materialize (CSS)",
+      "parent": "CSS Frameworks",
+      "parentIcon": "./css.svg",
+      "contentUrl": "./materializecss.html"
+    },
+    {
+      "entityId": "muicss",
+      "context": [
+        "pbxMenu"
+      ],
+      "name": "MUI (CSS)",
+      "parent": "CSS Frameworks",
+      "parentIcon": "./css.svg",
+      "contentUrl": "./muicss.html"
+    }
+  ]
+}

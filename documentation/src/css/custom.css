@@ -43,6 +43,8 @@
   color: #dc4e4b;
 }
 
+[data-theme='dark'] .button.button--primary { color: #FFF; }
+
 .header-github-link:hover {
   opacity: 0.6;
 }
@@ -69,7 +71,7 @@ img[alt*="small"] {
 
 a.try-it {
   display: block;
-  width: 400px;
+  max-width: 400px;
   margin: 30px auto 0 !important;
   text-align: center;
   text-decoration: none;

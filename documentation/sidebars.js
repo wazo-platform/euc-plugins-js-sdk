@@ -106,6 +106,11 @@ const sidebars = {
       items: [
         {
           type: 'ref',
+          id: 'plugins/templates',
+          label: 'Templates',
+        },
+        {
+          type: 'ref',
           id: 'plugins/wda-examples',
           label: 'E-UC Apps - Web & Desktop',
         },
