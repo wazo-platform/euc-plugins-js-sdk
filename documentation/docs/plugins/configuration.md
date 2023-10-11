@@ -14,7 +14,7 @@ This part is still in the development process, changes may happen frequently to 
 This file describes how your plugin is integrated into a Wazo Product. Using one or multiple manifest files you can
 customize all the Wazo E-UC Products (Web, Desktop, Portal and Mobile).
 
-### Required fields
+### Required Fields
 
 :::info
 `manifest.json` files should be served using a CORS-enabled HTTP server.
@@ -38,7 +38,7 @@ Your manifest.json must provide at least all required fields to make it installa
 
 ### Example of a Manifest File
 
-Example of all fields that a manifest can contains. The manifest file must be in JSON format and will be hosted in your environment.
+Example of all fields that a manifest can contain. The manifest file must be in JSON format and will be hosted in your environment.
 **Please note that comments are not valid in JSON files.**
 
 ```json
