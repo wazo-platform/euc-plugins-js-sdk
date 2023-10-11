@@ -1,3 +1,4 @@
+// @TODO: Find a way to make this work with nodejs
 // import { app } from '../src';
 //
 // window.parent.postMessage = jest.fn();
