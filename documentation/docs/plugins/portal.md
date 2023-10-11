@@ -4,17 +4,13 @@ displayed_sidebar: pluginsSidebar
 
 # Customizing E-UC Portal (coming soon)
 
-:::caution
-This part is still in development, customization is unavailable for now.
-:::
-
 :::info
 `manifest.json` files should be served using a CORS-enabled http server.
 :::
 
 ## The Possibilities
 
-Portal plugins allow many great ways to extend the interface. He's a quick summary, scroll down for more information.
+Portal plugins allow many great ways to extend the interface. Here's a quick summary, scroll down for more information.
 
 - Add new sections and links in the stack menu
 - Add new sections in Global Settings

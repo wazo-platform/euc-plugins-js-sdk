@@ -4,17 +4,13 @@ displayed_sidebar: pluginsSidebar
 
 # Customizing our Web and Desktop App
 
-:::caution
-This part is still in development, changes may occur frequently.
-:::
-
 :::info
 `manifest.json` files should be served using a CORS-enabled http server.
 :::
 
 ## The Possibilities
 
-Apps plugins allow many great ways to extend the interface. He's a quick summary, scroll down for more information.
+Apps plugins allow many great ways to extend the interface. Here's a quick summary, scroll down for more information.
 
 - Add new pages/sections
 - Extend existing pages with new tabs
