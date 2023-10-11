@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "id": "portal-pbx-dashboard",
   "packageName": "io.wazo.portal.pbx-dashboard",
+  "productType": "portal",
   "name" : {
     "short": "Example - PBX Dashboard Tab",
     "full": "Example - PBX Dashboard Tab"

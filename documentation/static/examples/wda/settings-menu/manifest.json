@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "id": "wda-settings-menu",
   "packageName": "io.wazo.wda.settings-menu",
+  "productType": "app",
   "name" : {
     "short": "Example - Settings Menu",
     "full": "Example - Settings Menu"
