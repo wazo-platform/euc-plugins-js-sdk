@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "id": "portal-pbx-users-tab",
   "packageName": "io.wazo.portal.pbx-users-tab",
+  "productType": "portal",
   "name" : {
     "short": "Example - PBX Users Tab",
     "full": "Example - PBX Users Tab"

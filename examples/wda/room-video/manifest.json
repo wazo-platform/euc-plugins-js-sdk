@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "id": "wda-room-video",
   "packageName": "io.wazo.wda.room-video",
+  "productType": "app",
   "name" : {
     "short": "Example - Room Video",
     "full": "Example - Room Video"

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "id": "wda-iframe-background-messaging",
   "packageName": "io.wazo.wda.iframe-background-messaging",
+  "productType": "app",
   "name" : {
     "short": "Example - Iframe/Background",
     "full": "Example - Iframe/Background"
