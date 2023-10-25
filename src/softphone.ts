@@ -2,7 +2,7 @@
 /* global window, document */
 import EventEmitter from 'events';
 
-import { SoftphoneInitArguments, Call, WDASession, Card, CallLog, IframeCss } from './types';
+import { SoftphoneInitArguments, Call, WDASession, Card, CallLog, IframeCss } from './types.js';
 
 const BRIDGE_CONFIG_RETRIEVED = 'bridge/CONFIG_RETRIEVED';
 const BRIDGE_LOGGED_OUT = 'bridge/LOGGED_OUT';
