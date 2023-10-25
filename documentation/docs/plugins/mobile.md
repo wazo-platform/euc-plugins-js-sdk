@@ -55,7 +55,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
         } \
       } \
    }, \ 
-   "notification_type": "some-push", \ 
+   "notification_type": "somePush", \ 
    "user_uuid": "xxxx" \ 
  }' 'https://my-stack.io/api/webhookd/1.0/mobile/notifications'
 ```
