@@ -27,7 +27,7 @@ Instead of using `https://app.wazo.io`, you may use the `wazo://` protocol.
 For instance, you can access:
 - the conference list with `wazo://phonebook/conferences`
 - the meetings page with `wazo://meetings`
-On your first attempt, you will be prompted to allow access to Electron.
+On your first attempt, you will be prompted to allow access to the application.
 
 Following your approval, you will land on the page directly.
 
