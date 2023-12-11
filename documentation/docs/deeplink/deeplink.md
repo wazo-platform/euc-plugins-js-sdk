@@ -6,7 +6,7 @@ displayed_sidebar: deeplinkSidebar
 
 Deep linking enables direct navigation to specific in-app content or actions, enhancing user experience. It allows users to seamlessly access relevant app pages or features via links, improving engagement and user retention.
 
-## Web
+## Web Application
 
 You now have the ability to control your Wazo application externally using URLs, the same way you would a regular website. If you're whitelabel-ling the application, you can use your own protocol.
 
@@ -19,7 +19,7 @@ Navigate the web application in order to retrieve the URLs you'd like to link to
 ### Pre-filling the host name
 By adding the `host` parameter to a Web Application link, the stack hostname will be pre-filled, like: `app.wazo.io/?host=my-stack.io`.
 
-## Desktop
+## Desktop Application
 
 You can also control Wazo Desktop in a similar fashion.
 
