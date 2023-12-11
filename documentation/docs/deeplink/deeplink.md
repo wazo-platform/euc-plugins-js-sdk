@@ -2,29 +2,59 @@
 displayed_sidebar: deeplinkSidebar
 ---
 
-# Deep Link
+# Deep Linking
 
-Deep linking is an app technology that enables direct navigation to specific in-app content or actions, enhancing user experience.
-It allows users to seamlessly access relevant app pages or features via links, improving engagement and user retention.
+Deep linking enables direct navigation to specific in-app content or actions, enhancing user experience. It allows users to seamlessly access relevant app pages or features via links, improving engagement and user retention.
 
-## Web Application
+## Web
 
-You can open the Web Application with a simple link, like [app.wazo.io](https://app.wazo.io).
+You now have the ability to control your Wazo application externally using URLs, the same way you would a regular website. If you're whitelabel-ling the application, you can use your own protocol.
 
-### Pre-filling the host name
+For instance, you can access:
 
-By adding the parameter `host` in the Web Application link, the stack hostname will be pre-filled, like :  [app.wazo.io/?host=my-stack.io](https://app.wazo.io/?host=my-stack.io).
-
-## Desktop Application
-
-You can open the Desktop Application with a deep link, like [wazo://](wazo://).
-
-If you're whitelabel-ling the application, you can use your own protocol.
+- the conference list with `https://app.wazo.io/phonebook/conferences`
+- the meetings page with `https://app.wazo.io/meetings`
+Navigate the web application in order to retrieve the URLs you'd like to link to from the location bar of your browser.
 
 ### Pre-filling the host name
+By adding the `host` parameter to a Web Application link, the stack hostname will be pre-filled, like: `app.wazo.io/?host=my-stack.io`.
 
-By adding the parameter `host` in the Desktop Application link, the stack hostname will be pre-filled, like : [wazo://?host=my-stack.io](wazo://?host=my-stack.io).
+## Desktop
 
-## Mobile Application
+You can also control Wazo Desktop in a similar fashion.
 
-The Mobile Application uses the same link as the Desktop Application.
+Instead of using `https://app.wazo.io`, you may use the `wazo://` protocol.
+
+For instance, you can access:
+
+- the conference list with `wazo://phonebook/conferences`
+- the meetings page with `wazo://meetings`
+On your first attempt, you will be prompted to allow access to Electron.
+
+Following your approval, you will land on the page directly.
+
+### Pre-filling the host name
+By adding the `host` parameter to the Desktop Application link, the stack hostname will be pre-filled, like: `wazo://?host=my-stack.io`.
+
+## Initiating a call
+
+You can also use URLs to initiate a call with the `[protocol]:/calls/[your-number]` URL structure.
+
+For instance:
+
+- `https://app.wazo.io/calls/418-555-1234` loads the web application and redirects you to the lobby, from which you can proceed with the call.
+- `wazo://calls/418-555-1234`
+will bring the desktop app to the foreground and achieve the same result.
+
+### Bypassing the lobby
+You can bypass the lobby and proceed directly with the call by adding the `direct` query string:
+
+- `https://app.wazo.io/calls/418-555-1234?direct`
+- `wazo://calls/418-555-1234?direct`
+The `tel:`, `call:` and `callto:` protocols automatically bypass the lobby:
+
+- `tel:418-555-1234`
+- `call:418-555-1234`
+- `callto:418-555-1234` (not implemented yet)
+
+This protocol are not supported to be used with web version. You need to use the chrome extension.
