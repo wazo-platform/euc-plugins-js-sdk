@@ -203,6 +203,7 @@ export interface ModalParameter {
   htmlText?: string;
   height?: string|number;
   width?: string|number;
+  hideCloseButton?: boolean;
 }
 
 export interface IframeCss { [index: string]: string|number }

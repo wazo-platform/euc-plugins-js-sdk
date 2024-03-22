@@ -257,8 +257,8 @@ export class App {
 
   displayNotification = (title: string, text: string) => this._sendMessage(EVENT_DISPLAY_NOTIFICATION, { title, text });
 
-  displayModal = ({ url, title, text, htmlText, height, width }: ModalParameter) =>
-    this._sendMessage(EVENT_DISPLAY_MODAL, { url, title, text, htmlText, height, width });
+  displayModal = ({ url, title, text, htmlText, height, width, hideCloseButton }: ModalParameter) =>
+    this._sendMessage(EVENT_DISPLAY_MODAL, { url, title, text, htmlText, height, width, hideCloseButton });
 
   removeModal = () => this._sendMessage(EVENT_REMOVE_MODAL);
 
