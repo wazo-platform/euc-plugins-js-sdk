@@ -307,13 +307,17 @@ app.displayBanner({ url, height, width, hideCloseButton });
 
 If `url` is present, the modal will display an iframe with the content of the url.
 The `height` accepts valid CSS values, like `500px` or `80%`.
-The `width` accepts valid CSS values, like `500px` or `80%`, used on WDA.
+The `width` accepts valid CSS values, like `500px` or `80%`, used on WDA (min: `300px`).
 `hideCloseButton` (default to false), indicate if the close button should be displayed of it the user should handle the closing of the modal in the html content (throught `app.removeBanner()` method).
 
 We could then call `app.removeBanner()` in the `backgroundScript` or the loaded content.
 
 :::note
 On mobile, links with a `taget="_blank"` attributes will be opened in the user's default browser.
+:::
+
+:::note
+On WDA the banner will be integrated with other banners like incoming calls. Other banners will be displayed below.
 :::
 
 #### Checking if a call has a local video stream
