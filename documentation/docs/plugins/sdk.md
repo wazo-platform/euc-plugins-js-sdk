@@ -302,11 +302,13 @@ app.onCallIncoming = async call => {
 We can display a banner in the `backgroundScript` with:
 
 ```js
-app.displayBanner({ url, height, width });
+app.displayBanner({ url, height, width, hideCloseButton });
 ```
 
 If `url` is present, the modal will display an iframe with the content of the url.
 The `height` accepts valid CSS values, like `500px` or `80%`.
+The `width` accepts valid CSS values, like `500px` or `80%`, used on WDA.
+`hideCloseButton` (default to false), indicate if the close button should be displayed of it the user should handle the closing of the modal in the html content (throught `app.removeBanner()` method).
 
 We could then call `app.removeBanner()` in the `backgroundScript` or the loaded content.
 
