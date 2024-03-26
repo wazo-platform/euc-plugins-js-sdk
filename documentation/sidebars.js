@@ -140,7 +140,7 @@ const sidebars = {
     {
       type: 'ref',
       id: 'deeplink/deeplink',
-      label: 'Deeplink'
+      label: 'Deep Linking'
     },
   ],
 };

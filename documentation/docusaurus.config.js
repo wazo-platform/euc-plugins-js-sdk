@@ -89,7 +89,7 @@ const config = {
             type: 'doc',
             docId: 'deeplink/deeplink',
             position: 'left',
-            label: 'Deeplink',
+            label: 'Deep Linking',
             activeBaseRegex: '/deeplink/'
           },
 
