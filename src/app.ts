@@ -169,8 +169,8 @@ export class App {
       }
     }
 
-    // Used in background script, we expose a global method to be used in the <script> tag directly after importing the backgroundScript url
-    // Used in mobile too
+    // We expose a global method to be used in the <script> tag directly after importing the `backgroundScript` url
+    // Also used in mobile
     globalThis._setPluginId = this._setPluginId;
     globalThis._configurePlugin = this._configurePlugin;
   }

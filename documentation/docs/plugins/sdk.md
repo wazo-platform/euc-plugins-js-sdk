@@ -62,7 +62,7 @@ It's at this moment the magic happens, add your own logic inside our products. D
 
 When a plugin is unloaded because of a user action (ex: logout), this listener `app.onPluginUnLoaded()` will be called. Other listeners will be disabled when unloaded. To prevent side effects, it's important to remove any watcher added in the initializing phase.
 
-When the user logs in again, the `backgroundScript` will be loaded again, please make sure to release everything in `onPluginUnLoaded`.
+When the user logs in again, the `backgroundScript` will be reloaded, please make sure to release everything in `onPluginUnLoaded`.
 
 :::info
 If you're using a **background script**, it's important to close any WebSocket or listeners at this cycle of the plugin.
@@ -273,10 +273,10 @@ app.displayModal({ url, title, text, htmlText, height, width, hideCloseButton })
 If `url` is present, the modal will display an iframe with the content of the url.
 If `htmlText` is present, the modal will display this text in a html contact, otherwise the `text` attribute will be used.
 The `height` and `width` accept valid CSS values, like `500px` or `80%`.
-`hideCloseButton` (default to false), indicate if the close button should be displayed of it the user should handle the closing of the modal in the html content (throught `app.removeModal()` method).
+`hideCloseButton` (default to false) determines if the close button should be displayed, or if the user should handle closing of the modal in the html content (through `app.removeModal()` method).
 
 :::note
-On mobile, links with a `taget="_blank"` attributes will be opened in the user's default browser.
+On mobile, links with a `target="_blank"` attribute will be opened in the user's default browser.
 :::
 
 Example:
@@ -308,16 +308,16 @@ app.displayBanner({ url, height, width, hideCloseButton });
 If `url` is present, the modal will display an iframe with the content of the url.
 The `height` accepts valid CSS values, like `500px` or `80%`.
 The `width` accepts valid CSS values, like `500px` or `80%`, used on WDA (min: `300px`).
-`hideCloseButton` (default to false), indicate if the close button should be displayed of it the user should handle the closing of the modal in the html content (throught `app.removeBanner()` method).
+`hideCloseButton` (default to false) determines if the close button should be displayed, or if the user should handle closing of the modal in the html content (through `app.removeModal()` method).
 
-We could then call `app.removeBanner()` in the `backgroundScript` or the loaded content.
+We can then call `app.removeBanner()` in the `backgroundScript` or the loaded content.
 
 :::note
-On mobile, links with a `taget="_blank"` attributes will be opened in the user's default browser.
+On mobile, links with a `target="_blank"` attribute will be opened in the user's default browser.
 :::
 
 :::note
-On WDA the banner will be integrated with other banners like incoming calls. Other banners will be displayed below.
+On WDA, the banner will be integrated with other banners like incoming calls. Other banners will be displayed below.
 :::
 
 #### Checking if a call has a local video stream
