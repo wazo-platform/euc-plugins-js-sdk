@@ -203,6 +203,7 @@ export interface ModalParameter {
   htmlText?: string;
   height?: string|number;
   width?: string|number;
+  hideCloseButton?: boolean;
 }
 
 export interface IframeCss { [index: string]: string|number }
@@ -255,6 +256,11 @@ export type UpdateBadgeArgs = {
   overlap?: 'circular' | 'rectangular',
   showZero?: boolean,
   anchorOrigin?: { horizontal: 'left' | 'right', vertical: 'top' | 'bottom' }
+};
+
+export type DisplayBannerArgs = {
+  url?: string,
+  height: number,
 };
 
 export type MobileMenuItem = {

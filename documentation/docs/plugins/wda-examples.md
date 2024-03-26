@@ -69,6 +69,46 @@ await app.initialize();
     source="https://github.com/wazo-communication/euc-plugins-js-sdk/tree/master/documentation/static/examples/wda/incoming-call-modal"
 />
 
+## Displaying a banner
+
+```mdx-code-block
+<BrowserWindow url="https://app.wazo.io">
+```
+![Banner](/img/app-example-banner.png)
+```mdx-code-block
+</BrowserWindow>
+```
+
+```js
+// backgroundScript
+await app.initialize();
+app.displayBanner({
+  url: 'https://grim.ngrok.io/banner.html',
+  height: '60px',
+  hideCloseButton: true,
+});
+
+```
+
+In the `banner.html` file:
+```html
+<html>
+  <body>
+      <a href="https://my-website.com" target="_blank">You trial has expired</a>
+      <a href="#" id="close">x</a>
+
+      <script type="module">
+        app.initialize();
+
+        document.getElementById('close').addEventListener('click', (e) => {
+          e.preventDefault();
+          app.removeBanner();
+        });
+      </script>
+  </body>
+</html>
+```
+
 ## Send and receive messages between background script and tabs
 
 ```mdx-code-block
