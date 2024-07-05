@@ -37,7 +37,7 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 
 Please refer to the [SDK](./sdk) documentation to know how to inject custom code in the application.
 
-# Sending a push notification that opens the application then the plugin.
+## Sending a push notification that opens the application directly on the plugin screen
 
 You can send a push through Wazo API like :
 
