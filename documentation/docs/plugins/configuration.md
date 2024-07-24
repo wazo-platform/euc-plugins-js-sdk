@@ -86,6 +86,13 @@ Example of all fields that a manifest can contain. The manifest file must be in 
     "outline": "https://fr.m.wikipedia.org/wiki/Fichier:Cat_%28113020%29_-_The_Noun_Project.svg"
   },
 
+  // Plugin requirements
+  "requirements": {
+    // Minimum stack version required to load the plugin (prevents incompatibility with newer APIs)
+    //   Note: If not defined, the plugin will load on any stack version.
+    "minStackVersion": "XX.YY"
+  },
+
   // Developer / author information
   "developer": {
     // Name for the developer / author.
