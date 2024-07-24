@@ -32,7 +32,7 @@ To create a new tab in the PBX main screen, add a `staticTabs` in your manifest 
       "generalPbxTab"
     ],
     "name": "My label",
-    "contentUrl": "https://my-websit/content.html"
+    "contentUrl": "./content.html"
   }
 ],
 ```
@@ -52,7 +52,7 @@ To create a new tab in the PBX main screen, add a `staticTabs` in your manifest 
       "pbx.users"
     ],
     "name": "My label",
-    "contentUrl": "https://my-websit/content.html"
+    "contentUrl": "./content.html"
   }
 ],
 ```
@@ -76,7 +76,7 @@ To create a new page the PBX menu, add a `staticTabs` in your manifest with a `p
     ],
     "name": "My label",
     "parent": "common.layout.pbxMenu.userManagement",
-    "contentUrl": "https://my-website.com/content.html"
+    "contentUrl": "./content.html"
   }
 ],
 ```
@@ -143,7 +143,10 @@ When the user clicks on the tab, the `contentUrl` will be loaded.
 You can add custom code when the user is not using a custom tab. It can be useful to handle custom events.
 
 ```json
-  "backgroundScript": "https://my-website/background.js"
+{
+  // ...
+  "backgroundScript": "./background.js"
+}
 ```
 
 Please refer to the [SDK](./sdk) documentation to know how to inject custom code in the application.
