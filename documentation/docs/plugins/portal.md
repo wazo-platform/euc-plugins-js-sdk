@@ -19,27 +19,6 @@ Portal plugins allow many great ways to extend the interface. Here's a quick sum
 - Extend dashboards
 - Run code logic inside a background script
 
-
-## Adding tabs in the main page
-
-![App configuration (small)](/img/portal-home-tab.png)
-
-To create a new tab in the main screen, add a `staticTabs` in your manifest with a `generalTab` `context` :
-```json
-"staticTabs": [
-  {
-    "entityId": "my id",
-    "context": [
-      "generalTab"
-    ],
-    "name": "My label",
-    "contentUrl": "https://my-websit/content.html"
-  }
-],
-```
-
-When the user clicks on the tab, the `contentUrl` will be loaded.
-
 ## Adding tabs in the main page of the PBX section
 
 ![App configuration (small](/img/portal-pbx-home-tab.png)
