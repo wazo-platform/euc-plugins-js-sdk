@@ -16,14 +16,14 @@ Mobile plugins allow many great ways to extend the interface. Here's a quick sum
 
 ![App configuration (small)](/img/mobile-tab2.png)
 
-To create a new tab in the main screen, add a `staticTabs` in your manifest with a `generalTab` `context` :
+To create a new tab in the main screen, add a `staticTabs` in your manifest with a `mobileTab` context :
 ```json
 "staticTabs": [
   {
     "entityId": "my id",
     "mobileIcon": "chatbox-ellipses-outline",
     "context": [
-      "generalTab"
+      "mobileTab"
     ],
     "name": "My label",
     "contentUrl": "https://my-websit/content.html"

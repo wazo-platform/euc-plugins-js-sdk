@@ -30,7 +30,7 @@ To create a new tab in the main screen, add a `staticTabs` in your manifest with
       "generalTab"
     ],
     "name": "My label",
-    "contentUrl": "https://my-websit/content.html"
+    "contentUrl": "./content.html"
   }
 ],
 ```
@@ -50,8 +50,8 @@ To create a new tab in the main screen, add a `staticTabs` in your manifest with
       "sidebarTab"
     ],
     "name": "My label",
-    "contentUrl": "https://my-websit/content.html",
-    "icon": "https://example.com/assets/icon.svg"
+    "contentUrl": "./content.html",
+    "icon": "./assets/icon.svg"
   }
 ],
 ```
@@ -73,7 +73,7 @@ To create a new tab in the main screen, add a `staticTabs` in your manifest with
       "contactTab"
     ],
     "name": "My label",
-    "contentUrl": "https://my-websit/content.html"
+    "contentUrl": "./content.html"
   }
 ],
 ```
@@ -93,7 +93,7 @@ To create a new tab in the main screen, add a `staticTabs` in your manifest with
       "phonebookTab"
     ],
     "name": "My label",
-    "contentUrl": "https://my-websit/content.html"
+    "contentUrl": "./content.html"
   }
 ],
 ```
@@ -168,7 +168,10 @@ Please refer to the documentation of `settingsTab` about the position attribute.
 You can add custom code when the user is not using a custom tab. It can be useful to handle incoming calls, or other events.
 
 ```json
-"backgroundScript": "https://my-website/background.js"
+{
+  // ...
+  "backgroundScript": "./background.js"
+}
 ```
 
 Please refer to the [SDK](./sdk) documentation to know how to inject custom code in the application.**

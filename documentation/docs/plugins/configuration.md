@@ -81,9 +81,16 @@ Example of all fields that a manifest can contain. The manifest file must be in 
   // Plugin icons
   "icons": {
     // File URL or path to a full color PNG / SVG icon.
-    "color": "https://fr.m.wikipedia.org/wiki/Fichier:Cat_%28113020%29_-_The_Noun_Project.svg",
+    "color": "./assets/colors.svg",
     // File URL or path to a transparent outlined icon in black.
-    "outline": "https://fr.m.wikipedia.org/wiki/Fichier:Cat_%28113020%29_-_The_Noun_Project.svg"
+    "outline": "./assets/outline.svg"
+  },
+
+  // Plugin requirements
+  "requirements": {
+    // Minimum stack version required to load the plugin (prevents incompatibility with newer APIs)
+    //   Note: If not defined, the plugin will load on any stack version.
+    "minStackVersion": "XX.YY"
   },
 
   // Developer / author information
@@ -106,12 +113,12 @@ Example of all fields that a manifest can contain. The manifest file must be in 
       // Tab display name
       "name": "SMS",
       // URL or path to show UI of this tab.
-      "contentUrl": "https://example.com/sms.html"
+      "contentUrl": "./sms.html"
     }
   ],
 
   // Define a background script, that runs when user is not inside a plugin tabs.
-  "backgroundScript": "https://example.com/background.js",
+  "backgroundScript": "./background.js",
 
   // Localization configuration
   "localizationInfo": {
